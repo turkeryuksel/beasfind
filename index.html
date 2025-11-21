@@ -3,175 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#0a0a0a">
-    <title>BEA'S SMART FIND</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#000000">
+    <title>BEA'S ELITE COLLECTION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* --- RESET & TEMEL AYARLAR --- */
+        /* --- BEA'S ELITE THEME (DARK & GOLD) --- */
         :root {
-            --bg-app: #050505;
-            --card-bg: #121212;
-            --gold: #D4AF37;
-            --gold-dim: #8a702a;
-            --text-main: #e0e0e0;
-            --text-sub: #888;
-            --border-radius: 16px;
+            --bg-body: #000000;
+            --bg-app: #121212;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-gold: #D4AF37; /* Bea's Gold */
+            --accent-dark-gold: #8a702a;
+            --border-color: #2a2a2a;
             --app-width: 600px;
-            --pill-bg: rgba(212, 175, 55, 0.15);
+            --radius: 12px;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
+
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
+            margin: 0; padding: 0;
+            background-color: var(--bg-body);
             font-family: 'Montserrat', sans-serif;
-            color: var(--text-main);
+            color: var(--text-primary);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
+            display: flex; justify-content: center;
             overflow-x: hidden;
         }
 
         /* --- SPLASH SCREEN --- */
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #050505; z-index: 9999;
+            background: #000; z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.6s ease-out, visibility 0.6s;
+            transition: opacity 0.6s ease-out;
         }
         .splash-logo {
-            font-family: 'Cinzel', serif; font-size: 3.5rem; color: var(--text-main);
-            letter-spacing: 4px; margin-bottom: 40px; text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            font-family: 'Cinzel', serif; font-size: 3.5rem; color: #fff;
+            letter-spacing: 2px; margin-bottom: 10px; text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
         }
-        .splash-logo span { color: var(--gold); }
-        .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 280px; }
-        .lang-choice-btn {
-            background: transparent; border: 1px solid #333; color: #888; padding: 15px;
-            font-family: 'Montserrat', sans-serif; font-size: 0.9rem; letter-spacing: 1px;
-            cursor: pointer; transition: all 0.3s; border-radius: 8px; text-transform: uppercase;
+        .splash-logo span { color: var(--accent-gold); }
+        
+        .splash-sub {
+            font-size: 0.7rem; letter-spacing: 4px; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 40px;
         }
-        .lang-choice-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(212, 175, 55, 0.05); transform: translateY(-2px); }
-        .lang-sub { display: block; font-size: 0.7rem; margin-top: 5px; opacity: 0.5; }
+        
+        .lang-grid {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 340px;
+        }
+
+        .lang-btn {
+            background: rgba(255,255,255,0.05); border: 1px solid #333; color: #888;
+            padding: 12px 0; width: 100px;
+            font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-weight: 500; font-size: 0.75rem;
+            cursor: pointer; transition: all 0.3s; border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .lang-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(212, 175, 55, 0.1); }
 
         /* --- APP CONTAINER --- */
         .app-container {
-            width: 100%; max-width: var(--app-width); background-color: var(--bg-app);
-            min-height: 100vh; position: relative; box-shadow: 0 0 50px rgba(0,0,0,0.8);
-            display: none; flex-direction: column; opacity: 0; transition: opacity 0.8s ease-in;
+            width: 100%; max-width: var(--app-width);
+            background-color: var(--bg-app);
+            min-height: 100vh; position: relative;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.05);
+            display: none; flex-direction: column; opacity: 0; transition: opacity 0.8s ease;
             border-left: 1px solid #1a1a1a; border-right: 1px solid #1a1a1a;
         }
 
         /* --- HEADER --- */
-        .top-nav {
-            padding: 20px 20px 15px 20px; background: rgba(5, 5, 5, 0.95);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        .header {
+            padding: 40px 20px 15px 20px;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
             position: sticky; top: 0; z-index: 100;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid var(--border-color);
             display: flex; flex-direction: column; align-items: center;
         }
-        .app-logo { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--text-main); margin-bottom: 15px; }
-        .app-logo span { color: var(--gold); }
-        .header-lang-switch { position: absolute; top: 20px; right: 20px; font-size: 0.7rem; color: #666; cursor: pointer; border: 1px solid #333; padding: 5px 10px; border-radius: 10px; }
-        [dir="rtl"] .header-lang-switch { right: auto; left: 20px; }
 
-        /* SEARCH */
-        .search-box { width: 100%; position: relative; }
-        .search-input {
-            width: 100%; background: #1a1a1a; border: 1px solid #333; padding: 16px 20px;
-            padding-left: 45px; border-radius: 12px; color: white; font-family: 'Montserrat', sans-serif;
-            font-size: 1rem; outline: none; transition: 0.3s;
+        .brand-logo {
+            font-family: 'Cinzel', serif; font-size: 2.2rem;
+            color: #fff; margin-bottom: 5px; text-decoration: none; letter-spacing: 1px;
         }
-        .search-input:focus { border-color: var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.1); }
-        .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666; }
-        [dir="rtl"] .search-input { padding-left: 20px; padding-right: 45px; }
-        [dir="rtl"] .search-icon { left: auto; right: 15px; }
+        .brand-logo span { color: var(--accent-gold); }
+        
+        .brand-caption {
+            font-size: 0.65rem; letter-spacing: 3px; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 20px;
+        }
 
-        /* --- CONTENT --- */
-        .content-area { padding: 20px; flex: 1; }
+        .lang-switch-small {
+            position: absolute; top: 20px; right: 20px;
+            font-size: 0.7rem; color: #666; cursor: pointer; font-weight: 500;
+            border: 1px solid #333; padding: 4px 8px; border-radius: 4px;
+        }
+        [dir="rtl"] .lang-switch-small { right: auto; left: 20px; }
+
+        /* SEARCH INPUT */
+        .search-box { width: 100%; position: relative; margin-bottom: 10px; }
+        .search-input {
+            width: 100%; background: #0a0a0a; border: 1px solid #333;
+            padding: 16px 20px; padding-left: 48px; border-radius: 8px;
+            font-family: 'Montserrat', sans-serif; font-size: 1rem; color: #fff;
+            outline: none; transition: 0.3s;
+        }
+        .search-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.1); }
+        .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); opacity: 0.5; font-size: 1.1rem; color: var(--accent-gold); }
+        
+        [dir="rtl"] .search-input { padding-left: 20px; padding-right: 48px; }
+        [dir="rtl"] .search-icon { left: auto; right: 16px; }
+
+        /* --- CONTENT LIST --- */
+        .content-area { padding: 15px 20px; flex: 1; }
 
         .card {
-            background: var(--card-bg); border-radius: var(--border-radius);
-            margin-bottom: 15px; overflow: hidden; border: 1px solid #222; position: relative;
+            background: #1a1a1a; border: 1px solid #252525; border-radius: 8px;
+            margin-bottom: 12px; padding: 20px 15px; cursor: pointer; transition: all 0.3s ease;
+            position: relative; overflow: hidden;
         }
-        .card-header { padding: 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
-        .card-info { display: flex; flex-direction: column; align-items: flex-start; }
+        .card:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
         
-        .card-top-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
-        .card-code { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.2rem; font-weight: bold; }
+        .card-main { display: flex; justify-content: space-between; align-items: center; }
         
-        /* Koku Ailesi Etiketi */
-        .family-pill {
-            font-size: 0.65rem; background: var(--pill-bg); color: #ccc;
-            padding: 3px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px;
-            border: 1px solid rgba(212, 175, 55, 0.2); white-space: nowrap;
+        /* Kod Tasarımı (Gold Plate) */
+        .code-pill {
+            background: linear-gradient(135deg, #D4AF37, #AA8A2E);
+            color: #000; font-family: 'Cinzel', serif; font-weight: 700;
+            font-size: 0.95rem; padding: 6px 12px; border-radius: 4px; min-width: 75px; text-align: center;
+            margin-right: 15px; box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+        }
+        [dir="rtl"] .code-pill { margin-right: 0; margin-left: 15px; }
+
+        .info-col { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .family-text { font-size: 0.6rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .perfume-name { font-size: 0.95rem; color: #fff; font-weight: 500; text-transform: uppercase; line-height: 1.4; }
+
+        .arrow { color: #444; font-size: 0.8rem; transition: transform 0.3s; }
+        .card.active .arrow { transform: rotate(180deg); color: var(--accent-gold); }
+
+        /* Detaylar */
+        .details-panel {
+            max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+        }
+        .card.active .details-panel { max-height: 200px; opacity: 1; padding-top: 20px; border-top: 1px solid #2a2a2a; margin-top: 15px;}
+
+        .compare-box {
+            display: flex; justify-content: space-between; align-items: center; padding: 0 10px;
         }
 
-        .card-name { font-size: 0.95rem; color: #ddd; font-weight: 500; text-transform: uppercase; line-height: 1.4; text-align: left; }
-        
-        .toggle-icon { color: #444; transition: 0.3s; font-size: 1.2rem; }
-        .card.expanded .toggle-icon { transform: rotate(180deg); color: var(--gold); }
+        .side { display: flex; flex-direction: column; align-items: center; width: 40%; }
+        .side-label { font-size: 0.6rem; color: var(--accent-gold); letter-spacing: 1px; margin-bottom: 8px; }
 
-        .card-body { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0, 1, 0, 1); background: #0a0a0a; }
-        .card.expanded .card-body { max-height: 300px; border-top: 1px solid #222; }
-
-        .comparison-container { padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-        .product-side { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .side-label { font-size: 0.65rem; color: #666; letter-spacing: 1px; margin-bottom: 10px; text-transform: uppercase; }
-
+        /* Bea's Şişe İkonu (Gold Outline) */
         .bottle-icon {
-            width: 40px; height: 70px; border: 2px solid var(--gold-dim); border-radius: 4px;
-            position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 5px;
+            width: 35px; height: 60px; border: 1px solid var(--accent-gold); border-radius: 2px;
+            position: relative; display: flex; align-items: center; justify-content: center;
+            background: rgba(212, 175, 55, 0.05);
         }
-        .bottle-icon::before { content: ''; position: absolute; top: -10px; width: 20px; height: 8px; background: var(--gold-dim); }
-        .bottle-code-inner { font-size: 0.6rem; color: var(--gold); transform: rotate(-90deg); }
+        .bottle-icon::before { content: ''; width: 16px; height: 8px; background: var(--accent-gold); position: absolute; top: -8px; }
+        .bottle-v { font-size: 0.7rem; color: var(--accent-gold); font-family: 'Cinzel', serif; transform: rotate(-90deg); }
 
-        .vs-text { font-family: 'Cinzel', serif; font-style: italic; color: #333; font-size: 1rem; }
-        .search-google-btn {
-            background: linear-gradient(45deg, #1a1a1a, #222); border: 1px solid var(--gold-dim); color: var(--gold);
-            padding: 10px 15px; border-radius: 8px; text-decoration: none; font-size: 0.75rem; font-weight: 600;
-            display: flex; align-items: center; gap: 5px; transition: 0.3s;
+        .vs { font-family: 'Cinzel', serif; font-style: italic; color: #444; font-size: 1rem; }
+
+        .view-btn {
+            text-decoration: none; color: #000; background: var(--accent-gold);
+            padding: 10px 18px; font-size: 0.7rem; border-radius: 4px;
+            transition: 0.3s; display: flex; align-items: center; gap: 5px; font-weight: 600;
         }
-        .search-google-btn:active { background: var(--gold); color: black; }
-        
-        .no-results { text-align: center; padding: 40px; color: #444; font-style: italic; }
-        .match-score { font-size: 0.6rem; color: #333; margin-top: 2px; } /* Debug için gerekirse */
+        .view-btn:hover { background: #fff; }
 
-        [dir="rtl"] .card-info { align-items: flex-start; }
-        [dir="rtl"] .card-name { text-align: right; }
+        .msg-box { text-align: center; padding-top: 60px; color: #444; }
+        .msg-icon { font-size: 2.5rem; margin-bottom: 15px; opacity: 0.3; color: var(--accent-gold); }
+        .no-results { text-align: center; color: #666; margin-top: 20px; }
+
     </style>
 </head>
 <body>
 
 <div id="splash-screen">
-    <div class="splash-content">
-        <div class="splash-logo">BEA'S <span>FIND</span></div>
-        <div style="color: #666; margin-bottom: 20px; font-size: 0.8rem; letter-spacing: 1px;">SELECT LANGUAGE</div>
-        
-        <div class="lang-grid">
-            <button class="lang-choice-btn" onclick="enterApp('tr')">TÜRKÇE <span class="lang-sub">TURKISH</span></button>
-            <button class="lang-choice-btn" onclick="enterApp('en')">ENGLISH <span class="lang-sub">INTERNATIONAL</span></button>
-            <button class="lang-choice-btn" onclick="enterApp('ru')">РУССКИЙ <span class="lang-sub">RUSSIAN</span></button>
-            <button class="lang-choice-btn" onclick="enterApp('ar')">عربي <span class="lang-sub">ARABIC</span></button>
-        </div>
+    <div class="splash-logo">BEA'S <span>FIND</span></div>
+    <div class="splash-sub">ELITE FRAGRANCE SEARCH</div>
+    
+    <div class="lang-grid">
+        <button class="lang-btn" onclick="enterApp('tr')">TÜRKÇE</button>
+        <button class="lang-btn" onclick="enterApp('en')">ENGLISH</button>
+        <button class="lang-btn" onclick="enterApp('ru')">РУССКИЙ</button>
+        <button class="lang-btn" onclick="enterApp('ar')">عربي</button>
+        <button class="lang-btn" onclick="enterApp('ua')">УКРАЇНСЬКА</button>
+        <button class="lang-btn" onclick="enterApp('ro')">ROMÂNĂ</button>
+        <button class="lang-btn" onclick="enterApp('fr')">FRANÇAIS</button>
     </div>
 </div>
 
 <div class="app-container" id="app-container">
-    <div class="top-nav">
-        <div class="header-lang-switch" onclick="location.reload()">Change Lang</div>
-        <div class="app-logo">BEA'S <span>FIND</span></div>
+    <div class="header">
+        <div class="lang-switch-small" onclick="location.reload()">LANG</div>
+        <div class="brand-logo">BEA'S <span>FIND</span></div>
+        <div class="brand-caption">PREMIUM COLLECTION</div>
+
         <div class="search-box">
-            <span class="search-icon">🔍</span>
+            <span class="search-icon">✦</span>
             <input type="text" class="search-input" id="searchInput" placeholder="" autocomplete="off">
         </div>
     </div>
 
     <div class="content-area" id="resultsArea">
-        <div style="text-align: center; padding-top: 50px; opacity: 0.3;">
-            <div style="font-size: 3rem; color: var(--gold); margin-bottom: 10px;">✨</div>
-            <p id="start-text">...</p>
+        <div class="msg-box">
+            <div class="msg-icon">♛</div>
+            <div id="start-text">...</div>
         </div>
     </div>
 </div>
@@ -179,15 +219,20 @@
 <script>
     // --- CONFIG ---
     const translations = {
-        tr: { placeholder: "Kod veya Parfüm Adı...", beasSide: "BEA'S ÜRÜNÜ", origSide: "İLHAM KAYNAĞI", btnText: "Görseli İncele", startText: "Aramaya başlamak için yazın...", noRes: "Sonuç Bulunamadı" },
-        en: { placeholder: "Search Code or Name...", beasSide: "BEA'S PRODUCT", origSide: "INSPIRATION", btnText: "View Image", startText: "Type to start searching...", noRes: "No Results Found" },
-        ru: { placeholder: "Поиск кода или названия...", beasSide: "ПРОДУКТ BEA'S", origSide: "ОРИГИНАЛ", btnText: "Смотреть фото", startText: "Начните ввод для поиска...", noRes: "Нет результатов" },
-        ar: { placeholder: "ابحث عن الرمز أو الاسم...", beasSide: "منتج بيز", origSide: "إلهام", btnText: "عرض الصورة", startText: "اكتب للبدء...", noRes: "لم يتم العثور على نتائج" }
+        tr: { placeholder: "Kod veya İsim Ara...", btn: "GÖRSELİ GÖR", start: "Aramaya Başla", empty: "Sonuç Bulunamadı", beas: "BEA'S", orig: "ORİJİNAL" },
+        en: { placeholder: "Search Code or Name...", btn: "VIEW IMAGE", start: "Start Searching", empty: "No Results", beas: "BEA'S", orig: "ORIGINAL" },
+        ru: { placeholder: "Поиск...", btn: "СМОТРЕТЬ", start: "Начать поиск", empty: "Нет результатов", beas: "BEA'S", orig: "ОРИГИНАЛ" },
+        ar: { placeholder: "بحث...", btn: "عرض", start: "ابدأ البحث", empty: "لا يوجد نتائج", beas: "بيز", orig: "أصلي" },
+        
+        // YENİ DİLLER
+        ua: { placeholder: "Введіть код або назву...", btn: "ПЕРЕГЛЯД", start: "Пошук...", empty: "Нічого не знайдено", beas: "BEA'S", orig: "ОРИГІНАЛ" },
+        ro: { placeholder: "Căutați cod sau nume...", btn: "VIZUALIZARE", start: "Căutare...", empty: "Niciun rezultat", beas: "BEA'S", orig: "ORIGINAL" },
+        fr: { placeholder: "Chercher code ou nom...", btn: "VOIR L'IMAGE", start: "Recherche...", empty: "Aucun résultat", beas: "BEA'S", orig: "ORIGINAL" }
     };
     let currentLang = 'tr';
 
-    // --- DATA (Cleaned & Enriched with Family) ---
-    // Kaynaktaki yazım hataları düzeltildi (Dior, Rabanne, Kurkdjian vb.)
+    // --- BEA'S DATA (En Kapsamlı Liste - U, W, M Serisi) ---
+    // Bu liste, BEA'S'in standart listesinden derlenmiştir.
     const fragranceData = [
         // UNISEX
         {code: "U 701", name: "ESCENTRIC 02 MOLECULES", family: "WOODY, AMBERY"},
@@ -207,7 +252,7 @@
         {code: "U 715", name: "ALEXANDRE.J BLACK MUSCS", family: "FLORAL, MUSKY"},
         {code: "U 716", name: "TOM FORD TOBACCO VANILLE", family: "ORIENTAL, SPICY"},
         {code: "U 717", name: "ESCENTRIC 01 MOLECULES", family: "WOODY, SPICY"},
-        {code: "U 718", name: "ATELIER COLOGNE CEDRE ATLAS", family: "WOODY, WOODY"},
+        {code: "U 718", name: "ATELIER CEDRE ATLAS", family: "WOODY, WOODY"},
         {code: "U 719", name: "FRANCK BOCLET COCAINE", family: "FLORAL, ORIENTAL"},
         {code: "U 720", name: "JO MALONE MYRRH AND TONKA", family: "ORIENTAL, POWDERY"},
         {code: "U 721", name: "JO MALONE WOOD SAGE & SEA SALT", family: "CITRUS, MUSKY"},
@@ -418,30 +463,17 @@
     ];
 
     // --- HELPER FUNCTIONS ---
-    function cleanString(str) {
-        return str.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
-    }
+    function cleanString(str) { return str.replace(/[^a-zA-Z0-9]/g, '').toUpperCase(); }
 
-    // Basit Levenshtein Benzerlik Algoritması (Fuzzy Search için)
-    function levenshteinDistance(a, b) {
-        if (a.length === 0) return b.length;
-        if (b.length === 0) return a.length;
-        
+    // Fuzzy Search
+    function levenshtein(a, b) {
         const matrix = [];
-        for (let i = 0; i <= b.length; i++) { matrix[i] = [i]; }
-        for (let j = 0; j <= a.length; j++) { matrix[0][j] = j; }
-
+        for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+        for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
         for (let i = 1; i <= b.length; i++) {
             for (let j = 1; j <= a.length; j++) {
-                if (b.charAt(i - 1) == a.charAt(j - 1)) {
-                    matrix[i][j] = matrix[i - 1][j - 1];
-                } else {
-                    matrix[i][j] = Math.min(
-                        matrix[i - 1][j - 1] + 1, // substitution
-                        Math.min(matrix[i][j - 1] + 1, // insertion
-                        matrix[i - 1][j] + 1) // deletion
-                    );
-                }
+                if (b.charAt(i - 1) == a.charAt(j - 1)) matrix[i][j] = matrix[i - 1][j - 1];
+                else matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1));
             }
         }
         return matrix[b.length][a.length];
@@ -449,33 +481,31 @@
 
     function enterApp(lang) {
         currentLang = lang;
-        if (lang === 'ar') document.body.dir = 'rtl';
-        else document.body.dir = 'ltr';
+        if(lang === 'ar') document.body.dir = 'rtl'; else document.body.dir = 'ltr';
         
         const t = translations[lang];
         document.getElementById('searchInput').placeholder = t.placeholder;
-        document.getElementById('start-text').innerText = t.startText;
+        document.getElementById('start-text').innerText = t.start;
 
         const splash = document.getElementById('splash-screen');
         const app = document.getElementById('app-container');
+        
         splash.style.opacity = '0';
         splash.style.pointerEvents = 'none';
+        
         setTimeout(() => {
             splash.style.display = 'none';
             app.style.display = 'flex';
-            setTimeout(() => {
-                app.style.opacity = '1';
-                document.getElementById('searchInput').focus();
-            }, 50);
+            setTimeout(() => { app.style.opacity = '1'; document.getElementById('searchInput').focus(); }, 50);
         }, 600);
     }
 
     function toggleCard(element) {
-        if (element.classList.contains('expanded')) {
-            element.classList.remove('expanded');
+        if (element.classList.contains('active')) {
+            element.classList.remove('active');
         } else {
-            document.querySelectorAll('.card.expanded').forEach(card => card.classList.remove('expanded'));
-            element.classList.add('expanded');
+            document.querySelectorAll('.card.active').forEach(c => c.classList.remove('active'));
+            element.classList.add('active');
         }
     }
 
@@ -483,97 +513,74 @@
         const query = document.getElementById('searchInput').value.trim();
         const resultsArea = document.getElementById('resultsArea');
         const t = translations[currentLang];
-        
+
         resultsArea.innerHTML = '';
 
         if (!query) {
-            resultsArea.innerHTML = `<div style="text-align: center; padding-top: 50px; opacity: 0.3;"><div style="font-size: 3rem; color: var(--gold); margin-bottom: 10px;">✨</div><p>${t.startText}</p></div>`;
+            resultsArea.innerHTML = `<div class="msg-box"><div class="msg-icon">♛</div><div>${t.start}</div></div>`;
             return;
         }
 
         const cleanQuery = cleanString(query);
-        const queryUpper = query.toUpperCase();
 
-        // ARAMA VE PUANLAMA
         let scoredResults = fragranceData.map(item => {
             let score = 0;
-            const cleanCode = cleanString(item.code);
-            const cleanName = cleanString(item.name);
-            const nameUpper = item.name.toUpperCase();
+            const itemCodeClean = cleanString(item.code);
+            const itemNameClean = cleanString(item.name);
+            
+            if (itemCodeClean === cleanQuery) score = 100;
+            else if (itemCodeClean.includes(cleanQuery)) score = 80;
 
-            // 1. Kesin Kod Eşleşmesi (En Yüksek Puan)
-            if (cleanCode === cleanQuery) score += 100;
-            else if (cleanCode.includes(cleanQuery)) score += 50; // Kısmi kod
-
-            // 2. Kesin İsim Eşleşmesi
-            if (cleanName === cleanQuery) score += 80;
-            else if (cleanName.includes(cleanQuery)) score += 40; // Kısmi isim
-
-            // 3. Fuzzy Search (Hata Toleransı)
-            // İsim içinde "parça parça" arama (Örn: "Black Orchid" için "Black" yazarsa)
-            const words = queryUpper.split(" ");
-            let allWordsFound = true;
-            words.forEach(word => {
-                if (!nameUpper.includes(word)) allWordsFound = false;
-            });
-            if (allWordsFound && words.length > 0) score += 30;
-
-            // 4. Levenshtein (Yazım Hatası Kontrolü)
-            // Sadece puan düşükse devreye girsin (Performans için)
-            if (score < 30 && cleanQuery.length > 3) {
-                const dist = levenshteinDistance(cleanQuery, cleanName);
-                const similarity = 1 - (dist / Math.max(cleanQuery.length, cleanName.length));
-                if (similarity > 0.6) { // %60 benzerlik varsa
-                    score += (similarity * 20); 
+            if (score < 80) {
+                if (itemNameClean === cleanQuery) score = 90;
+                else if (itemNameClean.includes(cleanQuery)) score = 70;
+                else if (cleanQuery.length > 2) {
+                    const dist = levenshtein(cleanQuery, itemNameClean);
+                    const maxLen = Math.max(cleanQuery.length, itemNameClean.length);
+                    const similarity = 1 - (dist / maxLen);
+                    if (similarity > 0.5) score = 50 * similarity;
                 }
             }
-
             return { ...item, score: score };
         });
 
-        // Filtrele ve Sırala
-        // Eşik puan: 10 (Çok alakasızları gösterme)
-        const filtered = scoredResults.filter(item => item.score > 10).sort((a, b) => b.score - a.score);
+        const filtered = scoredResults.filter(item => item.score > 25).sort((a, b) => b.score - a.score);
 
         if (filtered.length === 0) {
-            resultsArea.innerHTML = `<div class="no-results">${t.noRes}</div>`;
+            resultsArea.innerHTML = `<div class="msg-box">${t.empty}</div>`;
             return;
         }
 
-        // En fazla 50 sonuç göster (Performans)
         filtered.slice(0, 50).forEach(item => {
-            const googleSearchQuery = encodeURIComponent(item.name + " perfume original bottle");
-            const googleUrl = `https://www.google.com/search?tbm=isch&q=${googleSearchQuery}`;
-
+            const googleSearch = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(item.name + " perfume bottle")}`;
+            
             const card = document.createElement('div');
             card.className = 'card';
-            card.setAttribute('onclick', 'toggleCard(this)');
+            card.onclick = function() { toggleCard(this); };
             
             card.innerHTML = `
-                <div class="card-header">
-                    <div class="card-info">
-                        <div class="card-top-row">
-                            <div class="card-code">${item.code}</div>
-                            <div class="family-pill">${item.family}</div>
+                <div class="card-main">
+                    <div style="display:flex; align-items:center; width:100%;">
+                        <div class="code-pill">${item.code}</div>
+                        <div class="info-col">
+                            <div class="family-text">${item.family || 'FRAGRANCE'}</div>
+                            <div class="perfume-name">${item.name}</div>
                         </div>
-                        <div class="card-name">${item.name}</div>
                     </div>
-                    <div class="toggle-icon">▼</div>
+                    <div class="arrow">▼</div>
                 </div>
                 
-                <div class="card-body">
-                    <div class="comparison-container">
-                        <div class="product-side">
-                            <div class="side-label">${t.beasSide}</div>
-                            <div class="bottle-icon">
-                                <div class="bottle-code-inner">${item.code.replace(' ', '')}</div>
-                            </div>
+                <div class="details-panel">
+                    <div class="compare-box">
+                        <div class="side">
+                            <div class="side-label">${t.beas}</div>
+                            <div class="bottle-icon"><div class="bottle-v">B</div></div>
                         </div>
-                        <div class="vs-text">VS</div>
-                        <div class="product-side">
-                            <div class="side-label">${t.origSide}</div>
-                            <a href="${googleUrl}" target="_blank" class="search-google-btn" onclick="event.stopPropagation()">
-                                <span>📷</span> ${t.btnText}
+                        <div class="vs">vs</div>
+                        <div class="side">
+                            <div class="side-label">${t.orig}</div>
+                            <a href="${googleSearch}" target="_blank" class="view-btn" onclick="event.stopPropagation()">
+                                <span>👁</span> ${t.btn}
                             </a>
                         </div>
                     </div>
@@ -584,6 +591,7 @@
     }
 
     document.getElementById('searchInput').addEventListener('input', performSearch);
+
 </script>
 
 </body>
