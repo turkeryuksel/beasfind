@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>BEA'S SMART FIND</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- RESET & TEMEL AYARLAR --- */
+        :root {
+            --bg-app: #050505;
+            --card-bg: #121212;
+            --gold: #D4AF37;
+            --gold-dim: #8a702a;
+            --text-main: #e0e0e0;
+            --text-sub: #888;
+            --border-radius: 16px;
+            --app-width: 600px;
+            --pill-bg: rgba(212, 175, 55, 0.15);
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* --- SPLASH SCREEN --- */
+        #splash-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #050505; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.6s ease-out, visibility 0.6s;
+        }
+        .splash-logo {
+            font-family: 'Cinzel', serif; font-size: 3.5rem; color: var(--text-main);
+            letter-spacing: 4px; margin-bottom: 40px; text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        .splash-logo span { color: var(--gold); }
+        .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 280px; }
+        .lang-choice-btn {
+            background: transparent; border: 1px solid #333; color: #888; padding: 15px;
+            font-family: 'Montserrat', sans-serif; font-size: 0.9rem; letter-spacing: 1px;
+            cursor: pointer; transition: all 0.3s; border-radius: 8px; text-transform: uppercase;
+        }
+        .lang-choice-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(212, 175, 55, 0.05); transform: translateY(-2px); }
+        .lang-sub { display: block; font-size: 0.7rem; margin-top: 5px; opacity: 0.5; }
+
+        /* --- APP CONTAINER --- */
+        .app-container {
+            width: 100%; max-width: var(--app-width); background-color: var(--bg-app);
+            min-height: 100vh; position: relative; box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            display: none; flex-direction: column; opacity: 0; transition: opacity 0.8s ease-in;
+            border-left: 1px solid #1a1a1a; border-right: 1px solid #1a1a1a;
+        }
+
+        /* --- HEADER --- */
+        .top-nav {
+            padding: 20px 20px 15px 20px; background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .app-logo { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--text-main); margin-bottom: 15px; }
+        .app-logo span { color: var(--gold); }
+        .header-lang-switch { position: absolute; top: 20px; right: 20px; font-size: 0.7rem; color: #666; cursor: pointer; border: 1px solid #333; padding: 5px 10px; border-radius: 10px; }
+        [dir="rtl"] .header-lang-switch { right: auto; left: 20px; }
+
+        /* SEARCH */
+        .search-box { width: 100%; position: relative; }
+        .search-input {
+            width: 100%; background: #1a1a1a; border: 1px solid #333; padding: 16px 20px;
+            padding-left: 45px; border-radius: 12px; color: white; font-family: 'Montserrat', sans-serif;
+            font-size: 1rem; outline: none; transition: 0.3s;
+        }
+        .search-input:focus { border-color: var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.1); }
+        .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666; }
+        [dir="rtl"] .search-input { padding-left: 20px; padding-right: 45px; }
+        [dir="rtl"] .search-icon { left: auto; right: 15px; }
+
+        /* --- CONTENT --- */
+        .content-area { padding: 20px; flex: 1; }
+
+        .card {
+            background: var(--card-bg); border-radius: var(--border-radius);
+            margin-bottom: 15px; overflow: hidden; border: 1px solid #222; position: relative;
+        }
+        .card-header { padding: 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        .card-info { display: flex; flex-direction: column; align-items: flex-start; }
+        
+        .card-top-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+        .card-code { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.2rem; font-weight: bold; }
+        
+        /* Koku Ailesi Etiketi */
+        .family-pill {
+            font-size: 0.65rem; background: var(--pill-bg); color: #ccc;
+            padding: 3px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+            border: 1px solid rgba(212, 175, 55, 0.2); white-space: nowrap;
+        }
+
+        .card-name { font-size: 0.95rem; color: #ddd; font-weight: 500; text-transform: uppercase; line-height: 1.4; text-align: left; }
+        
+        .toggle-icon { color: #444; transition: 0.3s; font-size: 1.2rem; }
+        .card.expanded .toggle-icon { transform: rotate(180deg); color: var(--gold); }
+
+        .card-body { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0, 1, 0, 1); background: #0a0a0a; }
+        .card.expanded .card-body { max-height: 300px; border-top: 1px solid #222; }
+
+        .comparison-container { padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .product-side { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .side-label { font-size: 0.65rem; color: #666; letter-spacing: 1px; margin-bottom: 10px; text-transform: uppercase; }
+
+        .bottle-icon {
+            width: 40px; height: 70px; border: 2px solid var(--gold-dim); border-radius: 4px;
+            position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 5px;
+        }
+        .bottle-icon::before { content: ''; position: absolute; top: -10px; width: 20px; height: 8px; background: var(--gold-dim); }
+        .bottle-code-inner { font-size: 0.6rem; color: var(--gold); transform: rotate(-90deg); }
+
+        .vs-text { font-family: 'Cinzel', serif; font-style: italic; color: #333; font-size: 1rem; }
+        .search-google-btn {
+            background: linear-gradient(45deg, #1a1a1a, #222); border: 1px solid var(--gold-dim); color: var(--gold);
+            padding: 10px 15px; border-radius: 8px; text-decoration: none; font-size: 0.75rem; font-weight: 600;
+            display: flex; align-items: center; gap: 5px; transition: 0.3s;
+        }
+        .search-google-btn:active { background: var(--gold); color: black; }
+        
+        .no-results { text-align: center; padding: 40px; color: #444; font-style: italic; }
+        .match-score { font-size: 0.6rem; color: #333; margin-top: 2px; } /* Debug için gerekirse */
+
+        [dir="rtl"] .card-info { align-items: flex-start; }
+        [dir="rtl"] .card-name { text-align: right; }
+    </style>
+</head>
+<body>
+
+<div id="splash-screen">
+    <div class="splash-content">
+        <div class="splash-logo">BEA'S <span>FIND</span></div>
+        <div style="color: #666; margin-bottom: 20px; font-size: 0.8rem; letter-spacing: 1px;">SELECT LANGUAGE</div>
+        
+        <div class="lang-grid">
+            <button class="lang-choice-btn" onclick="enterApp('tr')">TÜRKÇE <span class="lang-sub">TURKISH</span></button>
+            <button class="lang-choice-btn" onclick="enterApp('en')">ENGLISH <span class="lang-sub">INTERNATIONAL</span></button>
+            <button class="lang-choice-btn" onclick="enterApp('ru')">РУССКИЙ <span class="lang-sub">RUSSIAN</span></button>
+            <button class="lang-choice-btn" onclick="enterApp('ar')">عربي <span class="lang-sub">ARABIC</span></button>
+        </div>
+    </div>
+</div>
+
+<div class="app-container" id="app-container">
+    <div class="top-nav">
+        <div class="header-lang-switch" onclick="location.reload()">Change Lang</div>
+        <div class="app-logo">BEA'S <span>FIND</span></div>
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="" autocomplete="off">
+        </div>
+    </div>
+
+    <div class="content-area" id="resultsArea">
+        <div style="text-align: center; padding-top: 50px; opacity: 0.3;">
+            <div style="font-size: 3rem; color: var(--gold); margin-bottom: 10px;">✨</div>
+            <p id="start-text">...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- CONFIG ---
+    const translations = {
+        tr: { placeholder: "Kod veya Parfüm Adı...", beasSide: "BEA'S ÜRÜNÜ", origSide: "İLHAM KAYNAĞI", btnText: "Görseli İncele", startText: "Aramaya başlamak için yazın...", noRes: "Sonuç Bulunamadı" },
+        en: { placeholder: "Search Code or Name...", beasSide: "BEA'S PRODUCT", origSide: "INSPIRATION", btnText: "View Image", startText: "Type to start searching...", noRes: "No Results Found" },
+        ru: { placeholder: "Поиск кода или названия...", beasSide: "ПРОДУКТ BEA'S", origSide: "ОРИГИНАЛ", btnText: "Смотреть фото", startText: "Начните ввод для поиска...", noRes: "Нет результатов" },
+        ar: { placeholder: "ابحث عن الرمز أو الاسم...", beasSide: "منتج بيز", origSide: "إلهام", btnText: "عرض الصورة", startText: "اكتب للبدء...", noRes: "لم يتم العثور على نتائج" }
+    };
+    let currentLang = 'tr';
+
+    // --- DATA (Cleaned & Enriched with Family) ---
+    // Kaynaktaki yazım hataları düzeltildi (Dior, Rabanne, Kurkdjian vb.)
+    const fragranceData = [
+        // UNISEX
+        {code: "U 701", name: "ESCENTRIC 02 MOLECULES", family: "WOODY, AMBERY"},
+        {code: "U 702", name: "MONTALE CHOCOLATE GREEDY", family: "SWEET, GOURMAND"},
+        {code: "U 703", name: "MONTALE INTENSE CAFE", family: "FLORAL, MUSKY"},
+        {code: "U 704", name: "MONTALE WILD PEARS", family: "FLORAL, POWDERY"},
+        {code: "U 705", name: "EX NIHILO FLEUR NARCOTIQUE", family: "CITRUS, FLORAL"},
+        {code: "U 706", name: "MONTALE AOUD JASMINE", family: "FLORAL, WOODY"},
+        {code: "U 707", name: "MONTALE INTENSE CHERRY", family: "FLORAL, ORIENTAL"},
+        {code: "U 708", name: "ZARKOPERFUME PINK MOLECULE 090 09", family: "FRUITY, FLORAL"},
+        {code: "U 709", name: "BY KILIAN BAMBOO HARMONY", family: "CITRUS, AROMATIC"},
+        {code: "U 710", name: "BY KILIAN INTOXICATED", family: "WOODY, SPICY"},
+        {code: "U 711", name: "MAISON FRANCIS KURKDJIAN BACCARAT ROUGE 540", family: "ORIENTAL, BALSAMIC"},
+        {code: "U 712", name: "MONTALE SOLEIL DE CAPRI", family: "CITRUS, WOODY"},
+        {code: "U 713", name: "MONTALE STARRY NIGHT", family: "WOODY, GREEN"},
+        {code: "U 714", name: "TOM FORD BLACK ORCHID", family: "WOODY, ORIENTAL"},
+        {code: "U 715", name: "ALEXANDRE.J BLACK MUSCS", family: "FLORAL, MUSKY"},
+        {code: "U 716", name: "TOM FORD TOBACCO VANILLE", family: "ORIENTAL, SPICY"},
+        {code: "U 717", name: "ESCENTRIC 01 MOLECULES", family: "WOODY, SPICY"},
+        {code: "U 718", name: "ATELIER COLOGNE CEDRE ATLAS", family: "WOODY, WOODY"},
+        {code: "U 719", name: "FRANCK BOCLET COCAINE", family: "FLORAL, ORIENTAL"},
+        {code: "U 720", name: "JO MALONE MYRRH AND TONKA", family: "ORIENTAL, POWDERY"},
+        {code: "U 721", name: "JO MALONE WOOD SAGE & SEA SALT", family: "CITRUS, MUSKY"},
+        {code: "U 722", name: "KILIAN BLACK PHANTOM", family: "ORIENTAL, WOODY"},
+        {code: "U 723", name: "KILIAN I DON'T NEED A PRINCE", family: "ORIENTAL, POWDERY"},
+        {code: "U 724", name: "KILIAN MOONLIGHT IN HEAVEN", family: "FRUITY, AROMATIC"},
+        {code: "U 725", name: "THE BEAUTIFUL MIND SERIES VOL.1", family: "FLORAL, WOODY"},
+        {code: "U 726", name: "TIZIANA TERENZI CASANOVA", family: "WOODY, FLORAL"},
+        {code: "U 727", name: "SOSPIRO ERBA PURA", family: "ORIENTAL, FRUITY"},
+        {code: "U 728", name: "TIZIANA TERENZI KIRKE", family: "CHYPRE, FRUITY"},
+        {code: "U 729", name: "MARIHUANA UNISEX", family: "CITRUS, AROMATIC"},
+        {code: "U 730", name: "BY KILIAN BAD BOYS", family: "CITRUS, SPICY"},
+        {code: "U 731", name: "BOND 9 DUBAI SIGNATURE", family: "CITRUS, WOODY"},
+        {code: "U 732", name: "BVLGARI LE GEMME TYGAR", family: "CITRUS, FLORAL"},
+        {code: "U 733", name: "DIOR OUD ISPAHAN", family: "ORIENTAL, FLORAL"},
+        {code: "U 734", name: "DIOR BOIS D'ARGENT", family: "ORIENTAL, FLORAL"},
+        {code: "U 735", name: "TOM FORD BITTER PEACH", family: "WOODY, FRUITY"},
+        {code: "U 736", name: "TOM FORD LOST CHERRY", family: "ORIENTAL, FLORAL"},
+        {code: "U 737", name: "ESCENTRIC 05 MOLECULES", family: "WOODY, AROMATIC"},
+        {code: "U 738", name: "MEMO PARIS FRENCH LEATHER", family: "ORIENTAL, SPICY"},
+        {code: "U 739", name: "INITIO PSYCHEDELIC LOVE", family: "ORIENTAL, FLORAL"},
+        {code: "U 740", name: "MEMO PARIS ITALIAN LEATHER", family: "ORIENTAL, LEATHERY"},
+        {code: "U 741", name: "MONTALE ARABIANS TONKA", family: "FLORAL, POWDERY"},
+        {code: "U 742", name: "TOM FORD OUD WOOD", family: "WOODY, OUDY"},
+        {code: "U 743", name: "LOUIS VUITTON OMBRE NOMADE", family: "FLORAL, WOODY"},
+        {code: "U 744", name: "VILHELM MANGO SKIN", family: "FRUITY, FLORAL"},
+        {code: "U 745", name: "ATTAR COLLECTION HAYATI", family: "FLORAL, FRUITY"},
+        {code: "U 746", name: "ATTAR COLLECTION MUSK KASHMIR", family: "FLORAL, MUSKY"},
+        {code: "U 747", name: "VILHELM PARFUMERIE DEAR POLLY", family: "CITRUS, WOODY"},
+        {code: "U 748", name: "MARC-ANTOINE BARROIS GANYMEDE", family: "WOODY, SPICY"},
+        {code: "U 749", name: "ZIELINSKI & ROZEN BLACK PEPPER", family: "CITRUS, WOODY"},
+        {code: "U 750", name: "SOSPIRO PURPLE ACCENTO", family: "FLORAL, AMBERY"},
+        {code: "U 751", name: "SOSPIRO OPERA", family: "ORIENTAL, FLORAL"},
+        {code: "U 752", name: "SOSPIRO ACCENTO", family: "ORIENTAL, WOODY"},
+        {code: "U 753", name: "AJMAL AMBER WOOD", family: "WOODY, AMBERY"},
+        {code: "U 754", name: "ATELIER COLOGNE CLEMENTINE CALIFORNIA", family: "CITRUS, AROMATIC"},
+        {code: "U 755", name: "LE LABO SANTAL 33", family: "GREEN, WOODY"},
+        {code: "U 756", name: "ESCENTRIC MOLECULES 01 + MANDARIN", family: "CITRUS, WOODY"},
+        {code: "U 757", name: "ORTO PARISI MEGAMARE", family: "WOODY, AMBERY"},
+        {code: "U 759", name: "XERJOFF NAXOS 1861", family: "ORIENTAL, SPICY"},
+        {code: "U 765", name: "MEMO PARIS MARFA", family: "FLORAL, WOODY"},
+        {code: "U 766", name: "BOIS IMPERIAL ESSENTIAL PARFUMS", family: "WOODY, SPICY"},
+        {code: "U 767", name: "MAISON FRANCIS KURKDJIAN OUD SATIN MOOD", family: "FLORAL, WOODY"},
+        {code: "U 768", name: "TOM FORD FUCKING FABULOUS", family: "FLORAL, LEATHERY"},
+        {code: "U 769", name: "XERJOFF MORE THAN WORDS", family: "ORIENTAL, WOODY"},
+        {code: "U 770", name: "NISHANE HACIVAT", family: "CITRUS, WOODY"},
+        {code: "U 771", name: "MANCERA RED TOBACCO", family: "WOODY, SPICY"},
+        {code: "U 772", name: "KILIAN ANGELS SHARE", family: "FLORAL, GOURMAND"},
+
+        // WOMEN
+        {code: "W 501", name: "CHANEL CHANCE", family: "CHYPRE, FLORAL"},
+        {code: "W 502", name: "CHANEL CHANCE EAU TENDRE", family: "CITRUS, FLORAL"},
+        {code: "W 503", name: "CHLOE EAU DE PARFUM", family: "ORIENTAL, FLORAL"},
+        {code: "W 504", name: "CHRISTIAN DIOR J'ADORE", family: "FLORAL, FRUITY"},
+        {code: "W 505", name: "DONNA KARAN BE DELICIOUS", family: "FRUITY, FLORAL"},
+        {code: "W 506", name: "DOLCE GABBANA L'IMPERATRICE 3", family: "FLORAL, AQUATIC"},
+        {code: "W 507", name: "DOLCE GABBANA THE ONE", family: "ORIENTAL, FLORAL"},
+        {code: "W 508", name: "LANVIN ECLAT D'ARPEGE", family: "FLORAL, FRUITY"},
+        {code: "W 509", name: "GIORGIO ARMANI SI", family: "CHYPRE, FLORAL"},
+        {code: "W 510", name: "GIVENCHY ANGE OU DEMON LE SECRET", family: "CITRUS, FLORAL"},
+        {code: "W 511", name: "NINA RICCI PREMIER JOUR", family: "FLORAL, MUSKY"},
+        {code: "W 512", name: "VERSACE BRIGHT CRYSTAL", family: "FLORAL, FRUITY"},
+        {code: "W 513", name: "CHANEL CHANCE EAU FRAICHE", family: "CHYPRE, FLORAL"},
+        {code: "W 514", name: "CHANEL NO:5", family: "CHYPRE, ALDEHIDIC"},
+        {code: "W 515", name: "CHANEL COCO MADEMOISELLE", family: "CHYPRE, FLORAL"},
+        {code: "W 516", name: "GIORGIO ARMANI CODE", family: "FLORAL, FRUITY"},
+        {code: "W 517", name: "GUCCI FLORA GORGEOUS GARDENIA", family: "FLORAL, FRUITY"},
+        {code: "W 518", name: "CALVIN KLEIN EUPHORIA", family: "FLORAL, BALSAMIC"},
+        {code: "W 519", name: "LANVIN MARRY ME", family: "FLORAL, FRUITY"},
+        {code: "W 520", name: "TRUSSARDI DONNA", family: "CHYPRE, FLORAL"},
+        {code: "W 521", name: "YSL MANIFESTO", family: "ORIENTAL, FLORAL"},
+        {code: "W 522", name: "MONTALE ROSES MUSK", family: "FLORAL, SPICY"},
+        {code: "W 523", name: "BY KILIAN GOOD GIRL GONE BAD", family: "FLORAL, FRUITY"},
+        {code: "W 524", name: "BURBERRY MY BURBERRY", family: "FLORAL, FRUITY"},
+        {code: "W 525", name: "DOLCE GABBANA LIGHT BLUE", family: "FLORAL, FRUITY"},
+        {code: "W 526", name: "PACO RABANNE LADY MILLION", family: "FLORIENTAL, FRUITY"},
+        {code: "W 527", name: "GUCCI BAMBOO", family: "FLORAL, MUSKY"},
+        {code: "W 528", name: "GUCCI FLORA", family: "FLORAL, FRUITY"},
+        {code: "W 529", name: "LACOSTE L.12.12 POUR ELLE SPARKLING", family: "FRUITY, GOURMAND"},
+        {code: "W 530", name: "LACOSTE POUR FEMME", family: "FLORAL, POWDERY"},
+        {code: "W 531", name: "BVLGARI OMNIA CRYSTALLINE", family: "FLORAL, AQUATIC"},
+        {code: "W 532", name: "CAROLINA HERRERA CH", family: "ORIENTAL, FLORAL"},
+        {code: "W 533", name: "CAROLINA HERRERA GOOD GIRL", family: "ORIENTAL, FLORAL"},
+        {code: "W 534", name: "CHRISTIAN DIOR ADDICT", family: "FLORAL, ORIENTAL"},
+        {code: "W 535", name: "MISS DIOR BLOOMING BOUQUET", family: "CHYPRE, FLORAL"},
+        {code: "W 536", name: "GUERLAIN LA PETITE ROBE NOIRE", family: "ORIENTAL, FRUITY"},
+        {code: "W 537", name: "HUGO BOSS FEMME", family: "FLORAL, FRUITY"},
+        {code: "W 538", name: "KENZO L'EAU PAR", family: "FLORAL, AQUATIC"},
+        {code: "W 539", name: "LACOSTE TOUCH OF PINK", family: "FLORAL, FRUITY"},
+        {code: "W 540", name: "LANCOME TRESOR LA NUIT", family: "ORIENTAL, WOODY"},
+        {code: "W 541", name: "YSL MON PARIS", family: "CHYPRE, FRUITY"},
+        {code: "W 542", name: "GUERLAIN MON GUERLAIN", family: "FLORAL, ORIENTAL"},
+        {code: "W 543", name: "BYREDO BAL D'AFRIQUE", family: "CITRUS, WOODY"},
+        {code: "W 544", name: "CHANEL CHANCE EAU TENDRE EDP", family: "FLORAL, FLORAL"},
+        {code: "W 545", name: "KILIAN VODKA ON THE ROCKS", family: "FLORAL, AROMATIC"},
+        {code: "W 546", name: "MONTALE PINK EXTASY", family: "CITRUS, FRUITY"},
+        {code: "W 547", name: "CHANEL GABRIELLE", family: "CITRUS, FLORAL"},
+        {code: "W 548", name: "OPULENT SHAIK CLASSIC NO 33", family: "ORIENTAL, FLORAL"},
+        {code: "W 549", name: "AMOUAGE HONOUR", family: "FLORAL, SPICY"},
+        {code: "W 550", name: "ARMAND BASI IN ME", family: "FLORAL, FRUITY"},
+        {code: "W 551", name: "LANCOME LA VIE EST BELLE", family: "FLORAL, ORIENTAL"},
+        {code: "W 552", name: "CAROLINA HERRERA 212", family: "CITRUS, FLORAL"},
+        {code: "W 553", name: "CAROLINA HERRERA 212 SEXY", family: "ORIENTAL, FLORAL"},
+        {code: "W 554", name: "CAROLINA HERRERA 212 VIP NYC", family: "FLORAL, FRUITY"},
+        {code: "W 555", name: "CAROLINA HERRERA 212 VIP ROSE", family: "FLORAL, FRUITY"},
+        {code: "W 556", name: "LANCOME HYPNOSE", family: "FLORAL, ORIENTAL"},
+        {code: "W 557", name: "CHRISTIAN DIOR ADDICT 2", family: "FLORAL, FRUITY"},
+        {code: "W 558", name: "CHRISTIAN DIOR POISON", family: "FLORAL, FRUITY"},
+        {code: "W 559", name: "MISS DIOR CHERIE", family: "FRUITY, ORIENTAL"},
+        {code: "W 560", name: "GIVENCHY ANGE OU DEMON ELIXIR", family: "CHYPRE, FLORAL"},
+        {code: "W 561", name: "PACO RABANNE BLACK XS", family: "FLORAL, MUSK"},
+        {code: "W 562", name: "VERSACE CRYSTAL NOIR", family: "WOODY, BALSAMIC"},
+        {code: "W 563", name: "YSL BLACK OPIUM", family: "ORIENTAL, GOURMAND"},
+        {code: "W 564", name: "NARCISO RODRIGUEZ POUDREE", family: "FLORAL, FRUITY"},
+        {code: "W 565", name: "TRUSSARDI MY NAME", family: "POWDERY, FLORAL"},
+        {code: "W 566", name: "TOM FORD VELVET ORCHID", family: "FLORAL, BALSAMIC"},
+        {code: "W 567", name: "EMPORIO ARMANI BECAUSE IT'S YOU", family: "FRUITY, FLORAL"},
+        {code: "W 568", name: "PACO RABANNE OLYMPEA", family: "FLORAL, ORIENTAL"},
+        {code: "W 569", name: "VICTORIA'S SECRET BOMBSHELL", family: "FRUITY, SPICY"},
+        {code: "W 570", name: "ELIZABETH ARDEN GREEN TEA", family: "CITRUS, FLORAL"},
+        {code: "W 571", name: "CHRISTIAN DIOR JOY", family: "CITRUS, FLORAL"},
+        {code: "W 572", name: "JEAN PAUL GAULTIER SCANDAL", family: "CITRUS, FLORAL"},
+        {code: "W 573", name: "JO MALONE ENGLISH PEAR & FREESIA", family: "FLORAL, MUSKY"},
+        {code: "W 574", name: "VAN CLEEF & ARPELS EXTRAORDINAIRE", family: "FLORAL, POWDERY"},
+        {code: "W 575", name: "VERSACE VERSENSE", family: "FLORAL, CITRUS"},
+        {code: "W 576", name: "LANCOME IDOLE", family: "CHYPRE, FLORAL"},
+        {code: "W 577", name: "PARFUMS DE MARLY DELINA", family: "FLORAL, WOODY"},
+        {code: "W 578", name: "GIORGIO ARMANI MY WAY", family: "FLORAL, GREEN"},
+        {code: "W 581", name: "MUGLER ALIEN", family: "ORIENTAL, WOODY"},
+        {code: "W 582", name: "YSL LIBRE INTENSE", family: "CITRUS, FRUITY"},
+        {code: "W 583", name: "JO MALONE BLACKBERRY & BAY", family: "FLORAL, FRUITY"},
+        {code: "W 584", name: "TIFFANY & CO", family: "CITRUS, MUSKY"},
+        {code: "W 585", name: "DIOR HYPNOTIC POISON", family: "ORIENTAL, VANILLA"},
+        {code: "W 586", name: "MUGLER ANGEL", family: "ORIENTAL, VANILLA"},
+        {code: "W 587", name: "OLYMPEA LEGEND", family: "ORIENTAL, FLORAL"},
+        {code: "W 588", name: "YSL LIBRE", family: "CITRUS, FLORAL"},
+        {code: "W 589", name: "JEAN PAUL GAULTIER SO SCANDAL", family: "FLORAL, WOODY"},
+        {code: "W 590", name: "JULIETTE HAS A GUN NOT A PERFUME", family: "ORIENTAL, MUSKY"},
+        {code: "W 591", name: "KAJAL DAHAB", family: "FRUITY, FLORIENTAL"},
+        {code: "W 592", name: "MANCERA ROSES VANILLE", family: "WOODY, FLORAL"},
+        {code: "W 593", name: "AMOUAGE BLOSSOM LOVE", family: "FLORAL, FRUITY"},
+        {code: "W 594", name: "HFC DEVIL'S INTRIGUE", family: "ORIENTAL, MUSKY"},
+        {code: "W 595", name: "MOSCHINO TOY 2 BUBBLE GUM", family: "FLORAL, FRUITY"},
+        {code: "W 596", name: "PRADA PARADOXE", family: "FLORAL, AMBERY"},
+        {code: "W 597", name: "LACOSTE L.12.12 MAGNETIC", family: "CITRUS, FRUITY"},
+        {code: "W 598", name: "PACO RABANNE FAME", family: "FLORAL, MUSKY"},
+
+        // MEN
+        {code: "M 201", name: "ANTONIO BANDERAS BLUE SEDUCTION", family: "CITRUS, AQUATIC"},
+        {code: "M 202", name: "CHRISTIAN DIOR SAUVAGE", family: "FOUGERE, AROMATIC"},
+        {code: "M 203", name: "CARTIER DECLARATION", family: "WOODY, SPICY"},
+        {code: "M 204", name: "ISSEY MIYAKE L'EAU D'ISSEY", family: "WOODY, SPICY"},
+        {code: "M 205", name: "PACO RABANNE INVICTUS INTENSE", family: "FLORAL, SPICY"},
+        {code: "M 206", name: "LACOSTE L.12.12 WHITE", family: "WOODY, AROMATIC"},
+        {code: "M 207", name: "LACOSTE ESSENTIAL", family: "WOODY, AROMATIC"},
+        {code: "M 208", name: "PACO RABANNE 1 MILLION", family: "WOODY, SPICY"},
+        {code: "M 209", name: "CHANEL ALLURE SPORT", family: "CITRUS, AROMATIC"},
+        {code: "M 210", name: "CHANEL BLEU DE CHANEL", family: "WOODY, AROMATIC"},
+        {code: "M 211", name: "GUERLAIN L'HOMME IDEAL", family: "WOODY, AROMATIC"},
+        {code: "M 212", name: "CHANEL EGOISTE PLATINUM", family: "GREEN, WOODY"},
+        {code: "M 213", name: "GIORGIO ARMANI ACQUA DI GIO", family: "CITRUS, AROMATIC"},
+        {code: "M 214", name: "PACO RABANNE INVICTUS", family: "WOODY, SPICY"},
+        {code: "M 215", name: "SHAIK OPULENT NO 77", family: "FLORIENTAL, FOUGERE"},
+        {code: "M 216", name: "CREED AVENTUS", family: "CHYPRE, FRUITY"},
+        {code: "M 217", name: "NASOMATTO BLACK AFGANO", family: "WOODY, AROMATIC"},
+        {code: "M 218", name: "CAROLINA HERRERA 212 VIP", family: "FLORAL, WOODY"},
+        {code: "M 219", name: "DOLCE GABBANA THE ONE", family: "CITRUS, FLORAL"},
+        {code: "M 220", name: "ARMANI CODE SPORT", family: "WOODY, AROMATIC"},
+        {code: "M 221", name: "HUGO BOSS BOTTLED INTENSE", family: "WOODY, SPICY"},
+        {code: "M 222", name: "BVLGARI AQUA", family: "CITRUS, AROMATIC"},
+        {code: "M 223", name: "CALVIN KLEIN EUPHORIA MEN", family: "WOODY, AROMATIC"},
+        {code: "M 224", name: "CAROLINA HERRERA CH MEN", family: "ORIENTAL, SPICY"},
+        {code: "M 225", name: "CHRISTIAN DIOR FAHRENHEIT", family: "WOODY, MUSKY"},
+        {code: "M 226", name: "GIORGIO ARMANI BLACK CODE", family: "ORIENTAL, SPICY"},
+        {code: "M 227", name: "GUCCI GUILTY", family: "WOODY, AROMATIC"},
+        {code: "M 228", name: "HERMES TERRE D'HERMES", family: "CITRUS, WOODY"},
+        {code: "M 229", name: "PACO RABANNE ULTRAVIOLET", family: "ORIENTAL, WOODY"},
+        {code: "M 230", name: "EMPORIO ARMANI STRONGER WITH YOU", family: "FOUGERE, AROMATIC"},
+        {code: "M 231", name: "TOM FORD NOIR", family: "ORIENTAL, SPICY"},
+        {code: "M 232", name: "TOM FORD NOIR EXTREME", family: "ORIENTAL, FLORAL"},
+        {code: "M 233", name: "DOLCE & GABBANA INTENSO", family: "WOODY, AROMATIC"},
+        {code: "M 234", name: "GUCCI BY GUCCI SPORT", family: "WOODY, AROMATIC"},
+        {code: "M 235", name: "HUGO BOSS HUGO XY", family: "WOODY, AROMATIC"},
+        {code: "M 236", name: "SHAIK CHIC SHAIK 70", family: "WOODY, CITRUS"},
+        {code: "M 237", name: "BALDESSARINI AMBRE", family: "ORIENTAL, WOODY"},
+        {code: "M 238", name: "HUGO BOSS AMBRE BALDESSARINI", family: "ORIENTAL, WOODY"},
+        {code: "M 239", name: "AZZARO CHROME", family: "CITRUS, AROMATIC"},
+        {code: "M 240", name: "CAROLINA HERRERA 212 MEN", family: "WOODY, MUSKY"},
+        {code: "M 241", name: "CAROLINA HERRERA CHIC", family: "WOODY, SPICY"},
+        {code: "M 242", name: "CREATION", family: "CITRUS, MUSKY"},
+        {code: "M 243", name: "DIOR HOMME SPORT", family: "WOODY, AROMATIC"},
+        {code: "M 244", name: "DOLCE GABBANA LIGHT BLUE MEN", family: "CITRUS, AROMATIC"},
+        {code: "M 245", name: "GIVENCHY BLUE LABEL", family: "CITRUS, FLORAL"},
+        {code: "M 246", name: "ROJA DOVE OLIGARCH", family: "CITRUS, AROMATIC"},
+        {code: "M 249", name: "VERSACE EROS", family: "FOUGERE, AROMATIC"},
+        {code: "M 250", name: "DOLCE GABBANA KING", family: "WOODY, AROMATIC"},
+        {code: "M 251", name: "CAROLINA HERRERA BAD BOY", family: "ORIENTAL, SPICY"},
+        {code: "M 252", name: "JEAN PAUL GAULTIER SCANDAL POUR HOMME", family: "ORIENTAL, AMBERY"},
+        {code: "M 253", name: "JEAN PAUL GAULTIER LE MALE LE PARFUM", family: "WOODY, GOURMAND"},
+        {code: "M 255", name: "PACO RABANNE PHANTOM", family: "WOODY, AROMATIC"},
+        {code: "M 256", name: "DIOR SAUVAGE ELIXIR", family: "WOODY, AROMATIC"},
+        {code: "M 257", name: "BURBERRY HERO", family: "WOODY, AROMATIC"},
+        {code: "M 258", name: "HUGO BOSS BOSS", family: "CHYPRE, AROMATIC"},
+        {code: "M 259", name: "VERSACE EAU FRAICHE", family: "CITRUS, AROMATIC"},
+        {code: "M 260", name: "BALDESSARINI AMBRE EAU FRAICHE", family: "CITRUS, SPICY"},
+        {code: "M 261", name: "VALENTINO UOMO BORN IN ROMA", family: "WOODY, SPICY"},
+        {code: "M 262", name: "PACO RABANNE 1 MILLION LUCKY", family: "CITRUS, WOODY"}
+    ];
+
+    // --- HELPER FUNCTIONS ---
+    function cleanString(str) {
+        return str.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+    }
+
+    // Basit Levenshtein Benzerlik Algoritması (Fuzzy Search için)
+    function levenshteinDistance(a, b) {
+        if (a.length === 0) return b.length;
+        if (b.length === 0) return a.length;
+        
+        const matrix = [];
+        for (let i = 0; i <= b.length; i++) { matrix[i] = [i]; }
+        for (let j = 0; j <= a.length; j++) { matrix[0][j] = j; }
+
+        for (let i = 1; i <= b.length; i++) {
+            for (let j = 1; j <= a.length; j++) {
+                if (b.charAt(i - 1) == a.charAt(j - 1)) {
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                } else {
+                    matrix[i][j] = Math.min(
+                        matrix[i - 1][j - 1] + 1, // substitution
+                        Math.min(matrix[i][j - 1] + 1, // insertion
+                        matrix[i - 1][j] + 1) // deletion
+                    );
+                }
+            }
+        }
+        return matrix[b.length][a.length];
+    }
+
+    function enterApp(lang) {
+        currentLang = lang;
+        if (lang === 'ar') document.body.dir = 'rtl';
+        else document.body.dir = 'ltr';
+        
+        const t = translations[lang];
+        document.getElementById('searchInput').placeholder = t.placeholder;
+        document.getElementById('start-text').innerText = t.startText;
+
+        const splash = document.getElementById('splash-screen');
+        const app = document.getElementById('app-container');
+        splash.style.opacity = '0';
+        splash.style.pointerEvents = 'none';
+        setTimeout(() => {
+            splash.style.display = 'none';
+            app.style.display = 'flex';
+            setTimeout(() => {
+                app.style.opacity = '1';
+                document.getElementById('searchInput').focus();
+            }, 50);
+        }, 600);
+    }
+
+    function toggleCard(element) {
+        if (element.classList.contains('expanded')) {
+            element.classList.remove('expanded');
+        } else {
+            document.querySelectorAll('.card.expanded').forEach(card => card.classList.remove('expanded'));
+            element.classList.add('expanded');
+        }
+    }
+
+    function performSearch() {
+        const query = document.getElementById('searchInput').value.trim();
+        const resultsArea = document.getElementById('resultsArea');
+        const t = translations[currentLang];
+        
+        resultsArea.innerHTML = '';
+
+        if (!query) {
+            resultsArea.innerHTML = `<div style="text-align: center; padding-top: 50px; opacity: 0.3;"><div style="font-size: 3rem; color: var(--gold); margin-bottom: 10px;">✨</div><p>${t.startText}</p></div>`;
+            return;
+        }
+
+        const cleanQuery = cleanString(query);
+        const queryUpper = query.toUpperCase();
+
+        // ARAMA VE PUANLAMA
+        let scoredResults = fragranceData.map(item => {
+            let score = 0;
+            const cleanCode = cleanString(item.code);
+            const cleanName = cleanString(item.name);
+            const nameUpper = item.name.toUpperCase();
+
+            // 1. Kesin Kod Eşleşmesi (En Yüksek Puan)
+            if (cleanCode === cleanQuery) score += 100;
+            else if (cleanCode.includes(cleanQuery)) score += 50; // Kısmi kod
+
+            // 2. Kesin İsim Eşleşmesi
+            if (cleanName === cleanQuery) score += 80;
+            else if (cleanName.includes(cleanQuery)) score += 40; // Kısmi isim
+
+            // 3. Fuzzy Search (Hata Toleransı)
+            // İsim içinde "parça parça" arama (Örn: "Black Orchid" için "Black" yazarsa)
+            const words = queryUpper.split(" ");
+            let allWordsFound = true;
+            words.forEach(word => {
+                if (!nameUpper.includes(word)) allWordsFound = false;
+            });
+            if (allWordsFound && words.length > 0) score += 30;
+
+            // 4. Levenshtein (Yazım Hatası Kontrolü)
+            // Sadece puan düşükse devreye girsin (Performans için)
+            if (score < 30 && cleanQuery.length > 3) {
+                const dist = levenshteinDistance(cleanQuery, cleanName);
+                const similarity = 1 - (dist / Math.max(cleanQuery.length, cleanName.length));
+                if (similarity > 0.6) { // %60 benzerlik varsa
+                    score += (similarity * 20); 
+                }
+            }
+
+            return { ...item, score: score };
+        });
+
+        // Filtrele ve Sırala
+        // Eşik puan: 10 (Çok alakasızları gösterme)
+        const filtered = scoredResults.filter(item => item.score > 10).sort((a, b) => b.score - a.score);
+
+        if (filtered.length === 0) {
+            resultsArea.innerHTML = `<div class="no-results">${t.noRes}</div>`;
+            return;
+        }
+
+        // En fazla 50 sonuç göster (Performans)
+        filtered.slice(0, 50).forEach(item => {
+            const googleSearchQuery = encodeURIComponent(item.name + " perfume original bottle");
+            const googleUrl = `https://www.google.com/search?tbm=isch&q=${googleSearchQuery}`;
+
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.setAttribute('onclick', 'toggleCard(this)');
+            
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="card-info">
+                        <div class="card-top-row">
+                            <div class="card-code">${item.code}</div>
+                            <div class="family-pill">${item.family}</div>
+                        </div>
+                        <div class="card-name">${item.name}</div>
+                    </div>
+                    <div class="toggle-icon">▼</div>
+                </div>
+                
+                <div class="card-body">
+                    <div class="comparison-container">
+                        <div class="product-side">
+                            <div class="side-label">${t.beasSide}</div>
+                            <div class="bottle-icon">
+                                <div class="bottle-code-inner">${item.code.replace(' ', '')}</div>
+                            </div>
+                        </div>
+                        <div class="vs-text">VS</div>
+                        <div class="product-side">
+                            <div class="side-label">${t.origSide}</div>
+                            <a href="${googleUrl}" target="_blank" class="search-google-btn" onclick="event.stopPropagation()">
+                                <span>📷</span> ${t.btnText}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            resultsArea.appendChild(card);
+        });
+    }
+
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+</script>
+
+</body>
+</html>
