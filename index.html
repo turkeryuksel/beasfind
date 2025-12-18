@@ -944,7 +944,7 @@
                 return;
             }
 
-            filtered.slice(0, 50).forEach(item => {
+            filtered.forEach(item => {
                 const googleSearch = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(item.name + " perfume bottle")}`;
 
                 const card = document.createElement('div');
