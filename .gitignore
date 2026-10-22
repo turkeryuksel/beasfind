@@ -13,3 +13,6 @@ beas-*.png
 # Vercel yerel bağlantı
 .vercel/
 .env*.local
+
+# PDF katalog ayrıştırma betikleri
+.tmp-pdf/

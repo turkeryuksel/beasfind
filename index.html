@@ -437,14 +437,40 @@
             margin-bottom: 5px;
         }
 
-        .perfume-name {
-            font-size: 12.5px;
+        .beas-name {
+            font-size: 13.5px;
             color: var(--text-primary);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            line-height: 1.35;
+            font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.25;
             overflow-wrap: anywhere;
+        }
+
+        .perfume-name {
+            font-size: 10px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            line-height: 1.35;
+            margin-top: 3px;
+            overflow-wrap: anywhere;
+        }
+
+        .sizes-text {
+            font-size: 9px;
+            color: var(--text-muted);
+            letter-spacing: 1.1px;
+            margin-top: 5px;
+        }
+
+        .sizes-text span {
+            display: inline-block;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1px 5px;
+            margin-right: 4px;
+            color: var(--text-secondary);
+            font-weight: 600;
         }
 
         .arrow {
@@ -1039,254 +1065,260 @@
 
         // --- FRAGRANCE DATA ---
         const fragranceData = [
-            // YENİ EKLENENLER
-            { code: "W 603", name: "CAROLINA HERRERA LA BOMBA WOMEN TYPE", family: "ORIENTAL, FLORAL" },
-            { code: "W 604", name: "MUGLER ANGEL THIERRY NOVA WOMEN TYPE", family: "FLORAL, GREEN" },
-            { code: "U 777", name: "GUIDENCE AMOUAGE 46 UNISEX TYPE", family: "FRUITY, FLORAL" },
-            { code: "U 778", name: "RICHARD WHITE CHOCOLA UNISEX TYPE", family: "ORIENTAL, GOURMAND" },
-            { code: "U 779", name: "CHIMILKA VILHELM PARFUMERIE UNISEX TYPE", family: "ORIENTAL, WOODY" },
-            { code: "U 780", name: "CLIVE CHRISTIAN ADDICTIVE ARTS HEDONISTIC UNISEX TYPE", family: "WOODY, AMBERY" },
-            { code: "U 781", name: "MARC ANTOINE BARROIS TILIA UNISEX TYPE", family: "FLORAL, MUSKY" },
-            { code: "U 782", name: "GABA HORMONE PARIS UNISEX TYPE", family: "FLORAL, FRUITY" },
-            // UNISEX
-            { code: "U 701", name: "ESCENTRIC 02 MOLECULES", family: "WOODY, AMBERY" },
-            { code: "U 702", name: "MONTALE CHOCOLATE GREEDY", family: "SWEET, GOURMAND" },
-            { code: "U 703", name: "MONTALE INTENSE CAFE", family: "FLORAL, MUSKY" },
-            { code: "U 704", name: "MONTALE WILD PEARS", family: "FLORAL, POWDERY" },
-            { code: "U 705", name: "EX NIHILO FLEUR NARCOTIQUE", family: "CITRUS, FLORAL" },
-            { code: "U 706", name: "MONTALE AOUD JASMINE", family: "FLORAL, WOODY" },
-            { code: "U 707", name: "MONTALE INTENSE CHERRY", family: "FLORAL, ORIENTAL" },
-            { code: "U 708", name: "ZARKOPERFUME PINK MOLECULE 090 09", family: "FRUITY, FLORAL" },
-            { code: "U 709", name: "BY KILIAN BAMBOO HARMONY", family: "CITRUS, AROMATIC" },
-            { code: "U 710", name: "BY KILIAN INTOXICATED", family: "WOODY, SPICY" },
-            { code: "U 711", name: "MAISON FRANCIS KURKDJIAN BACCARAT ROUGE 540", family: "ORIENTAL, BALSAMIC" },
-            { code: "U 712", name: "MONTALE SOLEIL DE CAPRI", family: "CITRUS, WOODY" },
-            { code: "U 713", name: "MONTALE STARRY NIGHT", family: "WOODY, GREEN" },
-            { code: "U 714", name: "TOM FORD BLACK ORCHID", family: "WOODY, ORIENTAL" },
-            { code: "U 715", name: "ALEXANDRE.J BLACK MUSCS", family: "FLORAL, MUSKY" },
-            { code: "U 716", name: "TOM FORD TOBACCO VANILLE", family: "ORIENTAL, SPICY" },
-            { code: "U 717", name: "ESCENTRIC 01 MOLECULES", family: "WOODY, SPICY" },
-            { code: "U 718", name: "ATELIER CEDRE ATLAS", family: "WOODY, WOODY" },
-            { code: "U 719", name: "FRANCK BOCLET COCAINE", family: "FLORAL, ORIENTAL" },
-            { code: "U 720", name: "JO MALONE MYRRH AND TONKA", family: "ORIENTAL, POWDERY" },
-            { code: "U 721", name: "JO MALONE WOOD SAGE & SEA SALT", family: "CITRUS, MUSKY" },
-            { code: "U 722", name: "KILIAN BLACK PHANTOM", family: "ORIENTAL, WOODY" },
-            { code: "U 723", name: "KILIAN I DON'T NEED A PRINCE", family: "ORIENTAL, POWDERY" },
-            { code: "U 724", name: "KILIAN MOONLIGHT IN HEAVEN", family: "FRUITY, AROMATIC" },
-            { code: "U 725", name: "THE BEAUTIFUL MIND SERIES VOL.1", family: "FLORAL, WOODY" },
-            { code: "U 726", name: "TIZIANA TERENZI CASANOVA", family: "WOODY, FLORAL" },
-            { code: "U 727", name: "SOSPIRO ERBA PURA", family: "ORIENTAL, FRUITY" },
-            { code: "U 728", name: "TIZIANA TERENZI KIRKE", family: "CHYPRE, FRUITY" },
-            { code: "U 729", name: "MARIHUANA UNISEX", family: "CITRUS, AROMATIC" },
-            { code: "U 730", name: "BY KILIAN BAD BOYS", family: "CITRUS, SPICY" },
-            { code: "U 731", name: "BOND 9 DUBAI SIGNATURE", family: "CITRUS, WOODY" },
-            { code: "U 732", name: "BVLGARI LE GEMME TYGAR", family: "CITRUS, FLORAL" },
-            { code: "U 733", name: "DIOR OUD ISPAHAN", family: "ORIENTAL, FLORAL" },
-            { code: "U 734", name: "DIOR BOIS D'ARGENT", family: "ORIENTAL, FLORAL" },
-            { code: "U 735", name: "TOM FORD BITTER PEACH", family: "WOODY, FRUITY" },
-            { code: "U 736", name: "TOM FORD LOST CHERRY", family: "ORIENTAL, FLORAL" },
-            { code: "U 737", name: "ESCENTRIC 05 MOLECULES", family: "WOODY, AROMATIC" },
-            { code: "U 738", name: "MEMO PARIS FRENCH LEATHER", family: "ORIENTAL, SPICY" },
-            { code: "U 739", name: "INITIO PSYCHEDELIC LOVE", family: "ORIENTAL, FLORAL" },
-            { code: "U 740", name: "MEMO PARIS ITALIAN LEATHER", family: "ORIENTAL, LEATHERY" },
-            { code: "U 741", name: "MONTALE ARABIANS TONKA", family: "FLORAL, POWDERY" },
-            { code: "U 742", name: "TOM FORD OUD WOOD", family: "WOODY, OUDY" },
-            { code: "U 743", name: "LOUIS VUITTON OMBRE NOMADE", family: "FLORAL, WOODY" },
-            { code: "U 744", name: "VILHELM MANGO SKIN", family: "FRUITY, FLORAL" },
-            { code: "U 745", name: "ATTAR COLLECTION HAYATI", family: "FLORAL, FRUITY" },
-            { code: "U 746", name: "ATTAR COLLECTION MUSK KASHMIR", family: "FLORAL, MUSKY" },
-            { code: "U 747", name: "VILHELM PARFUMERIE DEAR POLLY", family: "CITRUS, WOODY" },
-            { code: "U 748", name: "MARC-ANTOINE BARROIS GANYMEDE", family: "WOODY, SPICY" },
-            { code: "U 749", name: "ZIELINSKI & ROZEN BLACK PEPPER", family: "CITRUS, WOODY" },
-            { code: "U 750", name: "SOSPIRO PURPLE ACCENTO", family: "FLORAL, AMBERY" },
-            { code: "U 751", name: "SOSPIRO OPERA", family: "ORIENTAL, FLORAL" },
-            { code: "U 752", name: "SOSPIRO ACCENTO", family: "ORIENTAL, WOODY" },
-            { code: "U 753", name: "AJMAL AMBER WOOD", family: "WOODY, AMBERY" },
-            { code: "U 754", name: "ATELIER COLOGNE CLEMENTINE CALIFORNIA", family: "CITRUS, AROMATIC" },
-            { code: "U 755", name: "LE LABO SANTAL 33", family: "GREEN, WOODY" },
-            { code: "U 756", name: "ESCENTRIC MOLECULES 01 + MANDARIN", family: "CITRUS, WOODY" },
-            { code: "U 757", name: "ORTO PARISI MEGAMARE", family: "WOODY, AMBERY" },
-            { code: "U 759", name: "XERJOFF NAXOS 1861", family: "ORIENTAL, SPICY" },
-            { code: "U 765", name: "MEMO PARIS MARFA", family: "FLORAL, WOODY" },
-            { code: "U 766", name: "BOIS IMPERIAL ESSENTIAL PARFUMS", family: "WOODY, SPICY" },
-            { code: "U 767", name: "MAISON FRANCIS KURKDJIAN OUD SATIN MOOD", family: "FLORAL, WOODY" },
-            { code: "U 768", name: "TOM FORD FUCKING FABULOUS", family: "FLORAL, LEATHERY" },
-            { code: "U 769", name: "XERJOFF MORE THAN WORDS", family: "ORIENTAL, WOODY" },
-            { code: "U 770", name: "NISHANE HACIVAT", family: "CITRUS, WOODY" },
-            { code: "U 771", name: "MANCERA RED TOBACCO", family: "WOODY, SPICY" },
-            { code: "U 772", name: "KILIAN ANGELS SHARE", family: "FLORAL, GOURMAND" },
-            { code: "U 773", name: "XERJOFF ALEXANDRIA II", family: "WOODY, OUDY" },
-            { code: "U 774", name: "TOM FORD OMBRE LEATHER", family: "WOODY, LEATHERY" },
-            { code: "U 775", name: "MANCERA INSTANT CRUSH EAU DE PARFUM", family: "FLORAL, AMBERY" },
-            { code: "U 776", name: "LOUIS VUITTON IMAGINATION", family: "CITRUS, AROMATIC" },
-
-            // WOMEN
-            { code: "W 501", name: "CHANEL CHANCE", family: "CHYPRE, FLORAL" },
-            { code: "W 502", name: "CHANEL CHANCE EAU TENDRE", family: "CITRUS, FLORAL" },
-            { code: "W 503", name: "CHLOE EAU DE PARFUM", family: "ORIENTAL, FLORAL" },
-            { code: "W 504", name: "CHRISTIAN DIOR J'ADORE", family: "FLORAL, FRUITY" },
-            { code: "W 505", name: "DONNA KARAN BE DELICIOUS", family: "FRUITY, FLORAL" },
-            { code: "W 506", name: "DOLCE GABBANA L'IMPERATRICE 3", family: "FLORAL, AQUATIC" },
-            { code: "W 507", name: "DOLCE GABBANA THE ONE", family: "ORIENTAL, FLORAL" },
-            { code: "W 508", name: "LANVIN ECLAT D'ARPEGE", family: "FLORAL, FRUITY" },
-            { code: "W 509", name: "GIORGIO ARMANI SI", family: "CHYPRE, FLORAL" },
-            { code: "W 510", name: "GIVENCHY ANGE OU DEMON LE SECRET", family: "CITRUS, FLORAL" },
-            { code: "W 511", name: "NINA RICCI PREMIER JOUR", family: "FLORAL, MUSKY" },
-            { code: "W 512", name: "VERSACE BRIGHT CRYSTAL", family: "FLORAL, FRUITY" },
-            { code: "W 513", name: "CHANEL CHANCE EAU FRAICHE", family: "CHYPRE, FLORAL" },
-            { code: "W 514", name: "CHANEL NO:5", family: "CHYPRE, ALDEHIDIC" },
-            { code: "W 515", name: "CHANEL COCO MADEMOISELLE", family: "CHYPRE, FLORAL" },
-            { code: "W 516", name: "GIORGIO ARMANI CODE", family: "FLORAL, FRUITY" },
-            { code: "W 517", name: "GUCCI FLORA GORGEOUS GARDENIA", family: "FLORAL, FRUITY" },
-            { code: "W 518", name: "CALVIN KLEIN EUPHORIA", family: "FLORAL, BALSAMIC" },
-            { code: "W 519", name: "LANVIN MARRY ME", family: "FLORAL, FRUITY" },
-            { code: "W 520", name: "TRUSSARDI DONNA", family: "CHYPRE, FLORAL" },
-            { code: "W 521", name: "YSL MANIFESTO", family: "ORIENTAL, FLORAL" },
-            { code: "W 522", name: "MONTALE ROSES MUSK", family: "FLORAL, SPICY" },
-            { code: "W 523", name: "BY KILIAN GOOD GIRL GONE BAD", family: "FLORAL, FRUITY" },
-            { code: "W 524", name: "BURBERRY MY BURBERRY", family: "FLORAL, FRUITY" },
-            { code: "W 525", name: "DOLCE GABBANA LIGHT BLUE", family: "FLORAL, FRUITY" },
-            { code: "W 526", name: "PACO RABANNE LADY MILLION", family: "FLORIENTAL, FRUITY" },
-            { code: "W 527", name: "GUCCI BAMBOO", family: "FLORAL, MUSKY" },
-            { code: "W 528", name: "GUCCI FLORA", family: "FLORAL, FRUITY" },
-            { code: "W 529", name: "LACOSTE L.12.12 POUR ELLE SPARKLING", family: "FRUITY, GOURMAND" },
-            { code: "W 530", name: "LACOSTE POUR FEMME", family: "FLORAL, POWDERY" },
-            { code: "W 531", name: "BVLGARI OMNIA CRYSTALLINE", family: "FLORAL, AQUATIC" },
-            { code: "W 532", name: "CAROLINA HERRERA CH", family: "ORIENTAL, FLORAL" },
-            { code: "W 533", name: "CAROLINA HERRERA GOOD GIRL", family: "ORIENTAL, FLORAL" },
-            { code: "W 534", name: "CHRISTIAN DIOR ADDICT", family: "FLORAL, ORIENTAL" },
-            { code: "W 535", name: "MISS DIOR BLOOMING BOUQUET", family: "CHYPRE, FLORAL" },
-            { code: "W 536", name: "GUERLAIN LA PETITE ROBE NOIRE", family: "ORIENTAL, FRUITY" },
-            { code: "W 537", name: "HUGO BOSS FEMME", family: "FLORAL, FRUITY" },
-            { code: "W 538", name: "KENZO L'EAU PAR", family: "FLORAL, AQUATIC" },
-            { code: "W 539", name: "LACOSTE TOUCH OF PINK", family: "FLORAL, FRUITY" },
-            { code: "W 540", name: "LANCOME TRESOR LA NUIT", family: "ORIENTAL, WOODY" },
-            { code: "W 541", name: "YSL MON PARIS", family: "CHYPRE, FRUITY" },
-            { code: "W 542", name: "GUERLAIN MON GUERLAIN", family: "FLORAL, ORIENTAL" },
-            { code: "W 543", name: "BYREDO BAL D'AFRIQUE", family: "CITRUS, WOODY" },
-            { code: "W 544", name: "CHANEL CHANCE EAU TENDRE EDP", family: "FLORAL, FLORAL" },
-            { code: "W 545", name: "KILIAN VODKA ON THE ROCKS", family: "FLORAL, AROMATIC" },
-            { code: "W 546", name: "MONTALE PINK EXTASY", family: "CITRUS, FRUITY" },
-            { code: "W 547", name: "CHANEL GABRIELLE", family: "CITRUS, FLORAL" },
-            { code: "W 548", name: "OPULENT SHAIK CLASSIC NO 33", family: "ORIENTAL, FLORAL" },
-            { code: "W 549", name: "AMOUAGE HONOUR", family: "FLORAL, SPICY" },
-            { code: "W 550", name: "ARMAND BASI IN ME", family: "FLORAL, FRUITY" },
-            { code: "W 551", name: "LANCOME LA VIE EST BELLE", family: "FLORAL, ORIENTAL" },
-            { code: "W 552", name: "CAROLINA HERRERA 212", family: "CITRUS, FLORAL" },
-            { code: "W 553", name: "CAROLINA HERRERA 212 SEXY", family: "ORIENTAL, FLORAL" },
-            { code: "W 554", name: "CAROLINA HERRERA 212 VIP NYC", family: "FLORAL, FRUITY" },
-            { code: "W 555", name: "CAROLINA HERRERA 212 VIP ROSE", family: "FLORAL, FRUITY" },
-            { code: "W 556", name: "LANCOME HYPNOSE", family: "FLORAL, ORIENTAL" },
-            { code: "W 557", name: "CHRISTIAN DIOR ADDICT 2", family: "FLORAL, FRUITY" },
-            { code: "W 558", name: "CHRISTIAN DIOR POISON", family: "FLORAL, FRUITY" },
-            { code: "W 559", name: "MISS DIOR CHERIE", family: "FRUITY, ORIENTAL" },
-            { code: "W 560", name: "GIVENCHY ANGE OU DEMON ELIXIR", family: "CHYPRE, FLORAL" },
-            { code: "W 561", name: "PACO RABANNE BLACK XS", family: "FLORAL, MUSK" },
-            { code: "W 562", name: "VERSACE CRYSTAL NOIR", family: "WOODY, BALSAMIC" },
-            { code: "W 563", name: "YSL BLACK OPIUM", family: "ORIENTAL, GOURMAND" },
-            { code: "W 564", name: "NARCISO RODRIGUEZ POUDREE", family: "FLORAL, FRUITY" },
-            { code: "W 565", name: "TRUSSARDI MY NAME", family: "POWDERY, FLORAL" },
-            { code: "W 566", name: "TOM FORD VELVET ORCHID", family: "FLORAL, BALSAMIC" },
-            { code: "W 567", name: "EMPORIO ARMANI BECAUSE IT'S YOU", family: "FRUITY, FLORAL" },
-            { code: "W 568", name: "PACO RABANNE OLYMPEA", family: "FLORAL, ORIENTAL" },
-            { code: "W 569", name: "VICTORIA'S SECRET BOMBSHELL", family: "FRUITY, SPICY" },
-            { code: "W 570", name: "ELIZABETH ARDEN GREEN TEA", family: "CITRUS, FLORAL" },
-            { code: "W 571", name: "CHRISTIAN DIOR JOY", family: "CITRUS, FLORAL" },
-            { code: "W 572", name: "JEAN PAUL GAULTIER SCANDAL", family: "CITRUS, FLORAL" },
-            { code: "W 573", name: "JO MALONE ENGLISH PEAR & FREESIA", family: "FLORAL, MUSKY" },
-            { code: "W 574", name: "VAN CLEEF & ARPELS EXTRAORDINAIRE", family: "FLORAL, POWDERY" },
-            { code: "W 575", name: "VERSACE VERSENSE", family: "FLORAL, CITRUS" },
-            { code: "W 576", name: "LANCOME IDOLE", family: "CHYPRE, FLORAL" },
-            { code: "W 577", name: "PARFUMS DE MARLY DELINA", family: "FLORAL, WOODY" },
-            { code: "W 578", name: "GIORGIO ARMANI MY WAY", family: "FLORAL, GREEN" },
-            { code: "W 581", name: "MUGLER ALIEN", family: "ORIENTAL, WOODY" },
-            { code: "W 582", name: "YSL LIBRE INTENSE", family: "CITRUS, FRUITY" },
-            { code: "W 583", name: "JO MALONE BLACKBERRY & BAY", family: "FLORAL, FRUITY" },
-            { code: "W 584", name: "TIFFANY & CO", family: "CITRUS, MUSKY" },
-            { code: "W 585", name: "DIOR HYPNOTIC POISON", family: "ORIENTAL, VANILLA" },
-            { code: "W 586", name: "MUGLER ANGEL", family: "ORIENTAL, VANILLA" },
-            { code: "W 587", name: "OLYMPEA LEGEND", family: "ORIENTAL, FLORAL" },
-            { code: "W 588", name: "YSL LIBRE", family: "CITRUS, FLORAL" },
-            { code: "W 589", name: "JEAN PAUL GAULTIER SO SCANDAL", family: "FLORAL, WOODY" },
-            { code: "W 590", name: "JULIETTE HAS A GUN NOT A PERFUME", family: "ORIENTAL, MUSKY" },
-            { code: "W 591", name: "KAJAL DAHAB", family: "FRUITY, FLORIENTAL" },
-            { code: "W 592", name: "MANCERA ROSES VANILLE", family: "WOODY, FLORAL" },
-            { code: "W 593", name: "AMOUAGE BLOSSOM LOVE", family: "FLORAL, FRUITY" },
-            { code: "W 594", name: "HFC DEVIL'S INTRIGUE", family: "ORIENTAL, MUSKY" },
-            { code: "W 595", name: "MOSCHINO TOY 2 BUBBLE GUM", family: "FLORAL, FRUITY" },
-            { code: "W 596", name: "PRADA PARADOXE", family: "FLORAL, AMBERY" },
-            { code: "W 597", name: "LACOSTE L.12.12 MAGNETIC", family: "CITRUS, FRUITY" },
-            { code: "W 598", name: "PACO RABANNE FAME", family: "FLORAL, MUSKY" },
-            { code: "W 599", name: "VALENTINO BORN IN ROMA DONNA WOMEN", family: "FLORAL, AMBERY" },
-            { code: "W 600", name: "GUCCI RUSH", family: "FLORAL, FRUITY" },
-            { code: "W 601", name: "JEAN PAUL GAULTIER DIVINE EAU DE PARFUM", family: "FLORAL, AMBERY" },
-            { code: "W 602", name: "GISADA AMBASSADOR EAU DE PARFUM WOMEN", family: "FLORAL, WHITE" },
-
-            // MEN
-            { code: "M 201", name: "ANTONIO BANDERAS BLUE SEDUCTION", family: "CITRUS, AQUATIC" },
-            { code: "M 202", name: "CHRISTIAN DIOR SAUVAGE", family: "FOUGERE, AROMATIC" },
-            { code: "M 203", name: "CARTIER DECLARATION", family: "WOODY, SPICY" },
-            { code: "M 204", name: "ISSEY MIYAKE L'EAU D'ISSEY", family: "WOODY, SPICY" },
-            { code: "M 205", name: "PACO RABANNE INVICTUS INTENSE", family: "FLORAL, SPICY" },
-            { code: "M 206", name: "LACOSTE L.12.12 WHITE", family: "WOODY, AROMATIC" },
-            { code: "M 207", name: "LACOSTE ESSENTIAL", family: "WOODY, AROMATIC" },
-            { code: "M 208", name: "PACO RABANNE 1 MILLION", family: "WOODY, SPICY" },
-            { code: "M 209", name: "CHANEL ALLURE SPORT", family: "CITRUS, AROMATIC" },
-            { code: "M 210", name: "CHANEL BLEU DE CHANEL", family: "WOODY, AROMATIC" },
-            { code: "M 211", name: "GUERLAIN L'HOMME IDEAL", family: "WOODY, AROMATIC" },
-            { code: "M 212", name: "CHANEL EGOISTE PLATINUM", family: "GREEN, WOODY" },
-            { code: "M 213", name: "GIORGIO ARMANI ACQUA DI GIO", family: "CITRUS, AROMATIC" },
-            { code: "M 214", name: "PACO RABANNE INVICTUS", family: "WOODY, SPICY" },
-            { code: "M 215", name: "SHAIK OPULENT NO 77", family: "FLORIENTAL, FOUGERE" },
-            { code: "M 216", name: "CREED AVENTUS", family: "CHYPRE, FRUITY" },
-            { code: "M 217", name: "NASOMATTO BLACK AFGANO", family: "WOODY, AROMATIC" },
-            { code: "M 218", name: "CAROLINA HERRERA 212 VIP", family: "FLORAL, WOODY" },
-            { code: "M 219", name: "DOLCE GABBANA THE ONE", family: "CITRUS, FLORAL" },
-            { code: "M 220", name: "ARMANI CODE SPORT", family: "WOODY, AROMATIC" },
-            { code: "M 221", name: "HUGO BOSS BOTTLED INTENSE", family: "WOODY, SPICY" },
-            { code: "M 222", name: "BVLGARI AQUA", family: "CITRUS, AROMATIC" },
-            { code: "M 223", name: "CALVIN KLEIN EUPHORIA MEN", family: "WOODY, AROMATIC" },
-            { code: "M 224", name: "CAROLINA HERRERA CH MEN", family: "ORIENTAL, SPICY" },
-            { code: "M 225", name: "CHRISTIAN DIOR FAHRENHEIT", family: "WOODY, MUSKY" },
-            { code: "M 226", name: "GIORGIO ARMANI BLACK CODE", family: "ORIENTAL, SPICY" },
-            { code: "M 227", name: "GUCCI GUILTY", family: "WOODY, AROMATIC" },
-            { code: "M 228", name: "HERMES TERRE D'HERMES", family: "CITRUS, WOODY" },
-            { code: "M 229", name: "PACO RABANNE ULTRAVIOLET", family: "ORIENTAL, WOODY" },
-            { code: "M 230", name: "EMPORIO ARMANI STRONGER WITH YOU", family: "FOUGERE, AROMATIC" },
-            { code: "M 231", name: "TOM FORD NOIR", family: "ORIENTAL, SPICY" },
-            { code: "M 232", name: "TOM FORD NOIR EXTREME", family: "ORIENTAL, FLORAL" },
-            { code: "M 233", name: "DOLCE & GABBANA INTENSO", family: "WOODY, AROMATIC" },
-            { code: "M 234", name: "GUCCI BY GUCCI SPORT", family: "WOODY, AROMATIC" },
-            { code: "M 235", name: "HUGO BOSS HUGO XY", family: "WOODY, AROMATIC" },
-            { code: "M 236", name: "SHAIK CHIC SHAIK 70", family: "WOODY, CITRUS" },
-            { code: "M 237", name: "BALDESSARINI AMBRE", family: "ORIENTAL, WOODY" },
-            { code: "M 238", name: "HUGO BOSS AMBRE BALDESSARINI", family: "ORIENTAL, WOODY" },
-            { code: "M 239", name: "AZZARO CHROME", family: "CITRUS, AROMATIC" },
-            { code: "M 240", name: "CAROLINA HERRERA 212 MEN", family: "WOODY, MUSKY" },
-            { code: "M 241", name: "CAROLINA HERRERA CHIC", family: "WOODY, SPICY" },
-            { code: "M 242", name: "CREATION", family: "CITRUS, MUSKY" },
-            { code: "M 243", name: "DIOR HOMME SPORT", family: "WOODY, AROMATIC" },
-            { code: "M 244", name: "DOLCE GABBANA LIGHT BLUE MEN", family: "CITRUS, AROMATIC" },
-            { code: "M 245", name: "GIVENCHY BLUE LABEL", family: "CITRUS, FLORAL" },
-            { code: "M 246", name: "ROJA DOVE OLIGARCH", family: "CITRUS, AROMATIC" },
-            { code: "M 249", name: "VERSACE EROS", family: "FOUGERE, AROMATIC" },
-            { code: "M 250", name: "DOLCE GABBANA KING", family: "WOODY, AROMATIC" },
-            { code: "M 251", name: "CAROLINA HERRERA BAD BOY", family: "ORIENTAL, SPICY" },
-            { code: "M 252", name: "JEAN PAUL GAULTIER SCANDAL POUR HOMME", family: "ORIENTAL, AMBERY" },
-            { code: "M 253", name: "JEAN PAUL GAULTIER LE MALE LE PARFUM", family: "WOODY, GOURMAND" },
-            { code: "M 255", name: "PACO RABANNE PHANTOM", family: "WOODY, AROMATIC" },
-            { code: "M 256", name: "DIOR SAUVAGE ELIXIR", family: "WOODY, AROMATIC" },
-            { code: "M 257", name: "BURBERRY HERO", family: "WOODY, AROMATIC" },
-            { code: "M 258", name: "HUGO BOSS BOSS", family: "CHYPRE, AROMATIC" },
-            { code: "M 259", name: "VERSACE EAU FRAICHE", family: "CITRUS, AROMATIC" },
-            { code: "M 260", name: "BALDESSARINI AMBRE EAU FRAICHE", family: "CITRUS, SPICY" },
-            { code: "M 261", name: "VALENTINO UOMO BORN IN ROMA", family: "WOODY, SPICY" },
-            { code: "M 262", name: "PACO RABANNE 1 MILLION LUCKY", family: "CITRUS, WOODY" },
-            { code: "M 263", name: "PARFUMS DE MARLY PEGASUS", family: "ORIENTAL, FLORAL" },
-            { code: "M 264", name: "YVES SAINT LAURENT MYSELF", family: "CITRUS, AROMATIC" },
-            { code: "M 271", name: "GUCCI GUILTY POUR HOMME ELIXIR DE PARFUM", family: "WOODY, AMBERY" },
-            { code: "M 272", name: "PRADA PARADIGME", family: "WOODY, AROMATIC" },
-            { code: "M 273", name: "GISADA AMBASSADOR EAU DE PARFUM MEN", family: "WOODY, AROMATIC" }
+            // ERKEK (M)
+            { code: "M 201", beas: "Obsidian", name: "ANTONIO BANDERAS BLUE SEDUCTION", family: "CITRUS, AQUATIC", sizes: [100, 50, 20] },
+            { code: "M 202", beas: "Dorian", name: "CHRISTIAN DIOR SAUVAGE FOR", family: "FOUGERE, AROMATIC", sizes: [100, 50, 20] },
+            { code: "M 203", beas: "Alaric", name: "CARTIER DECLARATION", family: "WOODY, SPICY", sizes: [50, 20] },
+            { code: "M 204", beas: "Corvin", name: "ISSEY MIYAKE L EAU D ISSEY", family: "WOODY, SPICY", sizes: [50, 20] },
+            { code: "M 205", beas: "Onyx", name: "PACO RABANNE INVICTUS INTENSE", family: "FLORAL, SPICY", sizes: [50, 20] },
+            { code: "M 206", beas: "Cassian", name: "LACOSTE L.12.12. WHITE BLANC", family: "WOODY, AROMATIC", sizes: [100, 50, 20] },
+            { code: "M 207", beas: "Noctis", name: "LACOSTE ESSENTIAL", family: "WOODY, AROMATIC", sizes: [50] },
+            { code: "M 208", beas: "Orion", name: "PACO RABANNE 1 MILLION", family: "WOODY, SPICY", sizes: [100, 50, 20] },
+            { code: "M 209", beas: "Zenith", name: "CHANEL ALLURE SPORT", family: "CITRUS, AROMATIC", sizes: [50, 20] },
+            { code: "M 210", beas: "Arden", name: "CHANEL BLEU DE CHANEL PARFUM", family: "WOODY, AROMATIC", sizes: [100, 50, 20] },
+            { code: "M 211", beas: "Soren", name: "GUERLAIN L HOMME IDEA", family: "WOODY, AROMATIC", sizes: [50, 20] },
+            { code: "M 212", beas: "Valen", name: "CHANEL EGOISTE PLATINIUM", family: "GREEN, WOODY", sizes: [50, 20] },
+            { code: "M 213", beas: "Ronan", name: "GIORGIO ARMANI ACQUA DI GIO", family: "CITRUS, AROMATIC", sizes: [100, 50, 20] },
+            { code: "M 214", beas: "Lucan", name: "PACO RABANNE INVICTUS", family: "WOODY, SPICY", sizes: [100, 50] },
+            { code: "M 215", beas: "Tavian", name: "SHEIK NO:77", family: "FLORIENTAL, FOUGERE", sizes: [50] },
+            { code: "M 216", beas: "Aeron", name: "CREED AVENTUS", family: "CHYPRE, FRUITY", sizes: [100, 50, 20] },
+            { code: "M 217", beas: "Voss", name: "NASOMATTO BLACK AFGANO", family: "WOODY, AROMATIC", sizes: [50, 20] },
+            { code: "M 218", beas: "Raelon", name: "CAROLINA HERRERA 212 VIP", family: "FLORAL, WOODY", sizes: [50, 20] },
+            { code: "M 219", beas: "Darven", name: "DOLCE GABANA THE ONE", family: "CITRUS, WOODY", sizes: [50, 20] },
+            { code: "M 220", beas: "Solven", name: "G.A ARMANI CODE SPORT", family: "WOODY, AROMATIC", sizes: [50] },
+            { code: "M 221", beas: "Arkon", name: "HUGO BOSS BOTTLED INTENSE", family: "WOODY, SPICY", sizes: [50, 20] },
+            { code: "M 222", beas: "Silvan", name: "BVLGARI AQUA", family: "CITRUS, AROMATIC", sizes: [50] },
+            { code: "M 223", beas: "Vardon", name: "CALVIN KLEIN EUPHORIA", family: "WOODY, AROMATIC", sizes: [50] },
+            { code: "M 224", beas: "Kaelor", name: "CAROLINA HERRERA CH", family: "ORIENTAL, SPICY", sizes: [50] },
+            { code: "M 225", beas: "Draven", name: "CHRISTIAN DIOR FAHRENHEIT", family: "CITRUS, WOODY", sizes: [50, 20] },
+            { code: "M 226", beas: "Lorcan", name: "GIORGIO ARMANI BLACK CODE", family: "ORIENTAL, SPICY", sizes: [50] },
+            { code: "M 227", beas: "Vaelor", name: "GUCCI GUILTY MEN", family: "WOODY, AROMATIC", sizes: [50] },
+            { code: "M 228", beas: "Riven", name: "HERMES TERRE D HERMES", family: "CITRUS, WOODY", sizes: [50, 20] },
+            { code: "M 229", beas: "Mavrik", name: "PACO RABANNE ULTRAVIOLET", family: "ORIENTAL, WOOD", sizes: [50, 20] },
+            { code: "M 230", beas: "Sevran", name: "EMRORIO ARMANI STRONGER WITH YOU", family: "FOUGERE, AROMATIC", sizes: [100, 50] },
+            { code: "M 231", beas: "Orvian", name: "TOM FORD NOIR", family: "ORIENTAL, SPICY", sizes: [50] },
+            { code: "M 232", beas: "Auron", name: "TOM FORD NOIR EXTREME", family: "ORIENTAL, FLORAL", sizes: [50] },
+            { code: "M 233", beas: "Volen", name: "DOLCE&GABBANA POUR HOMME INTENSO", family: "WOODY, AROMATIC", sizes: [50] },
+            { code: "M 234", beas: "Arven", name: "GUCCI BY GUCCI SPORT", family: "WOODY, AROMATIC", sizes: [50] },
+            { code: "M 235", beas: "Zenor", name: "HUGO BOSS HUGO XY", family: "WOODY, AROMATIC", sizes: [50] },
+            { code: "M 236", beas: "Eldric", name: "SHAIK CHIC SHAIK NO 70", family: "WOODY, CITRUS", sizes: [50] },
+            { code: "M 237", beas: "Rexton", name: "AMBRÉ BALDESSARINI", family: "ORIENTAL, WOODY", sizes: [50] },
+            { code: "M 238", beas: "Varian", name: "HUGO BOSS BALDESSARINI MEN", family: "ORIENTAL, WOODY", sizes: [50] },
+            { code: "M 239", beas: "Caelan", name: "AZZARO CHROME", family: "CITRUS, AROMATIC", sizes: [50, 20] },
+            { code: "M 240", beas: "Verin", name: "CAROLINA HERRERA 212", family: "WOODY, MUSKY", sizes: [50] },
+            { code: "M 241", beas: "Arkos", name: "CAROLINA HERRERA CHIC", family: "WOODY, SPICY", sizes: [50] },
+            { code: "M 242", beas: "Talven", name: "BROWN ORCHID GOLD EDITION", family: "CITRUS, MUSKY", sizes: [50] },
+            { code: "M 243", beas: "Dacian", name: "CHRISTIAN DIOR HOMME SPORT", family: "WOODY, AROMATIC", sizes: [50, 20] },
+            { code: "M 244", beas: "Novar", name: "DOLCE GABBANA LIGHT BLUE", family: "CITRUS, AROMATIC", sizes: [50, 20] },
+            { code: "M 245", beas: "Kyren", name: "GIVENCHY POUR HOMME BLUE LABEL", family: "CITRUS, FLORAL", sizes: [50, 20] },
+            { code: "M 246", beas: "Lucanor", name: "ROJA DOVE OLIGARCH", family: "CITRUS, AROMATIC", sizes: [50] },
+            { code: "M 249", beas: "Cormac", name: "VERSACE EROS", family: "ORIENTAL, SPICY", sizes: [100, 50, 20] },
+            { code: "M 250", beas: "Nairn", name: "DOLCE GABBANA KING", family: "ORIENTAL, AMBERY", sizes: [100, 50] },
+            { code: "M 251", beas: "Torven", name: "CAROLINE HERRERA BAD BOY", family: "WOODY, GOURMAND", sizes: [100, 50] },
+            { code: "M 252", beas: "Ravian", name: "JEAN PAUL GAULTIER MEN SCANDAL", family: "WOODY, AROMATIC", sizes: [100, 50, 20] },
+            { code: "M 253", beas: "Xerian", name: "JEAN PAUL GAULTIER LE MALE LE PARFUM", family: "WOODY, AROMATIC", sizes: [50] },
+            { code: "M 255", beas: "Orlan", name: "PACO RABANNE PHANTOM", family: "WOODY, AROMATIC", sizes: [100, 50, 20] },
+            { code: "M 256", beas: "Denvar", name: "CHRISTIAN DIOR SAUVAGE ELIXIR", family: "WOODY, AROMATIC", sizes: [100, 50] },
+            { code: "M 257", beas: "Rhelan", name: "BURBERRY HERO", family: "WOODY, AROMATIC", sizes: [50] },
+            { code: "M 258", beas: "Kaiven", name: "HUGO BOSS", family: "WOODY, SPICY", sizes: [50] },
+            { code: "M 259", beas: "Merkan", name: "VERSACE EAU FRAICHE MEN", family: "CITRUS, AROMATIC", sizes: [50] },
+            { code: "M 260", beas: "Arvis", name: "BALDESSARINI AMBRE EAU FRAICHE MEN", family: "CITRUS, SPICY", sizes: [50] },
+            { code: "M 261", beas: "Norvik", name: "VALENTINO UOMO BORN IN ROMA MEN", family: "WOODY, SPICY", sizes: [100, 50, 20] },
+            { code: "M 262", beas: "Brion", name: "PACO RABANNE 1 MILLION LUCKY MEN", family: "CITRUS, WOODY", sizes: [100, 50] },
+            { code: "M 263", beas: "Orenz", name: "PARFUMS DE MARLY PEGASUS", family: "ORIENTAL, FLORAL", sizes: [100, 50] },
+            { code: "M 264", beas: "Kaldor", name: "YVES SAINT LAURENT MYSELF", family: "CITRUS, AROMATIC", sizes: [50] },
+            { code: "M 270", beas: "Veymar", name: "PACO RABANNE INVICTUS VICTORY MEN", family: "WOODY, AMBERY", sizes: [50] },
+            { code: "M 271", beas: "Daric", name: "GUCCI GUILTY POUR HOMME ELIXIR DE PARFUM", family: "WOODY, AMBERY", sizes: [50] },
+            { code: "M 272", beas: "Trystan", name: "PRADA PARADIGME", family: "WOODY, AROMATIC", sizes: [100, 50] },
+            { code: "M 273", beas: "Nextor", name: "GISADA AMBASSADOR EAU DE PARFUM", family: "WOODY, AROMATIC", sizes: [50] },
+            // KADIN (W)
+            { code: "W 501", beas: "Elara", name: "CHANEL CHANCE", family: "CHYPRE, FLORAL", sizes: [50, 20] },
+            { code: "W 502", beas: "Aurelia", name: "CHANEL CHANCE EAU TENDRE", family: "FLORAL, FRUITY", sizes: [50] },
+            { code: "W 503", beas: "Lunessa", name: "CHLOE EAU DE PARFUM", family: "ORIENTAL, FLORAL", sizes: [50] },
+            { code: "W 504", beas: "Celeste", name: "CHRISTIAN DIOR J ADORE", family: "FLORAL, FRUITY", sizes: [100, 50, 20] },
+            { code: "W 505", beas: "Fiora", name: "DONNA KARAN BE DELICIOUS", family: "FRUITY, FLORAL", sizes: [50] },
+            { code: "W 506", beas: "Elysia", name: "DOLCE GABBANA L IMPERATRICE 3", family: "FLORAL, AQUATIC", sizes: [100, 50, 20] },
+            { code: "W 507", beas: "Solenne", name: "DOLCE GABBANA THE ONE", family: "ORIENTAL, FLORAL", sizes: [50] },
+            { code: "W 508", beas: "Violette", name: "LANVIN ECLAT D ARPEGE", family: "FLORAL, FRUITY", sizes: [100, 50, 20] },
+            { code: "W 509", beas: "Mirabelle", name: "GIORGIO ARMANI SI", family: "CHYPRE, FLORAL", sizes: [50, 20] },
+            { code: "W 510", beas: "Selene", name: "GIVENCHY ANGE OU DEMON LE SECRET", family: "CITRUS, FLORAL", sizes: [50] },
+            { code: "W 511", beas: "Rosalie", name: "NINA RICHI PREMIER JOUR", family: "FLORAL, MUSKY", sizes: [50] },
+            { code: "W 512", beas: "Estelle", name: "VERSACE BRIGHT CRYSTAL", family: "FLORAL, WOODY", sizes: [100, 50, 20] },
+            { code: "W 513", beas: "Amaris", name: "CHANEL CHANCE EAU FRAICHE", family: "CHYPRE, FLORAL", sizes: [50, 20] },
+            { code: "W 514", beas: "Odette", name: "ALDEHIDIC CHANEL NO:5", family: "CHYPRE", sizes: [50, 20] },
+            { code: "W 515", beas: "Lorielle", name: "CHANEL COCO MADEMOISELLE", family: "CHYPRE, FLORAL", sizes: [50, 20] },
+            { code: "W 516", beas: "Liora", name: "GIORGIO ARMANI ARMANI CODE", family: "FRUITY, FLORAL", sizes: [50] },
+            { code: "W 517", beas: "Noelle", name: "G.FLORA BY GUCCI GORGEOUS GARDENIA", family: "FLORAL, FRUITY", sizes: [50] },
+            { code: "W 518", beas: "Aveline", name: "CALVIN KLEIN EUPHORIA", family: "FLORAL, BALSAMIC", sizes: [50, 20] },
+            { code: "W 519", beas: "Velina", name: "LANVIN MARRY ME", family: "FLORAL, FRUITY", sizes: [50] },
+            { code: "W 520", beas: "Isadora", name: "TRUSSARDI DONNA TRUSSARDI", family: "FLORAL, MUSKY", sizes: [50, 20] },
+            { code: "W 521", beas: "Nerina", name: "YVES SAINT LAURENT MANIFESTO", family: "ORIENTAL, FLORAL", sizes: [50] },
+            { code: "W 522", beas: "Serisse", name: "MONTALE ROSES MUSK", family: "FLORAL, SPICY", sizes: [50, 20] },
+            { code: "W 523", beas: "Alina", name: "BY KILIAN GOOD GIRL GONE BAD", family: "FLORAL, FRUITY", sizes: [50, 20] },
+            { code: "W 524", beas: "Verena", name: "BURBERRY MY BURBERRY", family: "FLORAL, FRUITY", sizes: [50, 20] },
+            { code: "W 525", beas: "Aurielle", name: "DOLCE GABBANA LIGHT BLUE", family: "CITRUS, WOODY", sizes: [100, 50, 20] },
+            { code: "W 526", beas: "Lumera", name: "PACO RABBANNE LADY MILLION", family: "FLORIENTAL, FRUITY", sizes: [50, 20] },
+            { code: "W 527", beas: "Althea", name: "GUCCI BAMBOO GUCCI", family: "FLORAL, MUSKY", sizes: [50] },
+            { code: "W 528", beas: "Soraya", name: "GUCCI FLORA", family: "FLORAL, FRUITY", sizes: [50] },
+            { code: "W 529", beas: "Evelisse", name: "LACOSTE L.12.12 POUR ELLE SPARKLING", family: "FRUITY, GOURMAND", sizes: [50] },
+            { code: "W 530", beas: "Maelys", name: "LACOSTE POUR FEMME", family: "FLORAL, POWDERY", sizes: [50, 20] },
+            { code: "W 531", beas: "Elisse", name: "BVLGARI OMNIA CRYSTALLINE", family: "FLORAL, AQUATIC", sizes: [50] },
+            { code: "W 532", beas: "Orielle", name: "CAROLINA HERRERA C.H", family: "ORIENTAL, FLORAL", sizes: [50] },
+            { code: "W 533", beas: "Narelle", name: "CAROLINA HERRERA GOOD GIRL", family: "ORIENTAL, FLORAL", sizes: [100, 50, 20] },
+            { code: "W 534", beas: "Virelle", name: "CHRISTIAN DIOR ADDICT", family: "FLORAL, ORIENTAL", sizes: [50, 20] },
+            { code: "W 535", beas: "Camelia", name: "C.DIOR MISS DIOR CHERRY BLOOMING BOUQUET", family: "CHYPRE, FLORAL", sizes: [50, 20] },
+            { code: "W 536", beas: "Lucienne", name: "GUERLIAN LA PETIT RABE NOIRE PARFUM", family: "ORIENTAL, FRUITY", sizes: [100, 50, 20] },
+            { code: "W 537", beas: "Meliora", name: "HUGO BOSS FEMME", family: "FLORAL, FRUITY", sizes: [50] },
+            { code: "W 538", beas: "Ilayra", name: "KENZO LEOPAR", family: "FLORAL, AQUATIC", sizes: [50, 20] },
+            { code: "W 539", beas: "Ariane", name: "LACOSTE TOUCH OF PINK", family: "FLORAL, FRUITY", sizes: [50] },
+            { code: "W 540", beas: "Bellisse", name: "LANCOME TRESOR LA NUIT L'EAU DE PARFUM", family: "FLORAL, FRUITY", sizes: [100, 50, 20] },
+            { code: "W 541", beas: "Virelia", name: "YSL MON PARIS", family: "CHYPRE, FRUITY", sizes: [100, 50, 20] },
+            { code: "W 542", beas: "Mireya", name: "GUERLIAN MON PARFUM DEPUIS", family: "FLORAL, ORIENTAL", sizes: [50] },
+            { code: "W 543", beas: "Arabelle", name: "BYREDO BAL D'AFRIQUE", family: "CITRUS, WOODY", sizes: [100, 50, 20] },
+            { code: "W 544", beas: "Naelle", name: "CHANEL CHANCE EAU TENDRE EAU DE PARFUM", family: "FLORAL", sizes: [50, 20] },
+            { code: "W 545", beas: "Elora", name: "KILLIAN VODKA AN THE ROCKS REFILL", family: "FLORAL, AROMATIC", sizes: [50, 20] },
+            { code: "W 546", beas: "Lysandra", name: "MONTALE PINK EXTASY", family: "CITRUS, FRUITY", sizes: [50] },
+            { code: "W 547", beas: "Calisse", name: "CHANEL GABRIELLA", family: "CITRUS, FLORAL", sizes: [50] },
+            { code: "W 548", beas: "Elyne", name: "OPULENT SHAIK CLASSIC NO 33", family: "ORIENTAL, FLORAL", sizes: [50] },
+            { code: "W 549", beas: "Melisse", name: "AMOUAGE HONOUR", family: "FLORAL, SPICY", sizes: [50, 20] },
+            { code: "W 550", beas: "Novelle", name: "ARMAND BASI IN ME", family: "FLORAL, FRUITY", sizes: [50] },
+            { code: "W 551", beas: "Fleura", name: "LANCOME LA VIE EST BELLE", family: "FLORAL, ORIENTAL", sizes: [100, 50, 20] },
+            { code: "W 552", beas: "Sorella", name: "CAROLINA HERRERA 212", family: "CITRUS, FLORAL", sizes: [50] },
+            { code: "W 553", beas: "Evania", name: "CAROLINA HERRERA 212 SEXY", family: "ORIENTAL, FLORAL", sizes: [50] },
+            { code: "W 554", beas: "Rosera", name: "CAROLINA HERRERA 212 VIP NYC", family: "FLORIENTAL, GOURMAND", sizes: [50] },
+            { code: "W 555", beas: "Silvara", name: "CAROLINA HERRERA 212 VIP ROSE", family: "FLORAL, FRUITY", sizes: [50] },
+            { code: "W 556", beas: "Azelia", name: "LANCOME HYPNOSE", family: "FLORAL, ORIENTAL", sizes: [50, 20] },
+            { code: "W 557", beas: "Avena", name: "CHRISTIAN DIOR ADDICT 2", family: "FLORAL, FRUITY", sizes: [50] },
+            { code: "W 558", beas: "Veila", name: "CHRISTIAN DIOR POISON", family: "FLORAL, FRUITY", sizes: [50] },
+            { code: "W 559", beas: "Dahliane", name: "CHRISTIAN DIOR MISS DIOR CHERIE", family: "FRUITY, ORIENTAL", sizes: [50] },
+            { code: "W 560", beas: "Cressida", name: "GIVENCHY ANGE OU DEMON LE SECRET ELEXIR", family: "CHYPR, FLORAL", sizes: [50] },
+            { code: "W 561", beas: "Arlisse", name: "PACO RABANNE BLACK XS", family: "FLORAL, MUSK", sizes: [50] },
+            { code: "W 562", beas: "Zafira", name: "VERSACE CRYSTAL NOIR", family: "WOODY, BALSAMIC", sizes: [50] },
+            { code: "W 563", beas: "Lunaria", name: "YVES SAINT LAURENT BLACK OPIUM", family: "ORIENTAL, GOURMAND", sizes: [100, 50, 20] },
+            { code: "W 564", beas: "Florenne", name: "NARCISO RODRIGUEZ NARCISO POUDRE", family: "FLORAL, FRUITY", sizes: [50, 20] },
+            { code: "W 565", beas: "Velisse", name: "TRUSSARDI MY NAME", family: "POWDERY, FLORAL", sizes: [50] },
+            { code: "W 566", beas: "Azura", name: "TOM FORD VELVET ORCHID", family: "FLORAL, BALSAMIC", sizes: [50] },
+            { code: "W 567", beas: "Amelisse", name: "EMPORIO ARMANI BEACAUSE ITS YOU", family: "FRUITY, FLORAL", sizes: [50] },
+            { code: "W 568", beas: "Aureline", name: "PACO RABANNE OLYMPEA", family: "FLORAL, ORIENTAL", sizes: [100, 50, 20] },
+            { code: "W 569", beas: "Marisse", name: "VICTORY SECRET BOMBSHELL", family: "FRUITY, FLORAL", sizes: [100, 50, 20] },
+            { code: "W 570", beas: "Luvia", name: "ELIZABETH ARDEN GREEN TEA SPRAY", family: "CITRUS, FLORAL", sizes: [50, 20] },
+            { code: "W 571", beas: "Fiorelle", name: "CHRISTIAN DIOR JOY", family: "CITRUS, FLORAL", sizes: [50, 20] },
+            { code: "W 572", beas: "Serenna", name: "JEAN PAUL GAULTIER SCANDAL", family: "CITRUS, FLORAL", sizes: [100, 50] },
+            { code: "W 573", beas: "Clarisse", name: "JO MALONE ENGLISH PEAR FREESIA", family: "FLORAL, MUSKY", sizes: [50] },
+            { code: "W 574", beas: "Nerelle", name: "VAN CLEEF & ARPELS COLLECTION EXTRAORDINAIRE ORCHIDEE VANILLE", family: "FLORAL, POWDERY", sizes: [50] },
+            { code: "W 575", beas: "Aurette", name: "VERSACE VERSENCE", family: "FLORAL, CITRUS", sizes: [50] },
+            { code: "W 576", beas: "Elowen", name: "LANCOME IDOLE LE PARFUM", family: "CHYPRE, FLORAL", sizes: [50, 20] },
+            { code: "W 577", beas: "Mirelle", name: "PARFUMS DE MARLY DELINA", family: "FLORAL, WOODY", sizes: [100, 50, 20] },
+            { code: "W 578", beas: "Celine", name: "GIORGIO ARMANI MY WAY", family: "FLORAL, GREEN", sizes: [100, 50, 20] },
+            { code: "W 579", beas: "Virena", name: "MUGLER ALIEN", family: "ORIENTAL, WOODY", sizes: [50] },
+            { code: "W 580", beas: "Iselle", name: "YSL LIBRE INTENSE", family: "CITRUS, FRUITY", sizes: [50] },
+            { code: "W 581", beas: "Alouette", name: "JO MALONE BLACKBERRY BAY", family: "FLORAL, FRUITY", sizes: [100, 50] },
+            { code: "W 582", beas: "Elaris", name: "TIFFANY AND CO TIFFANY", family: "CITRUS, MUSKY", sizes: [100, 50, 20] },
+            { code: "W 583", beas: "Sorelle", name: "HYPNOTIC POISON DIOR", family: "ORIENTAL, VANILLA", sizes: [50, 20] },
+            { code: "W 584", beas: "Oriana", name: "MUGLER ANGEL THIERRY", family: "ORIENTAL, VANILLA", sizes: [50, 20] },
+            { code: "W 585", beas: "Valerie", name: "OLYMPEA LEGEND", family: "ORIENTAL, FLORAL", sizes: [50] },
+            { code: "W 586", beas: "Evelia", name: "YSL LIBRE", family: "CITRUS, FLORAL", sizes: [50] },
+            { code: "W 587", beas: "Roseline", name: "JEAN PAUL GAULTIER SCANDAL SO", family: "FLORAL, WOODY", sizes: [50] },
+            { code: "W 588", beas: "Delia", name: "JULIETTE HAS A GUN NOT A PERFUME", family: "ORIENTAL, MUSKY", sizes: [50, 20] },
+            { code: "W 589", beas: "Verisse", name: "KAJAL DAHAB", family: "FRUITY, FLORIENTAL", sizes: [50, 20] },
+            { code: "W 590", beas: "Sienna", name: "MANCERA ROSES VANILLE", family: "WOODY, FLORAL", sizes: [50, 20] },
+            { code: "W 591", beas: "Elviera", name: "AMOUAGE BLOSSOM LOVE", family: "FLORAL, FRUITY", sizes: [50, 20] },
+            { code: "W 592", beas: "Saphira", name: "DEVIL'S INTRIGUE HAUTE FRAGRANCE COMPANY HFC", family: "ORIENTAL, MUSKY", sizes: [50] },
+            { code: "W 593", beas: "Lunelle", name: "TOY 2 BUBBLE GUM MOSCHINO", family: "FLORAL, FRUITY", sizes: [50] },
+            { code: "W 594", beas: "Marielle", name: "PRADA PARADOXE", family: "FLORAL, AMBERY", sizes: [50, 20] },
+            { code: "W 595", beas: "Arienne", name: "LACOSTE L.12.12 POUR ELLE MAGNETIC", family: "CITRUS, FRUITY", sizes: [50, 20] },
+            { code: "W 596", beas: "Venera", name: "PACO RABANNE FAME WOMEN", family: "FLORA, MUSKY", sizes: [100, 50, 20] },
+            { code: "W 597", beas: "Noelie", name: "VALENTINO BORN IN ROMA DONNA", family: "FLORAL", sizes: [50] },
+            { code: "W 598", beas: "Elanra", name: "GUCCI RUSH", family: "CHYPRE, FRUITY", sizes: [50] },
+            { code: "W 599", beas: "Solara", name: "JEAN PAUL GAULTIER DIVINE EAU DE PARFUM", family: "FLORAL, AMBERY", sizes: [100, 50] },
+            { code: "W 600", beas: "Eliora", name: "GISADA AMBASSADOR EAU DE PARFUM", family: "WHITE, FLORAL", sizes: [50] },
+            { code: "W 601", beas: "Elianna", name: "CAROLINA HERRERA LA BOMBA", family: "ORIENTAL, FLORAL", sizes: [50] },
+            { code: "W 602", beas: "Lurelle", name: "MUGLER ANGEL THIERRY NOVA", family: "FLORAL, GREEN", sizes: [50] },
+            { code: "W 603", beas: "Levina", name: "DIOR MISS DIOR BLOOMING BOUQUET (2023)", family: "FLORAL", sizes: [100, 50, 20] },
+            { code: "W 605", beas: "Eliane", name: "", family: "FLORAL", sizes: [] },
+            // UNISEX (U)
+            { code: "U 701", beas: "Veil", name: "ESCENTRIC 02 ESCENTRIC MOLECULES", family: "WOODY, AMBERY", sizes: [100, 50, 20] },
+            { code: "U 702", beas: "Echo", name: "MONTALE CHOCOLATE GREEDY", family: "SWEET, GOURMAND", sizes: [50] },
+            { code: "U 703", beas: "Aether", name: "MONTALE INTENSE CAFE", family: "FLORAL, MUSKY", sizes: [50, 20] },
+            { code: "U 704", beas: "Ember", name: "MONTALE WILD PEARS", family: "FLORAL, POWDERY", sizes: [50] },
+            { code: "U 705", beas: "Slate", name: "EX NIHILO FLEUR NARCOTIQUE", family: "FLORAL, FRUITY", sizes: [100, 50, 20] },
+            { code: "U 706", beas: "Halo", name: "MONTALE AOUD JASMINE", family: "FLORAL, WOODY", sizes: [50] },
+            { code: "U 707", beas: "Drift", name: "MONTALE INTENSE CHERRY", family: "FLORAL, ORIENTAL", sizes: [50] },
+            { code: "U 708", beas: "Aura", name: "ZARKOPERFUME PINK MOLECULE 090 09", family: "FRUITY, FLORAL", sizes: [50, 20] },
+            { code: "U 709", beas: "Haze", name: "BY KILIAN BAMBOO HARMONY", family: "CITRUS, AROMATIC", sizes: [50] },
+            { code: "U 710", beas: "Loom", name: "BY KILIAN INTOXICATED", family: "WOODY, SPICY", sizes: [50] },
+            { code: "U 711", beas: "Solis", name: "MAISON FRANCIS KURKDIJAN BACCARAT ROUGE 540", family: "ORIENTAL, BALSAMIC", sizes: [100, 50, 20] },
+            { code: "U 712", beas: "Cove", name: "MONTALE SOLEIL DE CAPRI", family: "CITRUS, WOODY", sizes: [50, 20] },
+            { code: "U 713", beas: "Vale", name: "MONTALE STARRY NIGHT", family: "WOODY, GREEN", sizes: [50] },
+            { code: "U 714", beas: "Mist", name: "TOM FORD BLACK ORCHID", family: "WOODY, ORIENTAL", sizes: [50, 20] },
+            { code: "U 715", beas: "Flux", name: "ALEXANDRE.J BLACK MUSCS", family: "FLORAL, MUSKY", sizes: [50] },
+            { code: "U 716", beas: "Tonic", name: "TOM FORD TOBACCO VANILLE", family: "ORIENTAL, SPICY", sizes: [100, 50, 20] },
+            { code: "U 717", beas: "Static", name: "ESCENTRIC 01 ESCENTRIC MOLECULES", family: "WOODY, SPICY", sizes: [100, 50, 20] },
+            { code: "U 718", beas: "Vapor", name: "ATELIER COLOGNE ATELIER CEDRE ATLAS", family: "WOODY", sizes: [50] },
+            { code: "U 719", beas: "Mineral", name: "FRANCK BOCLET COCAINE UNISEX", family: "FLORAL, ORIENTAL", sizes: [50] },
+            { code: "U 720", beas: "Still", name: "JO MALONE LONDON MYRRH & TONKA", family: "ORIENTAL, POWDERY", sizes: [100, 50] },
+            { code: "U 721", beas: "Passage", name: "JO MALONE WOOD SAGE & SEA SALT", family: "CITRUS, MUSKY", sizes: [50] },
+            { code: "U 722", beas: "Moss", name: "BY KILIAN BLACK PHANTOM UNISEX", family: "ORIENTAL, WOODY", sizes: [50] },
+            { code: "U 723", beas: "Silence", name: "BY KILIAN I DONT NEED A PRINCE BY MY SIDE TO BE", family: "ORIENTAL, POWDERY", sizes: [50] },
+            { code: "U 724", beas: "Nectar", name: "BY KILIAN MOONLIGHT IN HEAVEN", family: "FRUITY, AROMATIC", sizes: [50] },
+            { code: "U 725", beas: "Cedar", name: "THE BEAUTIFUL MIND SERIES VOLUME I INTELLIGENCE & FANTASY", family: "FLORAL, WOODY", sizes: [50] },
+            { code: "U 726", beas: "Resin", name: "TIZIANA TERENZI CASANOVA", family: "WOODY, FLORAL", sizes: [50] },
+            { code: "U 727", beas: "Linen", name: "SOSPI ERBA PURA", family: "ORIENTAL, FRUITY", sizes: [100, 50, 20] },
+            { code: "U 728", beas: "Silver", name: "TIZIANA TERENZI KIRKE", family: "CHYPRE, FRUITY", sizes: [100, 50, 20] },
+            { code: "U 729", beas: "Theory", name: "BYREDO MARIHUANA", family: "CITRUS, AROMATIC", sizes: [50] },
+            { code: "U 730", beas: "Dusk", name: "BY KILLIAN BAD BOYS", family: "CITRUS, SPICY", sizes: [50] },
+            { code: "U 731", beas: "Bloom", name: "BOND 9 DUBAI SIGNATURE SCENT EDP", family: "CITRUS, WOODY", sizes: [50] },
+            { code: "U 732", beas: "Ash", name: "BVLGARI LE GEMME TYGAR EDP", family: "CITRUS, WOODY", sizes: [50] },
+            { code: "U 733", beas: "Cloud", name: "CHRISTIAN DIOR OUD ISPAHAN", family: "ORIENTAL, FLORAL", sizes: [50] },
+            { code: "U 734", beas: "Shadow", name: "CHRISTIAN DIOR BOIS D ARGENT", family: "ORIENTAL, FLORAL", sizes: [50] },
+            { code: "U 735", beas: "Musk", name: "TOM FORD BITTER PEACH", family: "WOODY, FRUITY", sizes: [50, 20] },
+            { code: "U 736", beas: "Olive", name: "TOM FORD LOST CHERRY", family: "ORIENTAL, FLORAL", sizes: [100, 50, 20] },
+            { code: "U 737", beas: "Neroli", name: "ESCENTRIC MOLECULES ESCENTRIC 05", family: "WOODY, AROMATIC", sizes: [50] },
+            { code: "U 738", beas: "Quartz", name: "MEMO PARIS FRENCH LEATHER UNISEX", family: "ORIENTAL, SPICY", sizes: [50, 20] },
+            { code: "U 739", beas: "Clay", name: "INITIO PERFUMS PRIVES PSYCHEDELIC LOVE UNISEX", family: "FLORAL, FRUITY", sizes: [50] },
+            { code: "U 740", beas: "Smoke", name: "LEATHERY MEMO PARIS ITALIAN LEATHER UNISEX", family: "ORIENTAL", sizes: [50, 20] },
+            { code: "U 741", beas: "Skin", name: "MONTALE ARABIANS TONKA", family: "FLORAL, POWDERY", sizes: [100] },
+            { code: "U 742", beas: "Rain", name: "TOM FORD OUD WOOD", family: "WOODY, OUDY", sizes: [50, 20] },
+            { code: "U 743", beas: "Glass", name: "LOUIS VUITTON OMBRE NOMADE", family: "FLORAL, WOODY", sizes: [50] },
+            { code: "U 744", beas: "Solar", name: "VILHELM PARFUMERIE MANGO SKIN", family: "FRUITY, FLORAL", sizes: [50, 20] },
+            { code: "U 745", beas: "Lunar", name: "ATTAR COLLECTION HAYATI", family: "FLORAL, FRUITY", sizes: [50, 20] },
+            { code: "U 746", beas: "Bare", name: "ATTAR COLLECTION MUSK KASHMIR", family: "FLORAL, MUSKY", sizes: [50] },
+            { code: "U 747", beas: "Grey", name: "VILHELM PARFUMERIE DEAR POLLY", family: "CITRUS, WOODY", sizes: [50] },
+            { code: "U 748", beas: "White", name: "MARC ANTOINE BARROIS GANYMEDE UNISEX", family: "WOODY, SPICY", sizes: [50, 20] },
+            { code: "U 749", beas: "Blue", name: "ZIELINSKI & ROZEN PERFUME BLACK PEPPER & AMBER,", family: "CITRUS, WOODY", sizes: [50, 20] },
+            { code: "U 750", beas: "Amber", name: "SOSPIRO PURPLE ACCENTO UNISEX", family: "FLORAL, AMBERY", sizes: [50] },
+            { code: "U 751", beas: "Stone", name: "SOSPIRO OPERA UNISEX", family: "ORIENTAL, FLORAL", sizes: [50] },
+            { code: "U 752", beas: "Satin", name: "SOSPIRO ACCENTO UNISEX", family: "ORIENTAL, WOODY", sizes: [50] },
+            { code: "U 753", beas: "Velvet", name: "AJMAL AMBER WOOD UNISEX", family: "WOODY, AMBERY", sizes: [50] },
+            { code: "U 754", beas: "Quiet", name: "ATELIER COLOGNE CLEMENTINE CALIFORNIA UNISEX", family: "CITRUS, AROMATIC", sizes: [50, 20] },
+            { code: "U 755", beas: "Clean", name: "LE LABO SANTAL 33", family: "GREEN, WOODY", sizes: [50, 20] },
+            { code: "U 756", beas: "Soft", name: "ESCENTRIC MOLECULES MOLECULE 01 MANDARIN", family: "CITRUS, WOODY", sizes: [50, 20] },
+            { code: "U 757", beas: "Warm", name: "ORTO PARISI MEGAMARE", family: "WOODY, AMBERY", sizes: [50, 20] },
+            { code: "U 759", beas: "Urban", name: "XERJOFF NAXOS 1861", family: "ORIENTAL, SPICY", sizes: [100, 50] },
+            { code: "U 765", beas: "Hidden", name: "MEMO PARIS MARFA", family: "FLORAL, WOODY", sizes: [50, 20] },
+            { code: "U 766", beas: "Night", name: "BOIS IMPERIAL ESSENTIAL PARFUMS UNISEX", family: "WOODY, SPICY", sizes: [50, 20] },
+            { code: "U 767", beas: "Air", name: "MAISON FRANCIS KURKDIJAN OUD SATIN MOOD", family: "FLORAL, WOODY", sizes: [100, 50, 20] },
+            { code: "U 768", beas: "Water", name: "LEATHERY TOM FORD FUCKING FABULOUS", family: "FLORAL", sizes: [50, 20] },
+            { code: "U 769", beas: "Salt", name: "XERJOFF MORE THAN WORLD", family: "ORIENTAL, WOODY", sizes: [50] },
+            { code: "U 770", beas: "Light", name: "NISHANE HACIVAT EXTRAIT DE PARFUM UNISEX", family: "CITRUS, WOODY", sizes: [50, 20] },
+            { code: "U 771", beas: "Wood", name: "MANCERA RED TOBACCO UNISEX", family: "WOODY, SPICY", sizes: [50] },
+            { code: "U 772", beas: "Blooma", name: "KILIAN ANGELS SHARE", family: "FLORAL, GOURMAND", sizes: [100, 50] },
+            { code: "U 773", beas: "Mistra", name: "XERJOFF ALEXANDRIA II", family: "ORIENTAL, WOODY", sizes: [50] },
+            { code: "U 774", beas: "Vela", name: "LEATHERY TOM FORD OMBRE LEATHER", family: "WOODY", sizes: [100, 50, 20] },
+            { code: "U 775", beas: "Aural", name: "MANCERA INSTANT CRUSH EAU DE PARFUM", family: "FLORAL, AMBERY", sizes: [50] },
+            { code: "U 776", beas: "Cindra", name: "LOUIS VUITTON IMAGINATION", family: "CITRUS, AROMATIC", sizes: [50] },
+            { code: "U 777", beas: "Liorae", name: "GUIDENCE AMOUAGE 46 UNISEX", family: "FRUITY, FLORAL", sizes: [100, 50, 20] },
+            { code: "U 778", beas: "Nuvan", name: "RICHARD WHITE CHOCOLA UNISEX", family: "ORIENTAL, GOURMAND", sizes: [50, 20] },
+            { code: "U 779", beas: "Serein", name: "CHIMILKA VILHELM PARFUMERIE UNISEX", family: "ORIENTAL, WOODY", sizes: [50, 20] },
+            { code: "U 780", beas: "Thalen", name: "CLIVE CHRISTIAN ADDICTIVE ARTS HEDONISTIC UNISEX", family: "WOODY, AMBERY", sizes: [50, 20] },
+            { code: "U 781", beas: "Caeli", name: "MARC ANTOINE BARROIS TILIA", family: "FLORAL, MUSKY", sizes: [50, 20] },
+            { code: "U 782", beas: "Aven", name: "GABA HORMONE PARIS", family: "FLORAL, FRUITY", sizes: [50, 20] },
+            { code: "U 783", beas: "Oris", name: "PARFUMS DE MARLY ALTHAIR MEN", family: "CITRUS, GOURMAND", sizes: [100, 50] },
+            { code: "U 784", beas: "Velar", name: "YVES SAINT LAURENT BABYCAT UNISEX", family: "ORIENTAL, SPICY", sizes: [100, 50] },
+            { code: "U 785", beas: "Morian", name: "MAISON CRIVELLI HIBISCUS MAHAJAD UNISEX", family: "FLORAL, FRUITY", sizes: [100, 50] },
+            { code: "U 786", beas: "Sylva", name: "JEAN PAUL GAULTIER GAULTIER 2 UNISEX", family: "ORIENTAL, WOODY", sizes: [100, 50] },
+            { code: "U 787", beas: "Nival", name: "MAISON CRIVELLI OUD MARACUJA", family: "FRUITY, OUDY", sizes: [50] },
+            { code: "U 788", beas: "Aeris", name: "STEPHANE HUMBERT LUCAS 777 GOD OF FIRE", family: "ORIENTAL, WOODY", sizes: [50] }
         ];
 
         // --- HELPER FUNCTIONS ---
@@ -1534,10 +1566,15 @@
             let scoredResults = fragranceData.map(item => {
                 let score = 0;
                 const itemCodeClean = cleanString(item.code);
-                const itemNameClean = cleanString(item.name);
+                const itemNameClean = cleanString(item.name || '');
+                const itemBeasClean = cleanString(item.beas || '');
 
                 if (itemCodeClean === cleanQuery) score = 100;
                 else if (itemCodeClean.includes(cleanQuery)) score = 80;
+
+                // BEA'S adıyla arama: "obsidian", "dorian"...
+                if (itemBeasClean === cleanQuery) score = Math.max(score, 95);
+                else if (cleanQuery.length >= 2 && itemBeasClean.includes(cleanQuery)) score = Math.max(score, 85);
 
                 if (score < 80) {
                     if (itemNameClean === cleanQuery) score = 90;
@@ -1567,34 +1604,34 @@
             displayResults(filtered, resultsArea, t);
         }
 
-        function displayResults(filtered, resultsArea, t) {
-            if (filtered.length === 0) {
-                resultsArea.innerHTML = `<div class="msg-box">${t.empty}</div>`;
-                return;
-            }
+        // Türkçe sayfada da marka adları İngilizce kuralla büyütülsün (i -> I, İ değil)
+        function upper(str) {
+            return (str || '').toLocaleUpperCase('en-US');
+        }
 
-            // Her zaman kod sırasıyla listele (M → W → U, küçükten büyüğe)
-            filtered = sortByCode(filtered);
+        // Boyut rozetleri: katalogda işaretli olan ml'ler
+        function sizesHtml(item) {
+            if (!item.sizes || item.sizes.length === 0) return '';
+            return `<div class="sizes-text">${item.sizes.map(s => `<span>${s} ML</span>`).join('')}</div>`;
+        }
 
-            filtered.forEach(item => {
-                const googleSearch = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(item.name + " perfume bottle")}`;
-
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.onclick = function () { toggleCard(this); };
-
-                card.innerHTML = `
+        // Tek kart şablonu: liste ve anket sonuçları aynı görünsün
+        function cardInner(item, t) {
+            const googleSearch = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent((item.name || item.beas) + " perfume bottle")}`;
+            return `
                 <div class="card-main">
                     <div style="display:flex; align-items:center; flex:1; min-width:0;">
                         <div class="code-pill">${item.code}</div>
                         <div class="info-col">
                             <div class="family-text">${item.family || 'FRAGRANCE'}</div>
-                            <div class="perfume-name">${item.name}</div>
+                            <div class="beas-name">${upper(item.beas)}</div>
+                            ${item.name ? `<div class="perfume-name">${upper(item.name)}</div>` : ''}
+                            ${sizesHtml(item)}
                         </div>
                     </div>
                     <div class="arrow">▼</div>
                 </div>
-                
+
                 <div class="details-panel">
                     <div class="compare-box">
                         <div class="side">
@@ -1609,8 +1646,23 @@
                             </a>
                         </div>
                     </div>
-                </div>
-            `;
+                </div>`;
+        }
+
+        function displayResults(filtered, resultsArea, t) {
+            if (filtered.length === 0) {
+                resultsArea.innerHTML = `<div class="msg-box">${t.empty}</div>`;
+                return;
+            }
+
+            // Her zaman kod sırasıyla listele (M → W → U, küçükten büyüğe)
+            filtered = sortByCode(filtered);
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = function () { toggleCard(this); };
+                card.innerHTML = cardInner(item, t);
                 resultsArea.appendChild(card);
             });
         }
@@ -1766,38 +1818,7 @@
                 let html = `<div style="text-align:center; color:var(--text-secondary); margin-bottom:14px; font-size:10px; letter-spacing:2px; font-weight:600;">TOP MATCHES</div>`;
 
                 finalSelection.forEach(item => {
-                    const googleSearch = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(item.name + " perfume bottle")}`;
-                    // BURADA KARTLARI "window.open" DEĞİL "toggleCard" İLE YAPILANDIRIYORUZ.
-                    html += `
-                        <div class="card" onclick="toggleCard(this)">
-                            <div class="card-main">
-                                <div style="display:flex; align-items:center; flex:1; min-width:0;">
-                                    <div class="code-pill">${item.code}</div>
-                                    <div class="info-col">
-                                        <div class="family-text">${item.family}</div>
-                                        <div class="perfume-name">${item.name}</div>
-                                    </div>
-                                </div>
-                                <div class="arrow">▼</div>
-                            </div>
-
-                            <div class="details-panel">
-                                <div class="compare-box">
-                                    <div class="side">
-                                        <div class="side-label">${t.beas}</div>
-                                        <div class="bottle-icon"><div class="bottle-v">B</div></div>
-                                    </div>
-                                    <div class="vs">vs</div>
-                                    <div class="side">
-                                        <div class="side-label">${t.orig}</div>
-                                        <a href="${googleSearch}" target="_blank" class="view-btn" onclick="event.stopPropagation()">
-                                            <span aria-hidden="true">↗</span> ${t.btn}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                     `;
+                    html += `<div class="card" onclick="toggleCard(this)">${cardInner(item, t)}</div>`;
                 });
 
                 html += `<button type="button" class="view-btn" style="width:100%; justify-content:center; margin-top:15px;" onclick="startQuiz()">RESTART</button>`;
