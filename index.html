@@ -3,25 +3,41 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#000000">
-    <title>BEA'S FRAGRANCE COLLECTION</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap"
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F7F4EE">
+    <title>BEA'S — Beauty &amp; Scent</title>
+    <meta name="description"
+        content="BEA'S Beauty &amp; Scent parfüm koleksiyonu: kod veya isimle arayın, koku profili anketiyle size uygun parfümü bulun.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="BEA'S — Beauty &amp; Scent">
+    <meta property="og:description"
+        content="Parfüm kodu veya isimle arayın; koku profili anketiyle size uygun parfümü bulun.">
+    <meta property="og:url" content="https://beasfind.com/">
+    <link rel="icon" href="assets/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="assets/icon-b.svg">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <style>
-        /* --- BEA'S ELITE THEME (DARK & GOLD) --- */
+        /* --- BEA'S · BEAUTY & SCENT — LIGHT MINIMAL THEME --- */
         :root {
-            --bg-body: #000000;
-            --bg-app: #121212;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --accent-gold: #D4AF37;
-            /* Bea's Gold */
-            --accent-dark-gold: #8a702a;
-            --border-color: #2a2a2a;
+            --bg-body: #F4F1E9;
+            --bg-app: #FFFFFF;
+            --surface-soft: #FBF8F2;
+            --text-primary: #1D1D1B;
+            --text-secondary: #6C675E;
+            --text-muted: #A69E90;
+            --border: #E8E2D6;
+            --border-strong: #D9D1C1;
+            --accent: #A8834E;
+            --accent-dark: #856437;
+            --accent-soft: #F5EDE0;
             --app-width: 600px;
             --radius: 12px;
+            --shadow-soft: 0 1px 2px rgba(29, 29, 27, .04), 0 10px 28px rgba(29, 29, 27, .06);
         }
 
         * {
@@ -33,79 +49,74 @@
             margin: 0;
             padding: 0;
             background-color: var(--bg-body);
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
             color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* --- SPLASH SCREEN --- */
         #splash-screen {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
+            inset: 0;
+            background: #F7F4EE;
             z-index: 9999;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.6s ease-out;
+            padding: 32px 20px;
+            overflow-y: auto;
+            transition: opacity 0.5s ease-out;
         }
 
-        .splash-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
-            color: #fff;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .splash-logo span {
-            color: var(--accent-gold);
+        .splash-logo-img {
+            width: clamp(190px, 58vw, 250px);
+            height: auto;
+            display: block;
         }
 
         .splash-sub {
-            font-size: 0.7rem;
+            margin: 18px 0 34px;
+            font-size: 9px;
             letter-spacing: 4px;
-            color: var(--accent-gold);
+            color: var(--text-muted);
             text-transform: uppercase;
-            margin-bottom: 40px;
         }
 
         .lang-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
-            max-width: 340px;
+            gap: 8px;
+            max-width: 330px;
         }
 
         .lang-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid #333;
-            color: #888;
+            background: #fff;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
             padding: 12px 0;
-            width: 100px;
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: 1px;
+            width: 101px;
+            font-family: inherit;
+            letter-spacing: 1.2px;
             font-weight: 500;
-            font-size: 0.75rem;
+            font-size: 10px;
             cursor: pointer;
-            transition: all 0.3s;
-            border-radius: 4px;
+            transition: all 0.2s;
+            border-radius: 8px;
             text-transform: uppercase;
         }
 
-        .lang-btn:hover {
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
-            background: rgba(212, 175, 55, 0.1);
+        .lang-btn:hover,
+        .lang-btn:focus-visible {
+            border-color: var(--accent);
+            color: var(--accent-dark);
+            background: var(--accent-soft);
+            outline: none;
         }
 
         /* --- APP CONTAINER --- */
@@ -115,92 +126,96 @@
             background-color: var(--bg-app);
             min-height: 100vh;
             position: relative;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.05);
             display: none;
             flex-direction: column;
             opacity: 0;
-            transition: opacity 0.8s ease;
-            border-left: 1px solid #1a1a1a;
-            border-right: 1px solid #1a1a1a;
+            transition: opacity 0.6s ease;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            z-index: 1;
         }
 
         /* --- HEADER --- */
         .header {
-            padding: 40px 20px 15px 20px;
-            background: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(10px);
+            padding: 12px 16px 10px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border);
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .brand-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            color: #fff;
-            margin-bottom: 5px;
+        .brand-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .brand-mark {
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            letter-spacing: 1px;
         }
 
-        .brand-logo span {
-            color: var(--accent-gold);
-        }
-
-        .brand-caption {
-            font-size: 0.65rem;
-            letter-spacing: 3px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            margin-bottom: 20px;
+        .brand-mark img {
+            height: 24px;
+            width: auto;
+            display: block;
         }
 
         .lang-switch-small {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 0.7rem;
-            color: #666;
+            font-family: inherit;
+            font-size: 9px;
+            letter-spacing: 1.6px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: #fff;
             cursor: pointer;
-            font-weight: 500;
-            border: 1px solid #333;
-            padding: 4px 8px;
-            border-radius: 4px;
+            border: 1px solid var(--border-strong);
+            padding: 6px 11px;
+            border-radius: 999px;
+            transition: 0.2s;
+            text-transform: uppercase;
         }
 
-        [dir="rtl"] .lang-switch-small {
-            right: auto;
-            left: 20px;
+        .lang-switch-small:hover {
+            border-color: var(--accent);
+            color: var(--accent-dark);
         }
 
         /* SEARCH INPUT */
         .search-box {
             width: 100%;
             position: relative;
-            margin-bottom: 10px;
         }
 
         .search-input {
             width: 100%;
-            background: #0a0a0a;
-            border: 1px solid #333;
-            padding: 16px 20px;
-            padding-left: 48px;
-            border-radius: 8px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            color: #fff;
+            background: #fff;
+            border: 1px solid var(--border-strong);
+            padding: 13px 16px 13px 44px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--text-primary);
             outline: none;
-            transition: 0.3s;
+            transition: 0.2s;
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
         }
 
         .search-input:focus {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(168, 131, 78, 0.13);
         }
 
         .search-icon {
@@ -208,14 +223,14 @@
             left: 16px;
             top: 50%;
             transform: translateY(-50%);
-            opacity: 0.5;
-            font-size: 1.1rem;
-            color: var(--accent-gold);
+            color: var(--accent);
+            font-size: 11px;
+            pointer-events: none;
         }
 
         [dir="rtl"] .search-input {
-            padding-left: 20px;
-            padding-right: 48px;
+            padding-left: 16px;
+            padding-right: 44px;
         }
 
         [dir="rtl"] .search-icon {
@@ -223,178 +238,230 @@
             right: 16px;
         }
 
+        /* --- STYLIST / QUIZ BUTTON --- */
+        .header-actions {
+            width: 100%;
+        }
+
+        .stylist-btn {
+            width: 100%;
+            margin-top: 8px;
+            background: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            color: #F8F5EF;
+            padding: 12px 14px;
+            font-family: inherit;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.2s;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+        }
+
+        .stylist-btn:hover {
+            background: #000;
+            border-color: #000;
+        }
+
+        .stylist-btn span {
+            color: var(--accent);
+            font-size: 11px;
+        }
+
         /* --- CONTENT LIST --- */
         .content-area {
-            padding: 15px 20px;
+            padding: 14px 16px 40px;
             flex: 1;
         }
 
         .card {
-            background: #1a1a1a;
-            border: 1px solid #252525;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            padding: 20px 15px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            padding: 15px 14px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: border-color 0.2s, box-shadow 0.2s;
             position: relative;
             overflow: hidden;
         }
 
         .card:hover {
-            border-color: var(--accent-gold);
-            transform: translateY(-2px);
+            border-color: var(--border-strong);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .card.active {
+            border-color: var(--accent);
         }
 
         .card-main {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 10px;
         }
 
-        /* Kod Tasarımı (Gold Plate) */
         .code-pill {
-            background: linear-gradient(135deg, #D4AF37, #AA8A2E);
-            color: #000;
-            font-family: 'Cinzel', serif;
+            background: var(--text-primary);
+            color: #F8F5EF;
             font-weight: 700;
-            font-size: 0.95rem;
-            padding: 6px 12px;
-            border-radius: 4px;
-            min-width: 75px;
+            font-size: 12.5px;
+            letter-spacing: 0.6px;
+            padding: 7px 10px;
+            border-radius: 6px;
+            min-width: 66px;
             text-align: center;
-            margin-right: 15px;
-            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+            margin-right: 12px;
+            flex: none;
         }
 
         [dir="rtl"] .code-pill {
             margin-right: 0;
-            margin-left: 15px;
+            margin-left: 12px;
         }
 
         .info-col {
             flex: 1;
+            min-width: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
         .family-text {
-            font-size: 0.6rem;
-            color: var(--text-secondary);
+            font-size: 9px;
+            color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
+            letter-spacing: 1.5px;
+            margin-bottom: 5px;
         }
 
         .perfume-name {
-            font-size: 0.95rem;
-            color: #fff;
-            font-weight: 500;
+            font-size: 12.5px;
+            color: var(--text-primary);
+            font-weight: 600;
             text-transform: uppercase;
-            line-height: 1.4;
+            letter-spacing: 0.4px;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
         }
 
         .arrow {
-            color: #444;
-            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-size: 9px;
             transition: transform 0.3s;
+            flex: none;
         }
 
         .card.active .arrow {
             transform: rotate(180deg);
-            color: var(--accent-gold);
+            color: var(--accent);
         }
 
         /* Detaylar */
         .details-panel {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
             opacity: 0;
         }
 
         .card.active .details-panel {
-            max-height: 200px;
+            max-height: 340px;
             opacity: 1;
-            padding-top: 20px;
-            border-top: 1px solid #2a2a2a;
-            margin-top: 15px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            margin-top: 14px;
         }
 
         .compare-box {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 10px;
+            padding: 0 4px;
         }
 
         .side {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 40%;
+            gap: 8px;
+            width: 38%;
         }
 
         .side-label {
-            font-size: 0.6rem;
-            color: var(--accent-gold);
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+            font-size: 9px;
+            color: var(--text-muted);
+            letter-spacing: 1.4px;
         }
 
-        /* Bea's Şişe İkonu (Gold Outline) */
         .bottle-icon {
-            width: 35px;
-            height: 60px;
-            border: 1px solid var(--accent-gold);
-            border-radius: 2px;
+            width: 34px;
+            height: 56px;
+            border: 1px solid var(--border-strong);
+            border-radius: 4px;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(212, 175, 55, 0.05);
+            background: var(--surface-soft);
         }
 
         .bottle-icon::before {
             content: '';
-            width: 16px;
-            height: 8px;
-            background: var(--accent-gold);
+            width: 15px;
+            height: 7px;
+            background: var(--border-strong);
             position: absolute;
-            top: -8px;
+            top: -7px;
+            border-radius: 1px;
         }
 
         .bottle-v {
-            font-size: 0.7rem;
-            color: var(--accent-gold);
-            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
             transform: rotate(-90deg);
         }
 
         .vs {
-            font-family: 'Cinzel', serif;
-            font-style: italic;
-            color: #444;
-            font-size: 1rem;
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
         }
 
         .view-btn {
             text-decoration: none;
-            color: #000;
-            background: var(--accent-gold);
-            padding: 10px 18px;
-            font-size: 0.7rem;
-            border-radius: 4px;
-            transition: 0.3s;
+            color: #F8F5EF;
+            background: var(--text-primary);
+            padding: 9px 12px;
+            font-size: 9.5px;
+            border-radius: 7px;
+            transition: 0.2s;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 5px;
             font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            font-family: inherit;
         }
 
         .view-btn:hover {
-            background: #fff;
+            background: var(--accent-dark);
         }
 
         /* FILTER SECTION */
@@ -402,81 +469,274 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin-top: 15px;
+            gap: 6px;
+            margin-top: 10px;
             flex-wrap: wrap;
         }
 
+        #initialButton {
+            margin-top: 4px;
+        }
+
+        .show-all-btn {
+            background: transparent;
+            border: none;
+            color: var(--accent-dark);
+            padding: 8px 4px;
+            font-family: inherit;
+            font-size: 9.5px;
+            font-weight: 600;
+            letter-spacing: 1.6px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-transform: uppercase;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: var(--border-strong);
+        }
+
+        .show-all-btn:hover {
+            color: var(--text-primary);
+            text-decoration-color: var(--accent);
+        }
+
         .filter-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid #333;
-            color: #666;
-            padding: 10px 20px;
-            font-size: 0.7rem;
-            font-family: 'Montserrat', sans-serif;
+            background: #fff;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 9px 13px;
+            font-size: 9.5px;
+            font-family: inherit;
             font-weight: 600;
             letter-spacing: 1px;
             cursor: pointer;
-            transition: all 0.3s;
-            border-radius: 6px;
+            transition: all 0.2s;
+            border-radius: 999px;
             text-transform: uppercase;
         }
 
         .filter-btn:hover {
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
-            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--accent);
+            color: var(--accent-dark);
+            background: var(--accent-soft);
         }
 
         .filter-btn-active {
-            background: var(--accent-gold);
-            color: #000;
-            border-color: var(--accent-gold);
-            font-weight: 700;
+            background: var(--text-primary);
+            color: #F8F5EF;
+            border-color: var(--text-primary);
         }
 
-        .show-all-btn {
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-dark-gold));
-            color: #000;
-            padding: 12px 30px;
-            font-size: 0.75rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-radius: 6px;
-            text-transform: uppercase;
-            border: none;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .show-all-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        .filter-btn-active:hover {
+            background: #000;
+            color: #fff;
         }
 
         .hidden {
-            display: none;
+            display: none !important;
         }
 
         .msg-box {
             text-align: center;
-            padding-top: 60px;
-            color: #444;
+            padding: 56px 16px;
+            color: var(--text-muted);
+            font-size: 12px;
+            letter-spacing: 0.4px;
         }
 
         .msg-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            opacity: 0.3;
-            color: var(--accent-gold);
+            font-size: 20px;
+            margin-bottom: 14px;
+            color: var(--border-strong);
         }
 
-        .no-results {
+        /* --- QUIZ OVERLAY --- */
+        .quiz-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(29, 29, 27, 0.42);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            backdrop-filter: blur(4px);
+        }
+
+        .quiz-box {
+            width: 100%;
+            max-width: 500px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 24px 60px rgba(29, 29, 27, 0.2);
+            border-top: 3px solid var(--accent);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 14px;
+            gap: 12px;
+        }
+
+        .quiz-title {
+            color: var(--text-primary);
+            font-size: 11px;
+            letter-spacing: 1.6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-family: inherit;
+        }
+
+        .quiz-close {
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px;
+            line-height: 1;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+
+        .quiz-close:hover {
+            color: var(--text-primary);
+        }
+
+        .question-text {
+            font-size: 17px;
+            color: var(--text-primary);
+            margin-bottom: 18px;
             text-align: center;
-            color: #666;
-            margin-top: 20px;
+            line-height: 1.45;
+            font-weight: 500;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .quiz-opt-btn {
+            background: var(--surface-soft);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 14px;
+            text-align: left;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .quiz-opt-btn:hover {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .quiz-step {
+            text-align: center;
+            font-size: 9px;
+            color: var(--text-muted);
+            margin-top: 18px;
+            letter-spacing: 2px;
+        }
+
+        /* --- SCROLLED HEADER --- */
+        .header.scrolled .brand-row {
+            display: none;
+        }
+
+        .header.scrolled {
+            padding-top: 10px;
+        }
+
+        @media (max-width: 640px) {
+            .app-container {
+                border-left: none;
+                border-right: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 10px 14px 8px;
+            }
+
+            .brand-mark img {
+                height: 21px;
+            }
+
+            .brand-row {
+                margin-bottom: 10px;
+            }
+
+            .search-input {
+                padding: 12px 14px 12px 40px;
+            }
+
+            .search-icon {
+                left: 14px;
+            }
+
+            .stylist-btn {
+                padding: 11px 10px;
+                font-size: 9.5px;
+                letter-spacing: 1px;
+            }
+
+            .content-area {
+                padding: 12px 14px 36px;
+            }
+
+            .card {
+                padding: 13px 12px;
+                margin-bottom: 9px;
+            }
+
+            .perfume-name {
+                font-size: 12px;
+            }
+
+            .code-pill {
+                min-width: 60px;
+                font-size: 12px;
+                padding: 6px 9px;
+                margin-right: 10px;
+            }
+
+            .view-btn {
+                padding: 8px 10px;
+                font-size: 9px;
+                letter-spacing: 0.5px;
+            }
+
+            .question-text {
+                font-size: 15.5px;
+            }
+
+            .quiz-box {
+                padding: 18px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
@@ -484,40 +744,62 @@
 <body>
 
     <div id="splash-screen">
-        <div class="splash-logo">BEA'S <span>FIND</span></div>
-        <div class="splash-sub">PREMIUM FRAGRANCE SEARCH</div>
+        <img class="splash-logo-img" src="assets/logo.svg" alt="BEA'S — Beauty &amp; Scent" width="202"
+            height="63">
+        <div class="splash-sub">FRAGRANCE FINDER</div>
 
         <div class="lang-grid">
-            <button class="lang-btn" onclick="enterApp('tr')">TÜRKÇE</button>
-            <button class="lang-btn" onclick="enterApp('en')">ENGLISH</button>
-            <button class="lang-btn" onclick="enterApp('ru')">РУССКИЙ</button>
-            <button class="lang-btn" onclick="enterApp('ar')">عربي</button>
-            <button class="lang-btn" onclick="enterApp('ua')">УКРАЇНСЬКА</button>
-            <button class="lang-btn" onclick="enterApp('ro')">ROMÂNĂ</button>
-            <button class="lang-btn" onclick="enterApp('fr')">FRANÇAIS</button>
+            <button type="button" class="lang-btn" onclick="enterApp('tr')">TÜRKÇE</button>
+            <button type="button" class="lang-btn" onclick="enterApp('en')">ENGLISH</button>
+            <button type="button" class="lang-btn" onclick="enterApp('ru')">РУССКИЙ</button>
+            <button type="button" class="lang-btn" onclick="enterApp('ar')">عربي</button>
+            <button type="button" class="lang-btn" onclick="enterApp('ua')">УКРАЇНСЬКА</button>
+            <button type="button" class="lang-btn" onclick="enterApp('ro')">ROMÂNĂ</button>
+            <button type="button" class="lang-btn" onclick="enterApp('fr')">FRANÇAIS</button>
+            <button type="button" class="lang-btn" onclick="enterApp('hu')">MAGYAR</button>
+            <button type="button" class="lang-btn" onclick="enterApp('sq')">SHQIP</button>
+            <button type="button" class="lang-btn" onclick="enterApp('mk')">МАКЕДОНСКИ</button>
+            <button type="button" class="lang-btn" onclick="enterApp('el')">ΕΛΛΗΝΙΚΑ</button>
+            <button type="button" class="lang-btn" onclick="enterApp('sr')">SRPSKI</button>
+            <button type="button" class="lang-btn" onclick="enterApp('es')">ESPAÑOL</button>
+            <button type="button" class="lang-btn" onclick="enterApp('tg')">ТОҶИКӢ</button>
+            <button type="button" class="lang-btn" onclick="enterApp('uz')">O'ZBEK</button>
+            <button type="button" class="lang-btn" onclick="enterApp('kk')">ҚАЗАҚША</button>
         </div>
     </div>
 
     <div class="app-container" id="app-container">
-        <div class="header">
-            <div class="lang-switch-small" onclick="location.reload()">LANG</div>
-            <div class="brand-logo">BEA'S <span>FIND</span></div>
-            <div class="brand-caption">PREMIUM COLLECTION</div>
+        <div class="header" id="appHeader">
+            <div class="brand-row">
+                <a class="brand-mark" href="#" onclick="return false;" aria-label="BEA'S — Beauty &amp; Scent">
+                    <img src="assets/logo.svg" alt="BEA'S — Beauty &amp; Scent" width="202" height="63">
+                </a>
+                <button type="button" class="lang-switch-small" onclick="showLangScreen()">LANG</button>
+            </div>
 
             <div class="search-box">
-                <span class="search-icon">✦</span>
-                <input type="text" class="search-input" id="searchInput" placeholder="" autocomplete="off">
+                <span class="search-icon" aria-hidden="true">✦</span>
+                <input type="text" class="search-input" id="searchInput" placeholder="" autocomplete="off"
+                    aria-label="Search">
+            </div>
+
+            <div class="header-actions">
+                <button type="button" class="stylist-btn" id="quizStartBtn" onclick="startQuiz()">
+                    <span aria-hidden="true">✦</span> PARFÜMÜNÜ BUL (ANKET)
+                </button>
             </div>
 
             <div class="filter-section" id="initialButton">
-                <button class="show-all-btn" id="showAllBtn" onclick="showAllProducts()"></button>
+                <button type="button" class="show-all-btn" id="showAllBtn" onclick="showAllProducts()"></button>
             </div>
 
             <div class="filter-section hidden" id="filterButtons">
-                <button class="filter-btn filter-btn-active" id="filterAll" onclick="filterCategory('all')"></button>
-                <button class="filter-btn" id="filterMen" onclick="filterCategory('men')"></button>
-                <button class="filter-btn" id="filterWomen" onclick="filterCategory('women')"></button>
-                <button class="filter-btn" id="filterUnisex" onclick="filterCategory('unisex')"></button>
+                <button type="button" class="filter-btn filter-btn-active" id="filterAll"
+                    onclick="filterCategory('all')"></button>
+                <button type="button" class="filter-btn" id="filterMen" onclick="filterCategory('men')"></button>
+                <button type="button" class="filter-btn" id="filterWomen" onclick="filterCategory('women')"></button>
+                <button type="button" class="filter-btn" id="filterUnisex"
+                    onclick="filterCategory('unisex')"></button>
             </div>
         </div>
 
@@ -529,25 +811,137 @@
         </div>
     </div>
 
+    <div id="quiz-modal" class="quiz-overlay hidden">
+        <div class="quiz-box">
+            <div class="quiz-header">
+                <div class="quiz-title" id="quizTitle">BEA'S FINDER</div>
+                <button type="button" class="quiz-close" onclick="closeQuiz()" aria-label="Close">✕</button>
+            </div>
+            <div id="quiz-content">
+            </div>
+        </div>
+    </div>
+
     <script>
-        // --- CONFIG ---
+        // --- CONFIG & TRANSLATIONS ---
         const translations = {
-            tr: { placeholder: "Kod veya İsim Ara...", btn: "GÖRSELİ GÖR", start: "Aramaya Başla", empty: "Sonuç Bulunamadı", beas: "BEA'S", orig: "ORİJİNAL", showAll: "TÜM LİSTEYİ GÖRÜNTÜLE", all: "TÜM LİSTE", men: "ERKEK", women: "KADIN", unisex: "UNISEX" },
-            en: { placeholder: "Search Code or Name...", btn: "VIEW IMAGE", start: "Start Searching", empty: "No Results", beas: "BEA'S", orig: "ORIGINAL", showAll: "VIEW FULL LIST", all: "FULL LIST", men: "MEN", women: "WOMEN", unisex: "UNISEX" },
-            ru: { placeholder: "Поиск...", btn: "СМОТРЕТЬ", start: "Начать поиск", empty: "Нет результатов", beas: "BEA'S", orig: "ОРИГИНАЛ", showAll: "ПОКАЗАТЬ ВЕСЬ СПИСОК", all: "ВЕСЬ СПИСОК", men: "МУЖСКИЕ", women: "ЖЕНСКИЕ", unisex: "УНИСЕКС" },
-            ar: { placeholder: "بحث...", btn: "عرض", start: "ابدأ البحث", empty: "لا يوجد نتائج", beas: "بيز", orig: "أصلي", showAll: "عرض القائمة الكاملة", all: "القائمة الكاملة", men: "رجال", women: "نساء", unisex: "للجنسين" },
-
-            // YENİ DİLLER
-            ua: { placeholder: "Введіть код або назву...", btn: "ПЕРЕГЛЯД", start: "Пошук...", empty: "Нічого не знайдено", beas: "BEA'S", orig: "ОРИГІНАЛ", showAll: "ПОКАЗАТИ ВЕСЬ СПИСОК", all: "ВЕСЬ СПИСОК", men: "ЧОЛОВІЧІ", women: "ЖІНОЧІ", unisex: "УНІСЕКС" },
-            ro: { placeholder: "Căutați cod sau nume...", btn: "VIZUALIZARE", start: "Căutare...", empty: "Niciun rezultat", beas: "BEA'S", orig: "ORIGINAL", showAll: "VEZI LISTA COMPLETĂ", all: "LISTA COMPLETĂ", men: "BĂRBAȚI", women: "FEMEI", unisex: "UNISEX" },
-            fr: { placeholder: "Chercher code ou nom...", btn: "VOIR L'IMAGE", start: "Recherche...", empty: "Aucun résultat", beas: "BEA'S", orig: "ORIGINAL", showAll: "VOIR TOUTE LA LISTE", all: "TOUTE LA LISTE", men: "HOMMES", women: "FEMMES", unisex: "UNISEX" }
+            tr: { placeholder: "Kod veya İsim Ara...", btn: "GÖRSELİ GÖR", start: "Aramaya Başla", empty: "Sonuç Bulunamadı", beas: "BEA'S", orig: "ORİJİNAL", showAll: "TÜM LİSTEYİ GÖRÜNTÜLE", all: "TÜM LİSTE", men: "ERKEK", women: "KADIN", unisex: "UNISEX", quizBtn: "PARFÜMÜNÜ BUL (ANKET)" },
+            en: { placeholder: "Search Code or Name...", btn: "VIEW IMAGE", start: "Start Searching", empty: "No Results", beas: "BEA'S", orig: "ORIGINAL", showAll: "VIEW FULL LIST", all: "FULL LIST", men: "MEN", women: "WOMEN", unisex: "UNISEX", quizBtn: "FIND YOUR PERFUME (SURVEY)" },
+            ru: { placeholder: "Поиск...", btn: "СМОТРЕТЬ", start: "Начать поиск", empty: "Нет результатов", beas: "BEA'S", orig: "ОРИГИНАЛ", showAll: "ПОКАЗАТЬ ВЕСЬ СПИСОК", all: "ВЕСЬ СПИСОК", men: "МУЖСКИЕ", women: "ЖЕНСКИЕ", unisex: "УНИСЕКС", quizBtn: "НАЙТИ СВОЙ ПАРФЮМ (ОПРОС)" },
+            ar: { placeholder: "بحث...", btn: "عرض", start: "ابدأ البحث", empty: "لا يوجد نتائج", beas: "بيز", orig: "أصلي", showAll: "عرض القائمة الكاملة", all: "القائمة الكاملة", men: "رجال", women: "نساء", unisex: "للجنسين", quizBtn: "اعثر على عطرك (استبيان)" },
+            ua: { placeholder: "Введіть код або назву...", btn: "ПЕРЕГЛЯД", start: "Пошук...", empty: "Нічого не знайдено", beas: "BEA'S", orig: "ОРИГІНАЛ", showAll: "ПОКАЗАТИ ВЕСЬ СПИСОК", all: "ВЕСЬ СПИСОК", men: "ЧОЛОВІЧІ", women: "ЖІНОЧІ", unisex: "УНІСЕКС", quizBtn: "ЗНАЙТИ СВІЙ ПАРФУМ (ОПИТУВАННЯ)" },
+            ro: { placeholder: "Căutați cod sau nume...", btn: "VIZUALIZARE", start: "Căutare...", empty: "Niciun rezultat", beas: "BEA'S", orig: "ORIGINAL", showAll: "VEZI LISTA COMPLETĂ", all: "LISTA COMPLETĂ", men: "BĂRBAȚI", women: "FEMEI", unisex: "UNISEX", quizBtn: "GĂSEȘTE PARFUMUL TĂU (SONDAJ)" },
+            fr: { placeholder: "Chercher code ou nom...", btn: "VOIR L'IMAGE", start: "Recherche...", empty: "Aucun résultat", beas: "BEA'S", orig: "ORIGINAL", showAll: "VOIR TOUTE LA LISTE", all: "TOUTE LA LISTE", men: "HOMMES", women: "FEMMES", unisex: "UNISEX", quizBtn: "TROUVER VOTRE PARFUM (SONDAGE)" },
+            hu: { placeholder: "Keresés kód vagy név...", btn: "KÉP MEGTEKINTÉSE", start: "Keresés indítása", empty: "Nincs találat", beas: "BEA'S", orig: "EREDETI", showAll: "TELJES LISTA MEGTEKINTÉSE", all: "TELJES LISTA", men: "FÉRFI", women: "NŐI", unisex: "UNISEX", quizBtn: "TALÁLD MEG A PARFÜMÖD (FELMÉRÉS)" },
+            sq: { placeholder: "Kërko kodin ose emrin...", btn: "SHIKO FOTON", start: "Fillo kërkimin", empty: "Asnjë rezultat", beas: "BEA'S", orig: "ORIGJINALE", showAll: "SHIKO LISTËN E PLOTË", all: "LISTA E PLOTË", men: "MESHKUJ", women: "FEMRA", unisex: "UNISEX", quizBtn: "GJEJ PARFUMIN TËND (ANKETË)" },
+            mk: { placeholder: "Пребарај код или име...", btn: "ВИДИ СЛИКА", start: "Започни пребарување", empty: "Нема резултати", beas: "BEA'S", orig: "ОРИГИНАЛ", showAll: "ВИДИ ЈА ЦЕЛАТА ЛИСТА", all: "ЦЕЛОСНА ЛИСТА", men: "МАЖИ", women: "ЖЕНИ", unisex: "УНИСЕКС", quizBtn: "НАЈДИ ГО ТВОЈОТ ПАРФЕМ (АНКЕТА)" },
+            el: { placeholder: "Αναζήτηση κωδικού ή ονόματος...", btn: "ΔΕΙΤΕ ΤΗΝ ΕΙΚΟΝΑ", start: "Ξεκινήστε την αναζήτηση", empty: "Δεν βρέθηκαν αποτελέσματα", beas: "BEA'S", orig: "ΠΡΩΤΟΤΥΠΟ", showAll: "ΔΕΙΤΕ ΟΛΗ ΤΗ ΛΙΣΤΑ", all: "ΟΛΗ Η ΛΙΣΤΑ", men: "ΑΝΔΡΙΚΑ", women: "ΓΥΝΑΙΚΕΙΑ", unisex: "UNISEX", quizBtn: "ΒΡΕΙΤΕ ΤΟ ΑΡΩΜΑ ΣΑΣ (ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ)" },
+            sr: { placeholder: "Pretraga koda ili naziva...", btn: "POGLEDAJ SLIKU", start: "Započnite pretragu", empty: "Nema rezultata", beas: "BEA'S", orig: "ORIGINAL", showAll: "PRIKAŽI CELU LISTU", all: "CELA LISTA", men: "MUŠKI", women: "ŽENSKI", unisex: "UNISEX", quizBtn: "PRONAĐI SVOJ PARFEM (ANKETA)" },
+            es: { placeholder: "Buscar código o nombre...", btn: "VER IMAGEN", start: "Empieza a buscar", empty: "Sin resultados", beas: "BEA'S", orig: "ORIGINAL", showAll: "VER LISTA COMPLETA", all: "LISTA COMPLETA", men: "HOMBRE", women: "MUJER", unisex: "UNISEX", quizBtn: "ENCUENTRA TU PERFUME (TEST)" },
+            tg: { placeholder: "Ҷустуҷӯи рамз ё ном...", btn: "ДИДАНИ ТАСВИР", start: "Ҷустуҷӯро оғоз кунед", empty: "Натиҷа нест", beas: "BEA'S", orig: "АСЛӢ", showAll: "ДИДАНИ РӮЙХАТИ ПУРРА", all: "РӮЙХАТИ ПУРРА", men: "МАРДОНА", women: "ЗАНОНА", unisex: "УНИСЕКС", quizBtn: "АТРИ ХУДРО ЁБЕД (ПУРСИШНОМА)" },
+            uz: { placeholder: "Kod yoki nom bo'yicha qidirish...", btn: "RASMNI KO'RISH", start: "Qidiruvni boshlang", empty: "Natija topilmadi", beas: "BEA'S", orig: "ASL", showAll: "TO'LIQ RO'YXATNI KO'RISH", all: "TO'LIQ RO'YXAT", men: "ERKAKLAR", women: "AYOLLAR", unisex: "UNISEKS", quizBtn: "O'Z ATIRINGIZNI TOPING (SO'ROVNOMA)" },
+            kk: { placeholder: "Код немесе атау бойынша іздеу...", btn: "СУРЕТТІ КӨРУ", start: "Іздеуді бастаңыз", empty: "Нәтиже жоқ", beas: "BEA'S", orig: "ТҮПНҰСҚА", showAll: "ТОЛЫҚ ТІЗІМДІ КӨРУ", all: "ТОЛЫҚ ТІЗІМ", men: "ЕРЛЕР", women: "ӘЙЕЛДЕР", unisex: "УНИСЕКС", quizBtn: "ӨЗ ХАТЫҢЫЗДЫ ТАБЫҢЫЗ (САУАЛНАМА)" }
         };
-        let currentLang = 'tr';
-        let activeFilter = 'all'; // Filter state: 'all', 'men', 'women', 'unisex'
 
-        // --- BEA'S DATA (En Kapsamlı Liste - U, W, M Serisi) ---
-        // Bu liste, BEA'S'in standart listesinden derlenmiştir.
+        let currentLang = 'tr';
+        let activeFilter = 'all';
+
+        // --- QUIZ QUESTIONS DATA ---
+        const quizQuestions = [
+            {
+                id: 'gender',
+                text: {
+                    tr: "Hangi cinsiyet için parfüm arıyorsunuz?",
+                    en: "Who is this fragrance for?",
+                    ru: "Для кого этот аромат?",
+                    ar: "لمن هذا العطر؟",
+                    ua: "Для кого цей парфум?",
+                    ro: "Pentru cine este acest parfum?",
+                    fr: "Pour qui est ce parfum?",
+                    hu: "Kinek keresel parfümöt?",
+                    sq: "Për kë po kërkoni parfum?",
+                    mk: "За кого барате парфем?"
+                , el: "Για ποιον ψάχνετε άρωμα;", sr: "Za koga tražite parfem?", es: "¿Para quién buscas la fragancia?", tg: "Ин атр барои кӣ аст?", uz: "Bu atir kim uchun?", kk: "Бұл хош иіс кімге арналған?"},
+                options: [
+                    { label: { tr: "Erkek", en: "Men", ru: "Мужчины", ar: "رجال", ua: "Чоловіки", ro: "Bărbați", fr: "Hommes", hu: "Férfi", sq: "Meshkuj", mk: "Мажи" , el: "Ανδρικό", sr: "Muški", es: "Hombre", tg: "Мард", uz: "Erkak", kk: "Ерлерге"}, value: "men" },
+                    { label: { tr: "Kadın", en: "Women", ru: "Женщины", ar: "نساء", ua: "Жінки", ro: "Femei", fr: "Femmes", hu: "Nők", sq: "Femra", mk: "Жени" , el: "Γυναικείο", sr: "Ženski", es: "Mujer", tg: "Зан", uz: "Ayol", kk: "Әйелдерге"}, value: "women" },
+                    { label: { tr: "Unisex / Fark Etmez", en: "Unisex / Any", ru: "Унисекс", ar: "للجنسين", ua: "Унісекс", ro: "Unisex", fr: "Unisexe", hu: "Unisex / Mindegy", sq: "Unisex / S'ka rëndësi", mk: "Унисекс / Сеедно" , el: "Unisex / Δεν έχει σημασία", sr: "Unisex / Svejedno", es: "Unisex / Me da igual", tg: "Унисекс / Фарқ надорад", uz: "Uniseks / Farqi yo'q", kk: "Унисекс / Маңызды емес"}, value: "unisex" }
+                ]
+            },
+            {
+                id: 'occasion',
+                text: {
+                    tr: "Bu parfümü genellikle nerede kullanacaksınız?",
+                    en: "Where will you wear this?",
+                    ru: "Куда вы будете носить?",
+                    ar: "أين ستستخدمه؟",
+                    ua: "Де ви будете його носити?",
+                    ro: "Unde îl vei purta?",
+                    fr: "Où allez-vous le porter?",
+                    hu: "Hol fogod leginkább használni?",
+                    sq: "Ku do ta përdorni më shpesh?",
+                    mk: "Каде ќе го користите најчесто?"
+                , el: "Πού θα το φοράτε συνήθως;", sr: "Gde ćete ga najčešće nositi?", es: "¿Dónde la vas a usar normalmente?", tg: "Онро асосан дар куҷо истифода мебаред?", uz: "Uni asosan qayerda ishlatasiz?", kk: "Оны көбінесе қайда қолданасыз?"},
+                options: [
+                    { label: { tr: "Günlük / Ofis / Spor", en: "Daily / Office / Gym", ru: "Ежедневно / Офис", ar: "يومي / مكتب", ua: "Щодня / Офіс", ro: "Zilnic / Birou", fr: "Quotidien / Bureau", hu: "Napi / Iroda / Sport", sq: "Përditshme / Zyrë", mk: "Дневно / Канцеларија" , el: "Καθημερινά / Γραφείο / Γυμναστήριο", sr: "Svakodnevno / Kancelarija / Teretana", es: "Diario / Oficina / Gimnasio", tg: "Ҳаррӯза / Идора / Варзиш", uz: "Kundalik / Ofis / Sport", kk: "Күнделікті / Кеңсе / Спорт"}, type: "fresh" },
+                    { label: { tr: "Özel Gece / Davet / Date", en: "Night Out / Date", ru: "Вечер / Свидание", ar: "ليلة خاصة", ua: "Вечір / Побачення", ro: "Seară / Întâlnire", fr: "Soirée / Rendez-vous", hu: "Esti / Randi / Buli", sq: "Mbrëmje / takim", mk: "Вечер / Состанок" , el: "Βραδινή έξοδος / Ραντεβού", sr: "Noćni izlazak / Sastanak", es: "Noche / Cita", tg: "Шаби махсус / Вохӯрӣ", uz: "Kechki tadbir / Uchrashuv", kk: "Түнгі кездесу / Шақыру"}, type: "heavy" },
+                    { label: { tr: "İmza Kokum Olsun (Her Zaman)", en: "Signature Scent (Anytime)", ru: "Подпись (Всегда)", ar: "توقيع شخصي", ua: "Мій підпис (Завжди)", ro: "Semnătură (Oricând)", fr: "Signature (Tout le temps)", hu: "Saját illat (Bármikor)", sq: "Aroma ime (Gjithmonë)", mk: "Мој потпис (Секогаш)" , el: "Η υπογραφή μου (πάντα)", sr: "Moj potpis (uvek)", es: "Mi aroma insignia (siempre)", tg: "Атри имзои ман (ҳамеша)", uz: "Mening imzo hidim (har doim)", kk: "Менің қолтаңбам (әрдайым)"}, type: "balanced" }
+                ]
+            },
+            {
+                id: 'scent_char',
+                text: {
+                    tr: "Hangi notalar sizi daha çok çeker?",
+                    en: "Which notes attract you?",
+                    ru: "Какие ноты вам нравятся?",
+                    ar: "ما هي الروائح التي تفضلها؟",
+                    ua: "Які ноти вам подобаються?",
+                    ro: "Ce note te atrag?",
+                    fr: "Quelles notes vous attirent?",
+                    hu: "Milyen illatjegyek tetszenek?",
+                    sq: "Cilat nota ju tërheqin?",
+                    mk: "Кои мирисни ноти ве привлекуваат?"
+                , el: "Ποιες νότες σας έλκουν περισσότερο;", sr: "Koje note vas najviše privlače?", es: "¿Qué notas te atraen más?", tg: "Кадом нотаҳо шуморо бештар ҷалб мекунанд?", uz: "Qaysi notalar sizni ko'proq jalb qiladi?", kk: "Қандай ноталар сізге көбірек ұнайды?"},
+                options: [
+                    { label: { tr: "Ferah: Turunçgil, Deniz", en: "Fresh: Citrus, Aquatic", ru: "Свежие: Цитрус, Вода", ar: "منعش: حمضيات", ua: "Свіжі: Цитрус", ro: "Proaspăt: Citrice", fr: "Frais: Agrumes", hu: "Friss: Citrus, Víz", sq: "Freskët: Agrume, Det", mk: "Свежи: Цитрус, Вода" , el: "Δροσερό: Εσπεριδοειδή, Θαλασσινό", sr: "Sveže: Citrus, Vodenasto", es: "Fresco: Cítricos, Acuático", tg: "Тоза: Ситрус, Баҳрӣ", uz: "Yengil: Sitrus, Dengiz", kk: "Жаңа: Цитрус, Теңіз"}, tags: ["CITRUS", "AQUATIC", "GREEN", "AROMATIC"] },
+                    { label: { tr: "Çekici: Çiçeksi, Vanilya", en: "Attractive: Floral, Vanilla", ru: "Цветочные, Ваниль", ar: "زهري، فانيليا", ua: "Квіткові, Ваніль", ro: "Atractiv: Floral", fr: "Attrayant: Floral", hu: "Vonzó: Virágos, Vanília", sq: "Tërheqës: Lule, Vanilje", mk: "Привлечни: Цветни, Ванила" , el: "Ελκυστικό: Λουλουδένιο, Βανίλια", sr: "Privlačno: Cvetno, Vanila", es: "Atractivo: Floral, Vainilla", tg: "Ҷолиб: Гулӣ, Ванил", uz: "Jozibali: Gulli, Vanil", kk: "Тартымды: Гүлді, Ваниль"}, tags: ["FLORAL", "POWDERY", "VANILLA", "FRUITY", "MUSKY"] },
+                    { label: { tr: "Güçlü: Odunsu, Baharatlı", en: "Strong: Woody, Spicy", ru: "Древесные, Пряные", ar: "خشبي، حار", ua: "Деревні, Пряні", ro: "Puternic: Lemnos", fr: "Fort: Boisé", hu: "Erős: Fás, Fűszeres", sq: "Fortë: Drunore, Erëza", mk: "Силен: Дрвенест, Зачинет" , el: "Δυνατό: Ξυλώδες, Πικάντικο", sr: "Jako: Drvenasto, Začinsko", es: "Intenso: Amaderado, Especiado", tg: "Пурқувват: Чӯбӣ, Адвӣ", uz: "Kuchli: Yog'ochli, Ziravorli", kk: "Күшті: Ағашты, Дәмдеуіш"}, tags: ["WOODY", "SPICY", "OUD", "ORIENTAL", "LEATHER", "AMBERY"] },
+                    { label: { tr: "Tatlı: Gurme, Şekerli", en: "Sweet: Gourmand, Sugar", ru: "Сладкие: Гурманские", ar: "حلو: شوكولاتة", ua: "Солодкі: Гурманські", ro: "Dulce: Gurmand", fr: "Doux: Gourmand", hu: "Édes: Ínyenc, Cukros", sq: "Ëmbël: Gurman, Sheqer", mk: "Слатки: Гурмански, Шеќер" , el: "Γλυκό: Γκουρμάν, Ζαχαρωτό", sr: "Slatko: Gurmansko, Šećerno", es: "Dulce: Gourmand, Azucarado", tg: "Ширин: Гурман, Қандӣ", uz: "Shirin: Gurman, Shakarli", kk: "Тәтті: Гурман, Қантты"}, tags: ["GOURMAND", "SWEET", "CHOCOLATE", "FRUITY"] }
+                ]
+            },
+            {
+                id: 'sillage',
+                text: {
+                    tr: "Yayılımı (Farkedilirliği) nasıl olsun?",
+                    en: "How strong should it be?",
+                    ru: "Насколько сильным он должен быть?",
+                    ar: "كيف تريده أن يكون؟",
+                    ua: "Наскільки сильним він має бути?",
+                    ro: "Cât de puternic ar trebui să fie?",
+                    fr: "Quelle intensité préférez-vous?",
+                    hu: "Milyen erős legyen a párolgás?",
+                    sq: "Sa e fortë të jetë aroma?",
+                    mk: "Колку да биде јак мирисот?"
+                , el: "Πόσο έντονο να είναι;", sr: "Koliko snažan da bude?", es: "¿Qué intensidad prefieres?", tg: "Чӣ қадар пурқувват бошад?", uz: "Qanchalik kuchli bo'lsin?", kk: "Қаншалықты күшті болсын?"},
+                options: [
+                    { label: { tr: "Hafif ve Zarif", en: "Light & Elegant", ru: "Легкий", ar: "خفيف", ua: "Легкий", ro: "Ușor", fr: "Léger", hu: "Könnyű és Elegáns", sq: "Lehtë dhe Elegant", mk: "Лесен и Елегантен" , el: "Ελαφρύ και Κομψό", sr: "Lagano i elegantno", es: "Ligero y elegante", tg: "Сабук ва нозук", uz: "Yengil va nafis", kk: "Жеңіл және әсем"}, weight: 1 },
+                    { label: { tr: "Ortalama / Dengeli", en: "Moderate / Balanced", ru: "Умеренный", ar: "متوسط", ua: "Помірний", ro: "Moderat", fr: "Modéré", hu: "Közepes / Kiegyensúlyozott", sq: "Mesatare / Balancuar", mk: "Среден / Балансиран" , el: "Μέτριο / Ισορροπημένο", sr: "Umereno / Balansirano", es: "Moderado / Equilibrado", tg: "Миёна / Мутавозин", uz: "O'rtacha / Muvozanatli", kk: "Орташа / Тепе-тең"}, weight: 2 },
+                    { label: { tr: "Odayı Doldursun (Bomba)", en: "Beast Mode (Heavy)", ru: "Очень сильный", ar: "قوي جدا", ua: "Дуже сильний", ro: "Foarte puternic", fr: "Très fort", hu: "Nagyon Erős (Beast)", sq: "Shumë e fortë (Bombë)", mk: "Многу јак (Бомба)" , el: "Να γεμίζει το δωμάτιο", sr: "Da ispuni prostoriju", es: "Que llene la habitación", tg: "Ҳуҷраро пур кунад", uz: "Xonani to'ldirsin", kk: "Бөлмені толтыратын"}, weight: 3 }
+                ]
+            }
+        ];
+
+        // --- FRAGRANCE DATA ---
         const fragranceData = [
+            // YENİ EKLENENLER
+            { code: "W 603", name: "CAROLINA HERRERA LA BOMBA WOMEN TYPE", family: "ORIENTAL, FLORAL" },
+            { code: "W 604", name: "MUGLER ANGEL THIERRY NOVA WOMEN TYPE", family: "FLORAL, GREEN" },
+            { code: "U 777", name: "GUIDENCE AMOUAGE 46 UNISEX TYPE", family: "FRUITY, FLORAL" },
+            { code: "U 778", name: "RICHARD WHITE CHOCOLA UNISEX TYPE", family: "ORIENTAL, GOURMAND" },
+            { code: "U 779", name: "CHIMILKA VILHELM PARFUMERIE UNISEX TYPE", family: "ORIENTAL, WOODY" },
+            { code: "U 780", name: "CLIVE CHRISTIAN ADDICTIVE ARTS HEDONISTIC UNISEX TYPE", family: "WOODY, AMBERY" },
+            { code: "U 781", name: "MARC ANTOINE BARROIS TILIA UNISEX TYPE", family: "FLORAL, MUSKY" },
+            { code: "U 782", name: "GABA HORMONE PARIS UNISEX TYPE", family: "FLORAL, FRUITY" },
             // UNISEX
             { code: "U 701", name: "ESCENTRIC 02 MOLECULES", family: "WOODY, AMBERY" },
             { code: "U 702", name: "MONTALE CHOCOLATE GREEDY", family: "SWEET, GOURMAND" },
@@ -785,13 +1179,13 @@
             { code: "M 263", name: "PARFUMS DE MARLY PEGASUS", family: "ORIENTAL, FLORAL" },
             { code: "M 264", name: "YVES SAINT LAURENT MYSELF", family: "CITRUS, AROMATIC" },
             { code: "M 271", name: "GUCCI GUILTY POUR HOMME ELIXIR DE PARFUM", family: "WOODY, AMBERY" },
-            { code: "M 272", name: "PRADA PARADIGME", family: "WOODY, AROMATIC" }
+            { code: "M 272", name: "PRADA PARADIGME", family: "WOODY, AROMATIC" },
+            { code: "M 273", name: "GISADA AMBASSADOR EAU DE PARFUM MEN", family: "WOODY, AROMATIC" }
         ];
 
         // --- HELPER FUNCTIONS ---
         function cleanString(str) { return str.replace(/[^a-zA-Z0-9]/g, '').toUpperCase(); }
 
-        // Fuzzy Search
         function levenshtein(a, b) {
             const matrix = [];
             for (let i = 0; i <= b.length; i++) matrix[i] = [i];
@@ -805,15 +1199,32 @@
             return matrix[b.length][a.length];
         }
 
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
         function enterApp(lang) {
             currentLang = lang;
+            const isoLang = lang === 'ua' ? 'uk' : lang;
+            document.documentElement.lang = isoLang;
             if (lang === 'ar') document.body.dir = 'rtl'; else document.body.dir = 'ltr';
 
             const t = translations[lang];
             document.getElementById('searchInput').placeholder = t.placeholder;
-            document.getElementById('start-text').innerText = t.start;
+            const startText = document.getElementById('start-text');
+            if (startText) startText.innerText = t.start;
 
-            // Update button texts
+            // Stylist Button Text
+            const quizBtnHtml = `<span aria-hidden="true">✦</span> ${t.quizBtn || "FIND YOUR PERFUME"}`;
+            document.getElementById('quizStartBtn').innerHTML = quizBtnHtml;
+            // Modal Title
+            document.getElementById('quizTitle').innerText = t.quizBtn || "FINDER";
+
+            // Update filter button texts
             document.getElementById('showAllBtn').innerText = t.showAll;
             document.getElementById('filterAll').innerText = t.all;
             document.getElementById('filterMen').innerText = t.men;
@@ -831,22 +1242,27 @@
                 app.style.display = 'flex';
                 setTimeout(() => { app.style.opacity = '1'; document.getElementById('searchInput').focus(); }, 50);
             }, 600);
+
+            // Dil değişince mevcut liste/arama yeni dilde yeniden çizilsin
+            if (app.style.display !== 'none' && app.style.display !== '') performSearch();
+        }
+
+        function showLangScreen() {
+            const splash = document.getElementById('splash-screen');
+            splash.style.display = 'flex';
+            splash.style.pointerEvents = 'auto';
+            requestAnimationFrame(() => { splash.style.opacity = '1'; });
         }
 
         function showAllProducts() {
-            // Hide initial button
             document.getElementById('initialButton').classList.add('hidden');
-            // Show filter buttons
             document.getElementById('filterButtons').classList.remove('hidden');
-            // Show all products
             activeFilter = 'all';
             performSearch();
         }
 
         function filterCategory(category) {
             activeFilter = category;
-
-            // Update button active states
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('filter-btn-active'));
 
             if (category === 'all') document.getElementById('filterAll').classList.add('filter-btn-active');
@@ -854,7 +1270,6 @@
             else if (category === 'women') document.getElementById('filterWomen').classList.add('filter-btn-active');
             else if (category === 'unisex') document.getElementById('filterUnisex').classList.add('filter-btn-active');
 
-            // Re-run search with new filter
             performSearch();
         }
 
@@ -874,17 +1289,13 @@
 
             resultsArea.innerHTML = '';
 
-            // If no query and user hasn't clicked show all yet
             if (!query && document.getElementById('initialButton').classList.contains('hidden') === false) {
                 resultsArea.innerHTML = `<div class="msg-box"><div class="msg-icon">♛</div><div>${t.start}</div></div>`;
                 return;
             }
 
-            // If no query but show all was clicked
             if (!query) {
                 let filtered = fragranceData;
-
-                // Apply filter if not 'all'
                 if (activeFilter !== 'all') {
                     filtered = fragranceData.filter(item => {
                         const codePrefix = item.code.charAt(0).toUpperCase();
@@ -894,7 +1305,6 @@
                         return false;
                     });
                 }
-
                 displayResults(filtered, resultsArea, t);
                 return;
             }
@@ -924,7 +1334,6 @@
 
             let filtered = scoredResults.filter(item => item.score > 25).sort((a, b) => b.score - a.score);
 
-            // Apply gender filter
             if (activeFilter !== 'all') {
                 filtered = filtered.filter(item => {
                     const codePrefix = item.code.charAt(0).toUpperCase();
@@ -953,7 +1362,7 @@
 
                 card.innerHTML = `
                 <div class="card-main">
-                    <div style="display:flex; align-items:center; width:100%;">
+                    <div style="display:flex; align-items:center; flex:1; min-width:0;">
                         <div class="code-pill">${item.code}</div>
                         <div class="info-col">
                             <div class="family-text">${item.family || 'FRAGRANCE'}</div>
@@ -973,7 +1382,7 @@
                         <div class="side">
                             <div class="side-label">${t.orig}</div>
                             <a href="${googleSearch}" target="_blank" class="view-btn" onclick="event.stopPropagation()">
-                                <span>👁</span> ${t.btn}
+                                <span aria-hidden="true">↗</span> ${t.btn}
                             </a>
                         </div>
                     </div>
@@ -985,8 +1394,196 @@
 
         document.getElementById('searchInput').addEventListener('input', performSearch);
 
-    </script>
+        // Mobilde kaydırınca logo satırını gizle (sticky başlık ince kalsın)
+        const appHeader = document.getElementById('appHeader');
+        let headerCollapsed = false;
+        window.addEventListener('scroll', () => {
+            const shouldCollapse = window.scrollY > 70;
+            if (shouldCollapse !== headerCollapsed) {
+                headerCollapsed = shouldCollapse;
+                appHeader.classList.toggle('scrolled', shouldCollapse);
+            }
+        }, { passive: true });
 
+        // --- QUIZ LOGIC ---
+        let currentQuizStep = 0;
+        let quizAnswers = {};
+
+        function startQuiz() {
+            currentQuizStep = 0;
+            quizAnswers = {};
+            document.getElementById('quiz-modal').classList.remove('hidden');
+            renderQuestion();
+        }
+
+        function closeQuiz() {
+            document.getElementById('quiz-modal').classList.add('hidden');
+        }
+
+        function renderQuestion() {
+            const q = quizQuestions[currentQuizStep];
+            const content = document.getElementById('quiz-content');
+            const lang = currentLang;
+
+            if (!q) {
+                showQuizResults();
+                return;
+            }
+
+            let html = `
+                <div class="question-text">${q.text[lang] || q.text['en']}</div>
+                <div class="quiz-options">
+            `;
+
+            q.options.forEach((opt, idx) => {
+                const text = opt.label[lang] || opt.label['en'];
+                html += `<div class="quiz-opt-btn" onclick="handleAnswer(${idx})">
+                            <span>${text}</span> <span>➜</span>
+                         </div>`;
+            });
+
+            html += `</div>
+                     <div class="quiz-step">${currentQuizStep + 1} / ${quizQuestions.length}</div>`;
+
+            content.innerHTML = html;
+        }
+
+        function handleAnswer(optionIndex) {
+            const q = quizQuestions[currentQuizStep];
+            const selected = q.options[optionIndex];
+
+            if (q.id === 'gender') quizAnswers.gender = selected.value;
+            if (q.id === 'occasion') quizAnswers.style = selected.type;
+            if (q.id === 'scent_char') quizAnswers.tags = selected.tags;
+            if (q.id === 'sillage') quizAnswers.weight = selected.weight;
+
+            currentQuizStep++;
+            renderQuestion();
+        }
+
+        function showQuizResults() {
+            const content = document.getElementById('quiz-content');
+            const t = translations[currentLang];
+
+            content.innerHTML = `<div class="msg-box"><div class="msg-icon">✨</div><div>${t.start}...</div></div>`;
+
+            // 1. Score ALL Candidates first
+            let allScored = fragranceData.map(item => {
+                let score = 0;
+                const family = item.family.toUpperCase();
+
+                if (quizAnswers.tags) {
+                    quizAnswers.tags.forEach(tag => {
+                        if (family.includes(tag)) score += 20;
+                    });
+                }
+
+                if (quizAnswers.style === 'fresh') {
+                    if (family.includes('CITRUS') || family.includes('AQUATIC') || family.includes('GREEN')) score += 15;
+                    if (family.includes('ORIENTAL') || family.includes('OUD')) score -= 10;
+                } else if (quizAnswers.style === 'heavy') {
+                    if (family.includes('ORIENTAL') || family.includes('SPICY') || family.includes('GOURMAND') || family.includes('OUD')) score += 15;
+                    if (family.includes('CITRUS') && !family.includes('WOODY')) score -= 5;
+                }
+
+                if (quizAnswers.weight === 3) {
+                    if (family.includes('OUD') || family.includes('VANILLA') || family.includes('AMBERY')) score += 10;
+                }
+
+                return { ...item, score: score };
+            }).filter(i => i.score > 0);
+
+            // 2. Logic: Create 5 Results based on Gender Selection
+            let finalSelection = [];
+            const selectionCount = 5;
+
+            if (quizAnswers.gender === 'unisex') {
+                // If unisex selected, pool only U codes
+                let pool = allScored.filter(i => i.code.startsWith('U')).sort((a, b) => b.score - a.score).slice(0, 15);
+                finalSelection = shuffleArray(pool).slice(0, selectionCount);
+            } else {
+                // Gender Specific Logic
+                const targetPrefix = quizAnswers.gender === 'men' ? 'M' : 'W';
+
+                // Primary Pool (Target Gender) - Top 15 candidates
+                let primaryDocs = allScored.filter(i => i.code.startsWith(targetPrefix)).sort((a, b) => b.score - a.score).slice(0, 15);
+                // Secondary Pool (Unisex) - Top 10 candidates
+                let secondaryDocs = allScored.filter(i => i.code.startsWith('U')).sort((a, b) => b.score - a.score).slice(0, 10);
+
+                // Shuffle Pools for Randomness
+                primaryDocs = shuffleArray(primaryDocs);
+                secondaryDocs = shuffleArray(secondaryDocs);
+
+                // Logic: Take 3 from Primary, 2 from Secondary (Max 2 unisex rule)
+                // This ensures 3/5 matches are gender specific
+                let selectedPrimary = primaryDocs.slice(0, 3);
+                let selectedSecondary = secondaryDocs.slice(0, 2);
+
+                finalSelection = [...selectedPrimary, ...selectedSecondary];
+
+                // If total is less than 5, try to fill up from primary again
+                if (finalSelection.length < 5) {
+                    let extraNeeded = 5 - finalSelection.length;
+                    let morePrimary = primaryDocs.slice(3, 3 + extraNeeded);
+                    finalSelection = [...finalSelection, ...morePrimary];
+                }
+            }
+
+            // Final shuffle so the output isn't sorted by gender (e.g. MMMUU) but mixed (MUMUM)
+            finalSelection = shuffleArray(finalSelection);
+
+            // 4. Render
+            if (finalSelection.length === 0) {
+                content.innerHTML = `<div style="text-align:center; padding:20px;">
+                    <div style="font-size:3rem;">🤷‍♂️</div>
+                    <p style="margin-top:20px;">${t.empty}</p>
+                    <button class="view-btn" style="margin:20px auto;" onclick="startQuiz()">RESTART</button>
+                </div>`;
+            } else {
+                let html = `<div style="text-align:center; color:var(--text-secondary); margin-bottom:14px; font-size:10px; letter-spacing:2px; font-weight:600;">TOP MATCHES</div>`;
+
+                finalSelection.forEach(item => {
+                    const googleSearch = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(item.name + " perfume bottle")}`;
+                    // BURADA KARTLARI "window.open" DEĞİL "toggleCard" İLE YAPILANDIRIYORUZ.
+                    html += `
+                        <div class="card" onclick="toggleCard(this)">
+                            <div class="card-main">
+                                <div style="display:flex; align-items:center; flex:1; min-width:0;">
+                                    <div class="code-pill">${item.code}</div>
+                                    <div class="info-col">
+                                        <div class="family-text">${item.family}</div>
+                                        <div class="perfume-name">${item.name}</div>
+                                    </div>
+                                </div>
+                                <div class="arrow">▼</div>
+                            </div>
+
+                            <div class="details-panel">
+                                <div class="compare-box">
+                                    <div class="side">
+                                        <div class="side-label">${t.beas}</div>
+                                        <div class="bottle-icon"><div class="bottle-v">B</div></div>
+                                    </div>
+                                    <div class="vs">vs</div>
+                                    <div class="side">
+                                        <div class="side-label">${t.orig}</div>
+                                        <a href="${googleSearch}" target="_blank" class="view-btn" onclick="event.stopPropagation()">
+                                            <span aria-hidden="true">↗</span> ${t.btn}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     `;
+                });
+
+                html += `<button type="button" class="view-btn" style="width:100%; justify-content:center; margin-top:15px;" onclick="startQuiz()">RESTART</button>`;
+                html += `<button type="button" class="view-btn" style="width:100%; justify-content:center; margin-top:10px; background:transparent; border:1px solid var(--border-strong); color:var(--text-secondary);" onclick="closeQuiz()">CLOSE</button>`;
+                content.innerHTML = html;
+            }
+        }
+
+    </script>
 </body>
 
 </html>

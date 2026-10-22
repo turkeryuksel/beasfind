@@ -1,0 +1,9 @@
+# Freebuff / editör
+.freebuff/
+.DS_Store
+
+# Geçici çalışma dosyaları
+.tmp-logo/
+
+# Tasarım ekran görüntüleri (siteye dahil değil)
+beas-*.png
