@@ -1186,6 +1186,18 @@
         // --- HELPER FUNCTIONS ---
         function cleanString(str) { return str.replace(/[^a-zA-Z0-9]/g, '').toUpperCase(); }
 
+        // Kod sıralaması: M → W → U, her blok kendi içinde numaraya göre küçükten büyüğe
+        function codeSortKey(item) {
+            const prefix = item.code.charAt(0).toUpperCase();
+            const rank = prefix === 'M' ? 1 : prefix === 'W' ? 2 : prefix === 'U' ? 3 : 4;
+            const num = parseInt(item.code.replace(/[^0-9]/g, ''), 10);
+            return rank * 10000 + (isNaN(num) ? 0 : num);
+        }
+
+        function sortByCode(items) {
+            return items.slice().sort((a, b) => codeSortKey(a) - codeSortKey(b));
+        }
+
         function levenshtein(a, b) {
             const matrix = [];
             for (let i = 0; i <= b.length; i++) matrix[i] = [i];
@@ -1352,6 +1364,9 @@
                 resultsArea.innerHTML = `<div class="msg-box">${t.empty}</div>`;
                 return;
             }
+
+            // Her zaman kod sırasıyla listele (M → W → U, küçükten büyüğe)
+            filtered = sortByCode(filtered);
 
             filtered.forEach(item => {
                 const googleSearch = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(item.name + " perfume bottle")}`;
