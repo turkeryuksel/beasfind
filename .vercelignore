@@ -3,3 +3,5 @@
 .git/
 beas-*.png
 .DS_Store
+.env*
+.vercel/

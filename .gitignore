@@ -7,3 +7,9 @@
 
 # Tasarım ekran görüntüleri (siteye dahil değil)
 beas-*.png
+.vercel
+.env*
+
+# Vercel yerel bağlantı
+.vercel/
+.env*.local
