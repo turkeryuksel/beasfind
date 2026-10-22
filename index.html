@@ -119,6 +119,96 @@
             outline: none;
         }
 
+        /* --- ACCESS LOCK (4 haneli giriş kodu) --- */
+        #lock-screen {
+            position: fixed;
+            inset: 0;
+            background: #F7F4EE;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 20px;
+            transition: opacity 0.4s ease;
+        }
+
+        .lock-form {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            gap: 10px;
+        }
+
+        .pin-input {
+            width: 208px;
+            padding: 14px 0 14px 12px;
+            text-align: center;
+            font-family: inherit;
+            font-size: 26px;
+            font-weight: 500;
+            letter-spacing: 16px;
+            color: var(--text-primary);
+            background: #fff;
+            border: 1px solid var(--border-strong);
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .pin-input::placeholder {
+            color: #D5CDBF;
+            letter-spacing: 12px;
+        }
+
+        .pin-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(168, 131, 78, .12);
+        }
+
+        .pin-input.pin-shake {
+            animation: pinShake 0.35s ease;
+            border-color: #B4483C;
+        }
+
+        @keyframes pinShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-7px); }
+            75% { transform: translateX(7px); }
+        }
+
+        .pin-btn {
+            background: var(--text-primary);
+            color: #fff;
+            border: none;
+            font-family: inherit;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1;
+            padding: 0;
+            width: 56px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .pin-btn:hover,
+        .pin-btn:focus-visible {
+            background: var(--accent-dark);
+            outline: none;
+        }
+
+        .pin-error {
+            min-height: 18px;
+            margin-top: 14px;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 1.6px;
+            color: #B4483C;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
         /* --- APP CONTAINER --- */
         .app-container {
             width: 100%;
@@ -743,6 +833,18 @@
 
 <body>
 
+    <div id="lock-screen" class="hidden">
+        <img class="splash-logo-img" src="assets/logo.svg" alt="BEA'S — Beauty &amp; Scent" width="202"
+            height="63">
+        <div class="splash-sub" id="lockLabel"></div>
+        <form class="lock-form" id="lockForm" onsubmit="submitPin(event)">
+            <input type="tel" class="pin-input" id="pinInput" inputmode="numeric" pattern="[0-9]*"
+                maxlength="4" autocomplete="one-time-code" placeholder="••••" aria-label="Giriş kodu">
+            <button type="submit" class="pin-btn" aria-label="Giriş">→</button>
+        </form>
+        <div class="pin-error" id="pinError" role="alert"></div>
+    </div>
+
     <div id="splash-screen">
         <img class="splash-logo-img" src="assets/logo.svg" alt="BEA'S — Beauty &amp; Scent" width="202"
             height="63">
@@ -1219,6 +1321,115 @@
             return array;
         }
 
+        // --- GİRİŞ KODU (4 HANELİ) ---
+        // Kodu değiştirmek için sadece aşağıdaki satırı düzenleyin.
+        const ACCESS_PIN = "2327";
+        const UNLOCK_KEY = "beas-unlocked";
+
+        // Giriş ekranı metinleri (dil seçiminden sonra gösterildiği için çevrilebiliyor)
+        const pinTexts = {
+            tr: { label: "GİRİŞ KODU", error: "HATALI KOD" },
+            en: { label: "ACCESS CODE", error: "WRONG CODE" },
+            ru: { label: "КОД ДОСТУПА", error: "НЕВЕРНЫЙ КОД" },
+            ar: { label: "رمز الدخول", error: "الرمز غير صحيح" },
+            ua: { label: "КОД ДОСТУПУ", error: "НЕВІРНИЙ КОД" },
+            ro: { label: "COD DE ACCES", error: "COD GREȘIT" },
+            fr: { label: "CODE D'ACCÈS", error: "CODE INCORRECT" },
+            hu: { label: "BELÉPÉSI KÓD", error: "HIBÁS KÓD" },
+            sq: { label: "KODI I HYRJES", error: "KOD I GABUAR" },
+            mk: { label: "КОД ЗА ВЛЕЗ", error: "ПОГРЕШЕН КОД" },
+            el: { label: "ΚΩΔΙΚΟΣ ΠΡΟΣΒΑΣΗΣ", error: "ΛΑΘΟΣ ΚΩΔΙΚΟΣ" },
+            sr: { label: "KOD ZA PRISTUP", error: "POGREŠAN KOD" },
+            es: { label: "CÓDIGO DE ACCESO", error: "CÓDIGO INCORRECTO" },
+            tg: { label: "РАМЗИ ВУРУД", error: "РАМЗИ НОДУРУСТ" },
+            uz: { label: "KIRISH KODI", error: "XATO KOD" },
+            kk: { label: "КІРУ КОДЫ", error: "ҚАТЕ КОД" }
+        };
+
+        function isUnlocked() {
+            try { return sessionStorage.getItem(UNLOCK_KEY) === '1'; } catch (e) { return false; }
+        }
+
+        function submitPin(event) {
+            if (event) event.preventDefault();
+            const input = document.getElementById('pinInput');
+            const value = input.value.replace(/\D/g, '').slice(0, 4);
+            input.value = value;
+            if (value.length < 4) return;
+
+            if (value === ACCESS_PIN) {
+                try { sessionStorage.setItem(UNLOCK_KEY, '1'); } catch (e) { }
+                unlockScreen();
+            } else {
+                const texts = pinTexts[currentLang] || pinTexts.en;
+                document.getElementById('pinError').innerText = texts.error;
+                input.value = '';
+                input.classList.remove('pin-shake');
+                void input.offsetWidth;
+                input.classList.add('pin-shake');
+                input.focus();
+            }
+        }
+
+        function showLockScreen() {
+            const lock = document.getElementById('lock-screen');
+            const input = document.getElementById('pinInput');
+            const texts = pinTexts[currentLang] || pinTexts.en;
+
+            document.getElementById('lockLabel').innerText = texts.label;
+            document.getElementById('pinError').innerText = '';
+            input.value = '';
+            input.classList.remove('pin-shake');
+            document.getElementById('splash-screen').setAttribute('inert', '');
+
+            lock.classList.remove('hidden');
+            lock.style.opacity = '1';
+            lock.style.pointerEvents = 'auto';
+            setTimeout(() => input.focus(), 150);
+        }
+
+        function unlockScreen() {
+            const lock = document.getElementById('lock-screen');
+            document.getElementById('pinError').innerText = '';
+            document.getElementById('splash-screen').removeAttribute('inert');
+            lock.style.opacity = '0';
+            lock.style.pointerEvents = 'none';
+            setTimeout(() => {
+                lock.classList.add('hidden');
+                openApp();
+            }, 350);
+        }
+
+        (function initPinInput() {
+            const input = document.getElementById('pinInput');
+            input.addEventListener('input', () => {
+                input.value = input.value.replace(/\D/g, '').slice(0, 4);
+                document.getElementById('pinError').innerText = '';
+                input.classList.remove('pin-shake');
+                if (input.value.length === 4) submitPin();
+            });
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') submitPin(e);
+            });
+        })();
+
+        function openApp() {
+            const splash = document.getElementById('splash-screen');
+            const app = document.getElementById('app-container');
+
+            splash.style.opacity = '0';
+            splash.style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                splash.style.display = 'none';
+                app.style.display = 'flex';
+                setTimeout(() => { app.style.opacity = '1'; document.getElementById('searchInput').focus(); }, 50);
+            }, 600);
+
+            // Dil değişince mevcut liste/arama yeni dilde yeniden çizilsin
+            if (app.style.display !== 'none' && app.style.display !== '') performSearch();
+        }
+
         function enterApp(lang) {
             currentLang = lang;
             const isoLang = lang === 'ua' ? 'uk' : lang;
@@ -1243,20 +1454,13 @@
             document.getElementById('filterWomen').innerText = t.women;
             document.getElementById('filterUnisex').innerText = t.unisex;
 
-            const splash = document.getElementById('splash-screen');
-            const app = document.getElementById('app-container');
+            // Dil seçimi önce, sonra 4 haneli giriş kodu
+            if (!isUnlocked()) {
+                showLockScreen();
+                return;
+            }
 
-            splash.style.opacity = '0';
-            splash.style.pointerEvents = 'none';
-
-            setTimeout(() => {
-                splash.style.display = 'none';
-                app.style.display = 'flex';
-                setTimeout(() => { app.style.opacity = '1'; document.getElementById('searchInput').focus(); }, 50);
-            }, 600);
-
-            // Dil değişince mevcut liste/arama yeni dilde yeniden çizilsin
-            if (app.style.display !== 'none' && app.style.display !== '') performSearch();
+            openApp();
         }
 
         function showLangScreen() {
